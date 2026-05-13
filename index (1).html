@@ -1,0 +1,2776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anchor — Set Your Course</title>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #212e53;
+    --teal: #4a919e;
+    --sage: #bed3c3;
+    --blush: #ebaca2;
+    --rose: #ce6a6b;
+    --white: #fafaf8;
+    --light-sage: #f0f5f1;
+    --light-blush: #fdf3f1;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Josefin Sans', sans-serif;
+    background: var(--white);
+    color: var(--navy);
+    overflow-x: hidden;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── PAGE SYSTEM ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 5%;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid rgba(33,46,83,0.06);
+    transition: all 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 32px rgba(33,46,83,0.1); background: rgba(250,250,248,0.98); }
+
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--navy); cursor: pointer;
+  }
+  .logo img { height: 50px; width: auto; object-fit: contain; }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 30px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none; color: var(--navy);
+    font-size: 0.75rem; font-weight: 300;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    opacity: 0.65; transition: opacity 0.2s, color 0.2s;
+    cursor: pointer;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--teal); }
+  .nav-links .btn-nav {
+    background: var(--teal); color: white;
+    padding: 10px 22px; border-radius: 100px;
+    opacity: 1; letter-spacing: 0.1em;
+    transition: background 0.2s, transform 0.2s;
+    font-weight: 400; font-size: 0.73rem;
+  }
+  .nav-links .btn-nav:hover { background: var(--navy); transform: translateY(-1px); }
+  .nav-links .btn-login {
+    background: transparent; color: var(--navy);
+    padding: 9px 20px; border-radius: 100px; opacity: 1;
+    letter-spacing: 0.1em; border: 1.5px solid rgba(33,46,83,0.2);
+    transition: all 0.2s; font-weight: 300; font-size: 0.73rem;
+  }
+  .nav-links .btn-login:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* ── SHARED SECTION STYLES ── */
+  section { padding: 88px 5%; }
+  .section-label {
+    font-size: 0.67rem; font-weight: 400; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+    font-weight: 200; line-height: 1.2; letter-spacing: 0.01em;
+    margin-bottom: 18px;
+  }
+  .section-sub {
+    font-size: 0.95rem; line-height: 1.9; font-weight: 300;
+    color: rgba(33,46,83,0.62); max-width: 520px; letter-spacing: 0.03em;
+  }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--teal) 0%, #3d7a87 100%); color: white;
+    padding: 14px 30px; border-radius: 100px;
+    font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none; cursor: pointer;
+    transition: all 0.28s; font-family: inherit; border: none; display: inline-block;
+    box-shadow: 0 4px 20px rgba(74,145,158,0.35), 0 1px 3px rgba(74,145,158,0.2);
+  }
+  .btn-primary:hover { background: linear-gradient(135deg, #3d7a87 0%, var(--navy) 100%); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(33,46,83,0.22); }
+
+  .btn-outline {
+    background: transparent; color: var(--navy);
+    padding: 13px 28px; border-radius: 100px;
+    font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none; cursor: pointer;
+    border: 1.5px solid rgba(33,46,83,0.22); transition: all 0.25s;
+    font-family: inherit; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+  .btn-rose {
+    background: var(--rose); color: white;
+    padding: 13px 28px; border-radius: 100px;
+    font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none; cursor: pointer;
+    transition: all 0.25s; font-family: inherit; border: none; display: inline-block;
+    box-shadow: 0 4px 16px rgba(206,106,107,0.2);
+  }
+  .btn-rose:hover { background: var(--navy); transform: translateY(-2px); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  .fade-up { animation: fadeUp 0.55s ease both; }
+  .fade-up-d1 { animation: fadeUp 0.55s 0.1s ease both; }
+  .fade-up-d2 { animation: fadeUp 0.55s 0.2s ease both; }
+  .fade-up-d3 { animation: fadeUp 0.55s 0.3s ease both; }
+
+  /* ═══════════════════════════════════
+     HOME PAGE
+  ═══════════════════════════════════ */
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 130px 5% 80px; gap: 60px;
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #f8faf9 0%, #eef4f0 50%, #faf7f5 100%);
+  }
+  #heroCanvas {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0; opacity: 0.55;
+  }
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, rgba(74,145,158,0.12), rgba(190,211,195,0.2));
+    border: 1px solid rgba(74,145,158,0.25);
+    color: var(--teal); font-size: 0.68rem; font-weight: 400;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 8px 18px; border-radius: 100px; margin-bottom: 30px;
+    box-shadow: 0 2px 12px rgba(74,145,158,0.12);
+  }
+  .hero-badge span { width: 6px; height: 6px; background: var(--teal); border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(74,145,158,0.2); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 3px rgba(74,145,158,0.2); } 50% { box-shadow: 0 0 0 6px rgba(74,145,158,0.08); } }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 5vw, 4.4rem);
+    font-weight: 100; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 22px;
+  }
+  .hero h1 em { font-style: normal; color: var(--teal); font-weight: 300;
+    background: linear-gradient(135deg, var(--teal), #3d7a87);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  .hero > .hero-content p {
+    font-size: 0.97rem; line-height: 1.9; font-weight: 300;
+    color: rgba(33,46,83,0.65); max-width: 440px; margin-bottom: 38px; letter-spacing: 0.03em;
+  }
+
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* HERO CARDS */
+  .hero-visual { position: relative; z-index: 1; }
+  .hero-cards-stack { position: relative; height: 460px; }
+  .opp-card {
+    position: absolute; background: white; border-radius: 20px; padding: 22px;
+    box-shadow: 0 8px 40px rgba(33,46,83,0.12);
+    border: 1px solid rgba(33,46,83,0.07); transition: transform 0.3s ease;
+    backdrop-filter: blur(4px);
+  }
+  .opp-card:hover { transform: translateY(-6px); box-shadow: 0 16px 52px rgba(33,46,83,0.16); }
+  .opp-card.card-1 { width: 290px; top: 20px; right: 0; animation: floatA 6s ease-in-out infinite; }
+  .opp-card.card-2 { width: 270px; top: 170px; right: 36px; background: var(--light-sage); animation: floatB 7s ease-in-out infinite; }
+  .opp-card.card-3 { width: 255px; top: 310px; right: 16px; background: var(--light-blush); animation: floatC 8s ease-in-out infinite; }
+  @keyframes floatA { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+  @keyframes floatB { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+  @keyframes floatC { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-14px); } }
+  .card-category { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 7px; }
+  .card-title { font-size: 0.93rem; font-weight: 400; margin-bottom: 3px; }
+  .card-biz { font-size: 0.78rem; color: rgba(33,46,83,0.52); margin-bottom: 11px; font-weight: 300; }
+  .card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .card-tag { background: rgba(74,145,158,0.1); color: var(--teal); font-size: 0.68rem; font-weight: 400; padding: 3px 9px; border-radius: 100px; letter-spacing: 0.05em; }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a2540 100%);
+    padding: 28px 5%;
+    display: flex; align-items: center; justify-content: center;
+    gap: 52px; flex-wrap: wrap;
+    position: relative; overflow: hidden;
+  }
+  .trust-bar::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(74,145,158,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(190,211,195,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .trust-item { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.7); font-size: 0.78rem; letter-spacing: 0.06em; position: relative; z-index: 1; }
+  .trust-item svg { color: var(--sage); flex-shrink: 0; }
+  .trust-item strong { color: white; font-weight: 400; }
+
+  /* HOW IT WORKS */
+  .how-it-works { background: var(--light-sage); }
+  .hiw-header { text-align: center; margin-bottom: 60px; }
+  .hiw-header .section-sub { margin: 0 auto; }
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; position: relative; }
+  .steps-grid::before {
+    content: ''; position: absolute; top: 35px; left: 12.5%; right: 12.5%; height: 1px;
+    background: linear-gradient(90deg, var(--teal), var(--sage)); z-index: 0;
+  }
+  .step { text-align: center; padding: 0 18px; position: relative; z-index: 1; opacity: 0; transform: translateY(18px); transition: opacity 0.5s, transform 0.5s; }
+  .step.visible { opacity: 1; transform: none; }
+  .step:nth-child(2) { transition-delay: 0.1s; }
+  .step:nth-child(3) { transition-delay: 0.2s; }
+  .step:nth-child(4) { transition-delay: 0.3s; }
+  .step-num {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: white; color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; font-weight: 200; margin: 0 auto 22px;
+    box-shadow: 0 4px 18px rgba(74,145,158,0.18);
+    border: 1.5px solid rgba(74,145,158,0.25);
+  }
+  .step h3 { font-size: 0.88rem; font-weight: 400; margin-bottom: 9px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .step p { font-size: 0.85rem; line-height: 1.8; color: rgba(33,46,83,0.62); font-weight: 300; }
+
+  /* HOME SPLIT CARDS */
+  .home-paths { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .path-card {
+    border-radius: 20px; padding: 48px 40px;
+    position: relative; overflow: hidden; cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .path-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(33,46,83,0.14); }
+  .path-card.student { background: var(--navy); color: white; }
+  .path-card.business { background: var(--light-sage); color: var(--navy); border: 1px solid rgba(33,46,83,0.08); }
+  .path-card::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px; border-radius: 50%; pointer-events: none;
+  }
+  .path-card.student::before { background: rgba(74,145,158,0.15); }
+  .path-card.business::before { background: rgba(206,106,107,0.1); }
+  .path-tag {
+    font-size: 0.65rem; font-weight: 400; letter-spacing: 0.18em;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .path-card.student .path-tag { color: var(--sage); }
+  .path-card.business .path-tag { color: var(--teal); }
+  .path-card h3 { font-size: 1.7rem; font-weight: 200; margin-bottom: 14px; line-height: 1.2; letter-spacing: 0.01em; }
+  .path-card p { font-size: 0.88rem; line-height: 1.85; font-weight: 300; letter-spacing: 0.03em; margin-bottom: 28px; }
+  .path-card.student p { color: rgba(255,255,255,0.68); }
+  .path-card.business p { color: rgba(33,46,83,0.65); }
+  .path-link {
+    font-size: 0.73rem; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: gap 0.2s;
+  }
+  .path-card.student .path-link { color: var(--sage); }
+  .path-card.business .path-link { color: var(--teal); }
+  .path-link:hover { gap: 14px; }
+
+  /* OPPORTUNITIES PREVIEW */
+  .opps-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; gap: 20px; flex-wrap: wrap; }
+  .view-all-link {
+    font-size: 0.75rem; font-weight: 400; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--teal); text-decoration: none;
+    border-bottom: 1px solid rgba(74,145,158,0.35); padding-bottom: 2px;
+    cursor: pointer; transition: color 0.2s, border-color 0.2s;
+  }
+  .view-all-link:hover { color: var(--navy); border-color: var(--navy); }
+
+  .opps-preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .opp-preview-card {
+    background: white; border-radius: 16px; padding: 24px;
+    border: 1px solid rgba(33,46,83,0.07);
+    box-shadow: 0 2px 14px rgba(33,46,83,0.05);
+    transition: all 0.25s; display: flex; flex-direction: column;
+  }
+  .opp-preview-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(33,46,83,0.1); border-color: rgba(74,145,158,0.15); }
+  .opp-industry-label { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 7px; }
+  .opp-preview-card h3 { font-size: 0.97rem; font-weight: 400; margin-bottom: 5px; }
+  .opp-preview-card .hours { font-size: 0.78rem; color: rgba(33,46,83,0.48); font-weight: 300; margin-bottom: 14px; }
+  .skill-chips { display: flex; gap: 5px; flex-wrap: wrap; flex: 1; margin-bottom: 16px; align-content: flex-start; }
+  .skill-chip {
+    background: var(--light-sage); color: var(--navy);
+    font-size: 0.68rem; padding: 4px 10px; border-radius: 100px;
+    font-weight: 400; letter-spacing: 0.04em;
+  }
+  .opp-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(33,46,83,0.06); padding-top: 14px; margin-top: auto; }
+
+  .type-badge {
+    font-size: 0.65rem; font-weight: 400; letter-spacing: 0.1em;
+    text-transform: uppercase; display: flex; align-items: center; gap: 5px;
+  }
+  .type-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .type-badge.inperson { color: #ce6a6b; }
+  .type-badge.inperson .type-dot { background: #ce6a6b; }
+  .type-badge.remote { color: #7c5cbf; }
+  .type-badge.remote .type-dot { background: #7c5cbf; }
+  .type-badge.hybrid { color: #e8a020; }
+  .type-badge.hybrid .type-dot { background: #e8a020; }
+
+  .btn-apply {
+    background: var(--teal); color: white;
+    padding: 7px 16px; border-radius: 100px;
+    font-size: 0.68rem; font-weight: 400; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none; border: none; cursor: pointer;
+    font-family: inherit; transition: all 0.2s;
+  }
+  .btn-apply:hover { background: var(--navy); }
+
+  /* TESTIMONIALS */
+  .testimonials { background: white; }
+  .t-header { text-align: center; margin-bottom: 52px; }
+  .t-header .section-sub { margin: 0 auto; }
+  .t-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .t-card {
+    background: var(--light-sage); border-radius: 18px; padding: 30px;
+    border: 1px solid rgba(33,46,83,0.06); position: relative;
+  }
+  .t-card::before { content: '\201C'; font-size: 4.5rem; line-height: 1; color: var(--teal); position: absolute; top: 14px; left: 24px; opacity: 0.3; font-weight: 200; }
+  .t-text { font-size: 0.88rem; line-height: 1.9; color: rgba(33,46,83,0.75); margin-bottom: 22px; padding-top: 38px; font-weight: 300; letter-spacing: 0.02em; }
+  .t-author { display: flex; align-items: center; gap: 11px; }
+  .t-avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 400; font-size: 0.82rem; color: white; flex-shrink: 0; }
+  .t-avatar.a { background: var(--teal); }
+  .t-avatar.b { background: var(--rose); }
+  .t-avatar.c { background: var(--navy); }
+  .t-name { font-weight: 400; font-size: 0.85rem; letter-spacing: 0.04em; }
+  .t-role { font-size: 0.73rem; color: rgba(33,46,83,0.48); font-weight: 300; }
+
+  /* FINAL CTA (HOME) */
+  .final-cta {
+    text-align: center; background: var(--navy);
+    color: white; padding: 110px 5%; position: relative; overflow: hidden;
+  }
+  .final-cta::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 25% 50%, rgba(74,145,158,0.2) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 50%, rgba(190,211,195,0.1) 0%, transparent 55%);
+  }
+  .final-cta > * { position: relative; z-index: 1; }
+  .final-cta h2 { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 200; letter-spacing: 0.02em; margin-bottom: 18px; line-height: 1.2; }
+  .final-cta h2 em { font-style: normal; color: var(--sage); }
+  .final-cta p { font-size: 0.93rem; color: rgba(255,255,255,0.62); margin-bottom: 40px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.9; font-weight: 300; letter-spacing: 0.03em; }
+  .final-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-cta-light {
+    background: white; color: var(--navy);
+    padding: 13px 28px; border-radius: 100px;
+    font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none; font-family: inherit; cursor: pointer;
+    transition: all 0.25s;
+  }
+  .btn-cta-light:hover { background: var(--sage); transform: translateY(-2px); }
+  .btn-cta-ghost {
+    background: transparent; color: white;
+    padding: 13px 28px; border-radius: 100px;
+    font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none; font-family: inherit; cursor: pointer;
+    border: 1.5px solid rgba(255,255,255,0.28); transition: all 0.25s;
+  }
+  .btn-cta-ghost:hover { border-color: white; background: rgba(255,255,255,0.07); }
+
+  /* ═══════════════════════════════════
+     OPPORTUNITIES PAGE
+  ═══════════════════════════════════ */
+  .opps-page-hero {
+    padding: 130px 5% 60px;
+    background: linear-gradient(135deg, #eef4f0 0%, #f5f8f6 60%, #f8f5f3 100%);
+    border-bottom: 1px solid rgba(33,46,83,0.07);
+    position: relative; overflow: hidden;
+  }
+  .opps-page-hero::before {
+    content: ''; position: absolute; top: -100px; right: -80px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,145,158,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .opps-page-hero h1 { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 200; margin-bottom: 14px; }
+  .opps-page-hero p { font-size: 0.93rem; line-height: 1.9; color: rgba(33,46,83,0.62); max-width: 500px; font-weight: 300; margin-bottom: 28px; }
+
+  .opps-main { padding: 48px 5% 96px; }
+
+  /* FILTERS */
+  .filter-bar {
+    display: flex; align-items: flex-start; gap: 32px;
+    margin-bottom: 36px; flex-wrap: wrap;
+  }
+  .filter-group { display: flex; flex-direction: column; gap: 8px; }
+  .filter-group-label { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(33,46,83,0.45); }
+  .filter-pills { display: flex; gap: 7px; flex-wrap: wrap; }
+  .fpill {
+    background: transparent; border: 1px solid rgba(33,46,83,0.15);
+    color: rgba(33,46,83,0.55); padding: 7px 15px; border-radius: 100px;
+    font-size: 0.68rem; font-weight: 400; letter-spacing: 0.1em;
+    text-transform: uppercase; cursor: pointer; font-family: inherit;
+    transition: background 0.18s, color 0.18s, border-color 0.18s, box-shadow 0.18s, transform 0.18s;
+  }
+  .fpill:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-1px); }
+  .fpill.active { background: linear-gradient(135deg, var(--teal), #3d7a87); border-color: transparent; color: white; box-shadow: 0 3px 12px rgba(74,145,158,0.3); }
+
+  .search-wrap {
+    position: relative; min-width: 260px;
+  }
+  .search-wrap input {
+    width: 100%; padding: 10px 16px 10px 38px;
+    border: 1px solid rgba(33,46,83,0.18); border-radius: 100px;
+    font-family: inherit; font-size: 0.8rem; font-weight: 300; letter-spacing: 0.04em;
+    background: white; color: var(--navy); outline: none; transition: border-color 0.2s;
+  }
+  .search-wrap input:focus { border-color: var(--teal); }
+  .search-wrap svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: rgba(33,46,83,0.32); pointer-events: none; }
+  .search-wrap input::placeholder { color: rgba(33,46,83,0.35); }
+
+  .opps-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+  .result-count { font-size: 0.78rem; color: rgba(33,46,83,0.48); font-weight: 300; letter-spacing: 0.05em; }
+
+  .opps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .opp-card-full_orig {
+    background: white; border-radius: 16px; padding: 24px;
+    border: 1px solid rgba(33,46,83,0.07);
+    box-shadow: 0 2px 14px rgba(33,46,83,0.05);
+    transition: all 0.25s; display: flex; flex-direction: column;
+  }
+  .opp-card-full { background: white; border-radius: 18px; padding: 24px; border: 1px solid rgba(33,46,83,0.07); box-shadow: 0 2px 14px rgba(33,46,83,0.05); transition: all 0.28s; display: flex; flex-direction: column; }
+  .opp-card-full:hover { transform: translateY(-5px); box-shadow: 0 16px 44px rgba(33,46,83,0.13); border-color: rgba(74,145,158,0.2); }
+  .opp-card-full.hidden { display: none; }
+  .opp-card-full .opp-industry-label { margin-bottom: 7px; }
+  .opp-card-full h3 { font-size: 0.97rem; font-weight: 400; margin-bottom: 6px; }
+  .opp-card-full .hours { font-size: 0.75rem; color: rgba(33,46,83,0.45); font-weight: 300; margin-bottom: 14px; letter-spacing: 0.04em; }
+  .skills-label { font-size: 0.63rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(33,46,83,0.42); margin-bottom: 7px; }
+  .opp-card-full .skill-chips { margin-bottom: 16px; }
+  .opp-card-full .opp-footer { border-top: 1px solid rgba(33,46,83,0.06); padding-top: 14px; margin-top: auto; }
+
+  /* ═══════════════════════════════════
+     FOR STUDENTS PAGE
+  ═══════════════════════════════════ */
+  .students-hero {
+    padding: 130px 5% 80px;
+    background: var(--navy); color: white;
+    position: relative; overflow: hidden;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center;
+  }
+  .students-hero::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,145,158,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .students-hero::after {
+    content: ''; position: absolute; bottom: -60px; left: 20%;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(190,211,195,0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .students-hero-content { position: relative; z-index: 1; }
+  .students-hero .section-label { color: var(--sage); }
+  .students-hero h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 200; line-height: 1.12; margin-bottom: 20px; }
+  .students-hero h1 em { font-style: normal; color: var(--sage); }
+  .students-hero p { font-size: 0.95rem; line-height: 1.9; color: rgba(255,255,255,0.65); max-width: 420px; margin-bottom: 32px; font-weight: 300; }
+  .students-hero-visual { position: relative; z-index: 1; }
+
+  .journey-visual {
+    background: rgba(255,255,255,0.06); border-radius: 20px; padding: 28px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .journey-visual h4 { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sage); margin-bottom: 20px; }
+  .journey-steps { display: flex; flex-direction: column; gap: 0; }
+  .journey-step {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .journey-step:last-child { border-bottom: none; }
+  .jstep-num {
+    width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+    background: rgba(74,145,158,0.2); border: 1px solid rgba(74,145,158,0.4);
+    color: var(--sage); font-size: 0.72rem; font-weight: 400;
+    display: flex; align-items: center; justify-content: center; letter-spacing: 0;
+  }
+  .jstep-text strong { display: block; font-size: 0.85rem; font-weight: 400; color: white; margin-bottom: 2px; }
+  .jstep-text span { font-size: 0.78rem; color: rgba(255,255,255,0.52); font-weight: 300; }
+
+  /* STUDENTS WHAT YOU GET */
+  .students-benefits { background: var(--white); }
+  .benefits-4-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 52px; }
+  .benefit-tile {
+    background: white; border-radius: 16px; padding: 28px 22px;
+    border: 1px solid rgba(33,46,83,0.07);
+    box-shadow: 0 2px 14px rgba(33,46,83,0.04);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .benefit-tile:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(33,46,83,0.09); }
+  .benefit-tile .tile-icon { font-size: 1.6rem; margin-bottom: 16px; display: block; }
+  .benefit-tile h4 { font-size: 0.88rem; font-weight: 400; margin-bottom: 9px; letter-spacing: 0.02em; }
+  .benefit-tile p { font-size: 0.82rem; line-height: 1.8; color: rgba(33,46,83,0.6); font-weight: 300; }
+
+  /* SKILLS AREAS */
+  .skills-areas { background: var(--light-sage); }
+  .skills-header { margin-bottom: 44px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .skill-area-card {
+    background: white; border-radius: 14px; padding: 22px 18px;
+    border: 1px solid rgba(33,46,83,0.07); text-align: center;
+    transition: all 0.2s;
+  }
+  .skill-area-card:hover { border-color: rgba(74,145,158,0.25); box-shadow: 0 6px 20px rgba(33,46,83,0.07); transform: translateY(-2px); }
+  .skill-area-card .area-icon { font-size: 1.5rem; display: block; margin-bottom: 10px; }
+  .skill-area-card h4 { font-size: 0.82rem; font-weight: 400; letter-spacing: 0.04em; color: var(--navy); }
+
+  /* STUDENTS FAQ */
+  .students-faq { background: white; }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 44px; }
+  .faq-item {
+    background: var(--light-sage); border-radius: 14px; padding: 22px 24px;
+    border: 1px solid rgba(33,46,83,0.06); cursor: pointer;
+  }
+  .faq-item.open { background: white; border-color: rgba(74,145,158,0.2); }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-q span { font-size: 0.88rem; font-weight: 400; letter-spacing: 0.02em; }
+  .faq-q svg { flex-shrink: 0; color: var(--teal); transition: transform 0.25s; }
+  .faq-item.open .faq-q svg { transform: rotate(45deg); }
+  .faq-a { font-size: 0.82rem; line-height: 1.85; color: rgba(33,46,83,0.65); font-weight: 300; margin-top: 12px; display: none; letter-spacing: 0.02em; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* STUDENTS CTA */
+  .students-cta { background: var(--light-blush); text-align: center; }
+  .students-cta h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 200; margin-bottom: 16px; }
+  .students-cta h2 em { font-style: normal; color: var(--rose); }
+  .students-cta p { font-size: 0.92rem; color: rgba(33,46,83,0.62); max-width: 420px; margin: 0 auto 32px; line-height: 1.9; font-weight: 300; }
+
+  /* ═══════════════════════════════════
+     FOR BUSINESSES PAGE
+  ═══════════════════════════════════ */
+  .biz-hero {
+    padding: 130px 5% 80px;
+    background: var(--light-sage);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .biz-hero::after {
+    content: ''; position: absolute; top: -60px; right: -40px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(190,211,195,0.4) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .biz-hero-content { position: relative; z-index: 1; }
+  .biz-hero h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 200; line-height: 1.12; margin-bottom: 20px; }
+  .biz-hero h1 em { font-style: normal; color: var(--teal); }
+  .biz-hero p { font-size: 0.95rem; line-height: 1.9; color: rgba(33,46,83,0.65); max-width: 420px; margin-bottom: 32px; font-weight: 300; }
+  .biz-hero-stats { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 16px; }
+  .stat-card {
+    background: white; border-radius: 16px; padding: 22px 26px;
+    border: 1px solid rgba(33,46,83,0.07); box-shadow: 0 4px 20px rgba(33,46,83,0.06);
+    display: flex; align-items: center; gap: 18px;
+  }
+  .stat-num { font-size: 2rem; font-weight: 200; color: var(--teal); letter-spacing: -0.02em; flex-shrink: 0; }
+  .stat-desc strong { display: block; font-size: 0.85rem; font-weight: 400; margin-bottom: 2px; }
+  .stat-desc span { font-size: 0.78rem; color: rgba(33,46,83,0.52); font-weight: 300; }
+
+  /* BIZ PROCESS */
+  .biz-process { background: white; }
+  .process-header { margin-bottom: 52px; }
+  .process-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .process-step {
+    text-align: center; padding: 36px 24px;
+    background: var(--light-sage); border-radius: 18px;
+    border: 1px solid rgba(33,46,83,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .process-step:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(33,46,83,0.08); }
+  .process-icon { font-size: 2rem; display: block; margin-bottom: 16px; }
+  .process-step-num { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; display: block; }
+  .process-step h3 { font-size: 1rem; font-weight: 400; margin-bottom: 10px; }
+  .process-step p { font-size: 0.84rem; line-height: 1.8; color: rgba(33,46,83,0.62); font-weight: 300; }
+
+  /* BIZ WHAT WE HANDLE */
+  .biz-handle { background: var(--navy); color: white; }
+  .handle-header { margin-bottom: 48px; }
+  .handle-header .section-label { color: var(--sage); }
+  .handle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .handle-item {
+    background: rgba(255,255,255,0.06); border-radius: 14px; padding: 26px 22px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .handle-item .hi-icon { font-size: 1.4rem; margin-bottom: 12px; display: block; }
+  .handle-item h4 { font-size: 0.88rem; font-weight: 400; color: white; margin-bottom: 8px; letter-spacing: 0.03em; }
+  .handle-item p { font-size: 0.82rem; line-height: 1.8; color: rgba(255,255,255,0.55); font-weight: 300; }
+
+  /* BIZ TESTIMONIAL */
+  .biz-voice { background: var(--light-sage); }
+  .biz-voice-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .biz-quote { font-size: clamp(1.1rem, 1.8vw, 1.4rem); font-weight: 200; line-height: 1.7; color: var(--navy); font-style: italic; margin-bottom: 20px; }
+  .biz-quote-author strong { font-size: 0.88rem; font-weight: 400; font-style: normal; display: block; }
+  .biz-quote-author span { font-size: 0.78rem; color: rgba(33,46,83,0.5); font-weight: 300; }
+  .biz-voice-points { display: flex; flex-direction: column; gap: 16px; }
+  .biz-point {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: white; border-radius: 12px; padding: 18px;
+    border: 1px solid rgba(33,46,83,0.06);
+  }
+  .biz-point-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .biz-point h5 { font-size: 0.85rem; font-weight: 400; margin-bottom: 3px; }
+  .biz-point p { font-size: 0.8rem; line-height: 1.7; color: rgba(33,46,83,0.58); font-weight: 300; }
+
+  /* BIZ FORM CTA */
+  .biz-cta { background: white; text-align: center; }
+  .biz-cta h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 200; margin-bottom: 16px; }
+  .biz-cta h2 em { font-style: normal; color: var(--teal); }
+  .biz-cta p { font-size: 0.92rem; color: rgba(33,46,83,0.6); max-width: 420px; margin: 0 auto 32px; line-height: 1.9; font-weight: 300; }
+
+  /* ═══════════════════════════════════
+     SHARED FOOTER
+  ═══════════════════════════════════ */
+  footer { background: #0f1626; color: rgba(255,255,255,0.48); padding: 60px 5% 30px; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 44px; }
+  .footer-brand p { font-size: 0.82rem; line-height: 1.85; max-width: 250px; font-weight: 300; letter-spacing: 0.03em; margin-top: 14px; }
+  .footer-col h4 { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 14px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .footer-col li a { font-size: 0.82rem; color: rgba(255,255,255,0.48); text-decoration: none; font-weight: 300; letter-spacing: 0.04em; transition: color 0.2s; cursor: pointer; }
+  .footer-col li a:hover { color: var(--sage); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 26px; display: flex; align-items: center; justify-content: space-between; font-size: 0.76rem; flex-wrap: wrap; gap: 10px; letter-spacing: 0.04em; }
+
+  /* ═══════════════════════════════════
+     RESPONSIVE
+  ═══════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .opps-grid { grid-template-columns: repeat(2, 1fr); }
+    .benefits-4-grid { grid-template-columns: repeat(2, 1fr); }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .handle-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 100px; }
+    .hero-visual { display: none; }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid::before { display: none; }
+    .home-paths { grid-template-columns: 1fr; }
+    .opps-preview-grid { grid-template-columns: repeat(2, 1fr); }
+    .t-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .students-hero { grid-template-columns: 1fr; }
+    .biz-hero { grid-template-columns: 1fr; }
+    .biz-voice-inner { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .handle-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .opps-grid { grid-template-columns: 1fr; }
+    .opps-preview-grid { grid-template-columns: 1fr; }
+    .benefits-4-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr; }
+    section { padding: 60px 5%; }
+    .students-hero, .biz-hero { padding-top: 100px; }
+  }
+
+  /* ═══════════════════════════════════
+     LOGIN PAGE
+  ═══════════════════════════════════ */
+  .login-wrap {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .login-card {
+    padding: 52px 8%;
+    display: flex; flex-direction: column;
+    justify-content: center; max-width: 480px;
+    width: 100%; margin: 0 auto;
+  }
+  .login-logo { margin-bottom: 28px; }
+  .login-tabs {
+    display: flex; gap: 0; margin-bottom: 28px;
+    background: var(--light-sage); border-radius: 100px;
+    padding: 4px; width: fit-content;
+  }
+  .ltab {
+    padding: 8px 22px; border-radius: 100px; border: none;
+    font-family: inherit; font-size: 0.75rem; font-weight: 400;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; background: transparent; color: rgba(33,46,83,0.55);
+    transition: all 0.2s;
+  }
+  .ltab.active { background: white; color: var(--navy); box-shadow: 0 2px 8px rgba(33,46,83,0.1); }
+  .login-title { font-size: 1.7rem; font-weight: 200; margin-bottom: 8px; letter-spacing: 0.01em; }
+  .login-sub { font-size: 0.87rem; color: rgba(33,46,83,0.58); font-weight: 300; margin-bottom: 24px; line-height: 1.7; }
+  .login-role-select { display: flex; gap: 8px; margin-bottom: 22px; }
+  .role-btn {
+    flex: 1; padding: 10px 16px; border-radius: 100px; border: 1.5px solid rgba(33,46,83,0.18);
+    font-family: inherit; font-size: 0.73rem; font-weight: 400; letter-spacing: 0.1em;
+    text-transform: uppercase; cursor: pointer; background: transparent; color: rgba(33,46,83,0.6);
+    transition: all 0.2s;
+  }
+  .role-btn.active { background: var(--navy); border-color: var(--navy); color: white; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-label { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(33,46,83,0.55); }
+  .form-input {
+    padding: 11px 14px; border: 1px solid rgba(33,46,83,0.18); border-radius: 10px;
+    font-family: inherit; font-size: 0.85rem; font-weight: 300; color: var(--navy);
+    background: white; outline: none; transition: border-color 0.2s; letter-spacing: 0.02em;
+    width: 100%;
+  }
+  .form-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(74,145,158,0.1); }
+  .form-select { appearance: none; cursor: pointer; }
+  .form-textarea { resize: vertical; min-height: 90px; }
+  .form-hint { display: flex; justify-content: flex-end; margin-top: 4px; }
+  .form-link { color: var(--teal); text-decoration: none; font-size: 0.78rem; cursor: pointer; font-weight: 400; }
+  .form-link:hover { text-decoration: underline; }
+  .form-check { display: flex; align-items: flex-start; gap: 10px; font-size: 0.8rem; color: rgba(33,46,83,0.6); font-weight: 300; margin-bottom: 20px; line-height: 1.6; }
+  .form-check input { margin-top: 3px; flex-shrink: 0; accent-color: var(--teal); }
+  .login-btn {
+    width: 100%; padding: 14px; background: var(--teal); color: white;
+    border: none; border-radius: 100px; font-family: inherit;
+    font-size: 0.78rem; font-weight: 400; letter-spacing: 0.14em;
+    text-transform: uppercase; cursor: pointer; transition: all 0.25s; margin-bottom: 16px;
+  }
+  .login-btn:hover { background: var(--navy); transform: translateY(-1px); }
+  .login-switch { font-size: 0.82rem; color: rgba(33,46,83,0.55); text-align: center; font-weight: 300; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Login side panel */
+  .login-side {
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    padding: 60px 8%; position: relative; overflow: hidden;
+  }
+  .login-side::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,145,158,0.2) 0%, transparent 65%);
+  }
+  .login-side::after {
+    content: ''; position: absolute; bottom: -60px; left: -40px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(190,211,195,0.1) 0%, transparent 65%);
+  }
+  .login-side-inner { position: relative; z-index: 1; max-width: 360px; }
+  .side-label { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 18px; }
+  .side-title { font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 200; color: white; line-height: 1.2; margin-bottom: 14px; }
+  .side-sub { font-size: 0.88rem; line-height: 1.85; color: rgba(255,255,255,0.58); font-weight: 300; margin-bottom: 36px; }
+  .side-stats { display: flex; gap: 28px; margin-bottom: 36px; }
+  .side-stat { display: flex; flex-direction: column; gap: 4px; }
+  .ss-num { font-size: 1.8rem; font-weight: 200; color: white; letter-spacing: -0.02em; }
+  .ss-desc { font-size: 0.72rem; font-weight: 300; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; }
+  .side-testimonial {
+    background: rgba(255,255,255,0.06); border-radius: 14px; padding: 20px 22px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .side-testimonial p { font-size: 0.88rem; line-height: 1.8; color: rgba(255,255,255,0.75); font-style: italic; font-weight: 300; margin-bottom: 8px; }
+  .side-testimonial span { font-size: 0.73rem; color: var(--sage); font-weight: 300; letter-spacing: 0.04em; }
+  .login-back {
+    position: fixed; bottom: 24px; left: 5%;
+    font-size: 0.75rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(33,46,83,0.5); cursor: pointer; transition: color 0.2s;
+    z-index: 50;
+  }
+  .login-back:hover { color: var(--teal); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 300;
+    background: rgba(15,22,38,0.7); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: white; border-radius: 22px; padding: 36px;
+    max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto;
+    position: relative; box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 18px;
+    background: none; border: none; font-size: 1rem; cursor: pointer;
+    color: rgba(33,46,83,0.4); transition: color 0.2s; font-family: inherit;
+    width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; 
+  }
+  .modal-close:hover { color: var(--navy); background: var(--light-sage); }
+  .modal-logo { margin-bottom: 18px; }
+  .modal-title { font-size: 1.3rem; font-weight: 200; margin-bottom: 6px; }
+  .modal-sub { font-size: 0.85rem; color: rgba(33,46,83,0.6); font-weight: 300; margin-bottom: 4px; }
+  .modal-note {
+    font-size: 0.82rem; color: rgba(33,46,83,0.55); font-weight: 300; line-height: 1.7;
+    background: var(--light-sage); padding: 12px 14px; border-radius: 10px; margin-bottom: 4px;
+    border-left: 3px solid var(--teal);
+  }
+  .modal-success {
+    text-align: center; padding: 16px; background: var(--light-sage);
+    border-radius: 10px; color: var(--teal); font-size: 0.88rem;
+    font-weight: 400; letter-spacing: 0.04em; margin-top: 12px;
+    border: 1px solid rgba(74,145,158,0.25);
+  }
+
+  /* Login responsive */
+  @media (max-width: 800px) {
+    .login-wrap { grid-template-columns: 1fr; }
+    .login-side { display: none; }
+    .login-card { max-width: 100%; }
+  }
+
+
+  /* ═══════════════════════════════════
+     ADMIN PAGE
+  ═══════════════════════════════════ */
+  .admin-lock {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: var(--navy); padding: 20px;
+    background-image: radial-gradient(ellipse at 20% 40%, rgba(74,145,158,0.15) 0%, transparent 55%),
+                      radial-gradient(ellipse at 80% 60%, rgba(190,211,195,0.08) 0%, transparent 55%);
+  }
+  .admin-lock-box {
+    background: white; border-radius: 22px; padding: 44px 40px;
+    max-width: 380px; width: 100%;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+  }
+  .admin-lock-logo { font-size: 2rem; margin-bottom: 16px; text-align: center; }
+  .admin-lock-title { font-size: 1.5rem; font-weight: 200; text-align: center; margin-bottom: 8px; }
+  .admin-lock-sub { font-size: 0.83rem; color: rgba(33,46,83,0.55); text-align: center; font-weight: 300; margin-bottom: 28px; line-height: 1.7; }
+
+  /* Admin topbar */
+  .admin-topbar {
+    position: fixed; top: 0; left: 0; right: 0; height: 56px; z-index: 150;
+    background: var(--navy); display: flex; align-items: center;
+    justify-content: space-between; padding: 0 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .admin-brand { display: flex; align-items: center; gap: 10px; }
+  .admin-brand-label { font-size: 1rem; font-weight: 300; color: white; letter-spacing: 0.12em; text-transform: uppercase; }
+  .admin-brand-badge {
+    background: var(--teal); color: white;
+    font-size: 0.6rem; font-weight: 400; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 100px;
+  }
+  .admin-topbar-right { display: flex; align-items: center; gap: 10px; }
+  .sheet-status { font-size: 0.73rem; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; margin-right: 4px; }
+  .sheet-status.connected { color: #6fcf97; }
+  .admin-btn-sm {
+    background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 8px;
+    padding: 6px 14px; font-family: inherit; font-size: 0.72rem;
+    font-weight: 400; letter-spacing: 0.08em; cursor: pointer; transition: all 0.2s;
+  }
+  .admin-btn-sm:hover { background: rgba(255,255,255,0.15); color: white; }
+  .admin-btn-sm.danger { border-color: rgba(206,106,107,0.3); color: rgba(206,106,107,0.8); }
+  .admin-btn-sm.danger:hover { background: rgba(206,106,107,0.15); color: var(--rose); }
+
+  /* Admin body layout */
+  .admin-body {
+    display: grid; grid-template-columns: 240px 1fr;
+    min-height: 100vh; padding-top: 56px;
+  }
+
+  /* Sidebar */
+  .admin-sidebar {
+    background: #f8f9fb; border-right: 1px solid rgba(33,46,83,0.08);
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 24px 0; position: sticky; top: 56px; height: calc(100vh - 56px);
+    overflow-y: auto;
+  }
+  .admin-nav { display: flex; flex-direction: column; gap: 2px; padding: 0 12px; }
+  .admin-nav-link {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; border-radius: 10px;
+    font-size: 0.8rem; font-weight: 400; letter-spacing: 0.04em;
+    color: rgba(33,46,83,0.55); cursor: pointer; transition: all 0.18s;
+    text-decoration: none;
+  }
+  .admin-nav-link:hover { background: rgba(33,46,83,0.05); color: var(--navy); }
+  .admin-nav-link.active { background: var(--navy); color: white; }
+  .admin-sidebar-footer { padding: 20px 16px; border-top: 1px solid rgba(33,46,83,0.08); margin-top: auto; }
+  .admin-sidebar-label { font-size: 0.63rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(33,46,83,0.4); margin-bottom: 10px; }
+  .admin-sheet-input-wrap { display: flex; gap: 6px; margin-bottom: 10px; }
+  .admin-connect-btn {
+    background: var(--teal); color: white; border: none; border-radius: 8px;
+    padding: 8px 12px; font-family: inherit; font-size: 0.72rem; font-weight: 400;
+    letter-spacing: 0.08em; cursor: pointer; white-space: nowrap; transition: background 0.2s;
+  }
+  .admin-connect-btn:hover { background: var(--navy); }
+  .admin-sidebar-hint { font-size: 0.72rem; color: rgba(33,46,83,0.45); line-height: 1.6; font-weight: 300; }
+  .admin-sidebar-hint code { background: rgba(33,46,83,0.07); padding: 1px 5px; border-radius: 4px; font-size: 0.68rem; }
+
+  /* Admin main */
+  .admin-main { padding: 36px 40px; background: white; overflow-y: auto; }
+  .admin-tab { display: none; }
+  .admin-tab.active { display: block; }
+  .admin-tab-header { margin-bottom: 32px; border-bottom: 1px solid rgba(33,46,83,0.07); padding-bottom: 20px; }
+  .admin-tab-title { font-size: 1.6rem; font-weight: 200; margin-bottom: 6px; }
+  .admin-tab-sub { font-size: 0.85rem; color: rgba(33,46,83,0.55); font-weight: 300; }
+
+  /* Stat cards */
+  .admin-stat-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 36px; }
+  .admin-stat-card {
+    background: var(--light-sage); border-radius: 14px; padding: 22px 20px;
+    border: 1px solid rgba(33,46,83,0.07); text-align: center;
+  }
+  .asc-num { font-size: 2.2rem; font-weight: 200; color: var(--navy); letter-spacing: -0.02em; }
+  .asc-label { font-size: 0.7rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(33,46,83,0.5); margin-top: 4px; }
+
+  .admin-section-title { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(33,46,83,0.45); margin-bottom: 14px; }
+  .admin-company-breakdown { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 36px; }
+  .acb-card {
+    background: #f8f9fb; border-radius: 12px; padding: 14px 16px;
+    border: 1px solid rgba(33,46,83,0.07); display: flex; align-items: center; justify-content: space-between;
+  }
+  .acb-name { font-size: 0.82rem; font-weight: 400; }
+  .acb-count {
+    background: var(--teal); color: white; font-size: 0.72rem; font-weight: 400;
+    padding: 3px 10px; border-radius: 100px; min-width: 28px; text-align: center;
+  }
+  .acb-count.zero { background: rgba(33,46,83,0.12); color: rgba(33,46,83,0.5); }
+
+  /* Setup guide */
+  .admin-setup-guide {
+    background: rgba(74,145,158,0.06); border-radius: 14px; padding: 24px 26px;
+    border: 1px solid rgba(74,145,158,0.15);
+  }
+  .admin-setup-title { font-size: 0.88rem; font-weight: 400; margin-bottom: 14px; color: var(--navy); }
+  .admin-setup-steps { padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+  .admin-setup-steps li { font-size: 0.83rem; line-height: 1.75; color: rgba(33,46,83,0.68); font-weight: 300; }
+  .admin-setup-steps code { background: rgba(33,46,83,0.08); padding: 1px 6px; border-radius: 4px; font-size: 0.8rem; }
+
+  /* Table */
+  .admin-table-toolbar { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .admin-table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid rgba(33,46,83,0.08); }
+  .admin-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+  .admin-table th {
+    background: #f8f9fb; padding: 12px 14px; text-align: left;
+    font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(33,46,83,0.45); border-bottom: 1px solid rgba(33,46,83,0.08); white-space: nowrap;
+  }
+  .admin-table td { padding: 12px 14px; border-bottom: 1px solid rgba(33,46,83,0.05); vertical-align: middle; font-weight: 300; }
+  .admin-table tr:last-child td { border-bottom: none; }
+  .admin-table tr:hover td { background: rgba(74,145,158,0.04); }
+
+  .status-pill {
+    display: inline-block; padding: 3px 10px; border-radius: 100px;
+    font-size: 0.68rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+  }
+  .status-Unreviewed { background: rgba(33,46,83,0.08); color: rgba(33,46,83,0.6); }
+  .status-Shortlisted { background: rgba(74,145,158,0.15); color: var(--teal); }
+  .status-Accepted { background: rgba(111,207,151,0.2); color: #27ae60; }
+  .status-Declined { background: rgba(206,106,107,0.12); color: var(--rose); }
+
+  .admin-action-btn {
+    background: none; border: 1px solid rgba(33,46,83,0.15); border-radius: 6px;
+    padding: 4px 10px; font-family: inherit; font-size: 0.7rem; font-weight: 400;
+    color: rgba(33,46,83,0.6); cursor: pointer; transition: all 0.15s; letter-spacing: 0.06em;
+  }
+  .admin-action-btn:hover { background: var(--navy); color: white; border-color: var(--navy); }
+
+  /* Companies grid */
+  .admin-companies-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .admin-company-card {
+    background: #f8f9fb; border-radius: 14px; padding: 18px 20px;
+    border: 1px solid rgba(33,46,83,0.08);
+  }
+  .acc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .acc-name { font-size: 0.9rem; font-weight: 400; }
+  .acc-industry { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); }
+  .acc-form-row { display: flex; gap: 8px; align-items: center; }
+  .acc-form-input {
+    flex: 1; padding: 8px 11px; border: 1px solid rgba(33,46,83,0.18); border-radius: 8px;
+    font-family: inherit; font-size: 0.75rem; font-weight: 300; color: var(--navy);
+    background: white; outline: none; transition: border-color 0.2s;
+  }
+  .acc-form-input:focus { border-color: var(--teal); }
+  .acc-save-btn {
+    background: var(--teal); color: white; border: none; border-radius: 8px;
+    padding: 8px 14px; font-family: inherit; font-size: 0.72rem; font-weight: 400;
+    letter-spacing: 0.08em; cursor: pointer; white-space: nowrap; transition: background 0.2s;
+  }
+  .acc-save-btn:hover { background: var(--navy); }
+  .acc-status { font-size: 0.7rem; margin-top: 6px; }
+  .acc-status.linked { color: #27ae60; }
+  .acc-status.unlinked { color: rgba(33,46,83,0.4); }
+
+  /* Settings */
+  .admin-settings-card { background: #f8f9fb; border-radius: 16px; padding: 32px; border: 1px solid rgba(33,46,83,0.08); }
+  .admin-settings-section { margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid rgba(33,46,83,0.08); }
+  .admin-settings-section:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .admin-settings-heading { font-size: 1rem; font-weight: 400; margin-bottom: 16px; }
+
+  /* Modal coming soon */
+  .modal-coming-soon { text-align: center; padding: 24px 0; }
+  .mcs-icon { font-size: 2.4rem; margin-bottom: 14px; }
+  .modal-coming-soon h4 { font-size: 1rem; font-weight: 400; margin-bottom: 8px; }
+  .modal-coming-soon p { font-size: 0.83rem; color: rgba(33,46,83,0.6); line-height: 1.75; font-weight: 300; margin-bottom: 16px; }
+
+  .admin-empty-state { color: rgba(33,46,83,0.38); font-size: 0.85rem; font-weight: 300; letter-spacing: 0.03em; }
+
+
+  /* ── Business detail drawer ── */
+  #bizDrawer {
+    position: fixed; top: 0; right: -480px; width: 480px; max-width: 100vw;
+    height: 100%; background: #fff; z-index: 9000;
+    box-shadow: -8px 0 40px rgba(33,46,83,0.18);
+    transition: right 0.32s cubic-bezier(0.4,0,0.2,1);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  #bizDrawer.open { right: 0; }
+  #bizDrawerOverlay {
+    position: fixed; inset: 0; background: rgba(33,46,83,0.35);
+    z-index: 8999; opacity: 0; pointer-events: none;
+    transition: opacity 0.32s;
+  }
+  #bizDrawerOverlay.open { opacity: 1; pointer-events: all; }
+  .drawer-header {
+    padding: 28px 28px 20px;
+    border-bottom: 1px solid #eef0f3;
+    flex-shrink: 0;
+  }
+  .drawer-header-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .drawer-close {
+    background: none; border: none; cursor: pointer; padding: 4px;
+    color: #9aa0a6; font-size: 1.3rem; line-height: 1;
+    transition: color 0.15s;
+  }
+  .drawer-close:hover { color: #212e53; }
+  .drawer-body {
+    padding: 24px 28px; overflow-y: auto; flex: 1;
+  }
+  .drawer-company { font-size: 1.4rem; font-weight: 700; color: #212e53; margin: 0 0 4px; }
+  .drawer-industry { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.13em; text-transform: uppercase; color: #4a919e; margin-bottom: 16px; }
+  .drawer-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .drawer-section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9aa0a6; margin: 0 0 8px; }
+  .drawer-desc { font-size: 0.93rem; color: #444; line-height: 1.75; margin-bottom: 24px; }
+  .drawer-what { background: #f7f9f8; border-radius: 10px; padding: 16px 18px; margin-bottom: 24px; }
+  .drawer-what ul { margin: 0; padding: 0 0 0 18px; }
+  .drawer-what li { font-size: 0.9rem; color: #555; line-height: 1.7; }
+  .drawer-skills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .drawer-apply-btn {
+    display: block; width: 100%; padding: 14px;
+    background: var(--teal); color: white; border: none; border-radius: 10px;
+    font-size: 0.97rem; font-weight: 600; cursor: pointer; text-align: center;
+    transition: background 0.2s; margin-bottom: 12px;
+  }
+  .drawer-apply-btn:hover { background: #3a7a87; }
+  .drawer-meta-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+  .drawer-meta-item { display: flex; flex-direction: column; gap: 3px; }
+  .drawer-meta-key { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: #9aa0a6; font-weight: 600; }
+  .drawer-meta-val { font-size: 0.9rem; color: #212e53; font-weight: 500; }
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav id="mainNav">
+  <a class="logo" onclick="showPage('home')">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%23bed3c3'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23212e53'%3E⚓%3C/text%3E%3C/svg%3E" alt="Anchor — Set Your Course" style="height:54px; width:auto;" />
+  </a>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" data-page="home">Home</a></li>
+    <li><a onclick="showPage('opportunities')" data-page="opportunities">Opportunities</a></li>
+    <li><a onclick="showPage('students')" data-page="students">For Students</a></li>
+    <li><a onclick="showPage('businesses')" data-page="businesses">For Businesses</a></li>
+    <li><a onclick="showPage('login')" class="btn-login" data-page="login">Login</a></li><li><a onclick="showPage('opportunities')" class="btn-nav" data-page="">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge fade-up"><span></span>Real Work Experience for Students</div>
+      <h1 class="fade-up-d1">Your first step into the <em>working world</em> starts here.</h1>
+      <p class="fade-up-d2">Anchor connects students aged 15–18 with local businesses for short, meaningful work experience placements. Explore careers. Build confidence. Start your journey.</p>
+      <div class="hero-ctas fade-up-d3">
+        <a class="btn-primary" onclick="showPage('opportunities')">Explore Opportunities</a>
+        <a class="btn-outline" onclick="showPage('home'); document.getElementById('hiw').scrollIntoView({behavior:'smooth'})">How It Works ↓</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-cards-stack">
+        <div class="opp-card card-1">
+          <div class="card-category">Finance</div>
+          <div class="card-title">Research &amp; Analysis</div>
+          <div class="card-biz">MFA Capital · In Person</div>
+          <div class="card-tags"><span class="card-tag">Research</span><span class="card-tag">Data</span></div>
+        </div>
+        <div class="opp-card card-2">
+          <div class="card-category">Jewellery</div>
+          <div class="card-title">Social Media &amp; Marketing</div>
+          <div class="card-biz">Diamantina Fine Jewels · Hybrid</div>
+          <div class="card-tags"><span class="card-tag">Social Media</span></div>
+        </div>
+        <div class="opp-card card-3">
+          <div class="card-category">Law</div>
+          <div class="card-title">Legal Research Assistant</div>
+          <div class="card-biz">YNA Legal LLP · In Person</div>
+          <div class="card-tags"><span class="card-tag">Research</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      <span><strong>Safe &amp; structured</strong> placements</span>
+    </div>
+    <div class="trust-item">
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><strong>5–20 hrs/week,</strong> flexible</span>
+    </div>
+    <div class="trust-item">
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+      <span><strong>17 businesses</strong> open now</span>
+    </div>
+    <div class="trust-item">
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      <span>Remote, <strong>hybrid &amp; in-person</strong></span>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works" id="hiw">
+    <div class="hiw-header">
+      <div class="section-label">Simple Process</div>
+      <h2 class="section-title">How Anchor Works</h2>
+      <p class="section-sub">From curiosity to confidence in four steps. No experience required, no complicated applications.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step" data-step><div class="step-num">1</div><h3>Explore</h3><p>Browse placements by interest area. Find something that genuinely excites you.</p></div>
+      <div class="step" data-step><div class="step-num">2</div><h3>Express Interest</h3><p>Fill in a short form. No CV needed — just tell us a little about yourself.</p></div>
+      <div class="step" data-step><div class="step-num">3</div><h3>Get Matched</h3><p>We connect you with the right business and confirm your placement details.</p></div>
+      <div class="step" data-step><div class="step-num">4</div><h3>Show Up &amp; Learn</h3><p>Experience real work and walk away with confidence and practical skills.</p></div>
+    </div>
+  </section>
+
+  <!-- FOR STUDENTS / BUSINESSES PATHS -->
+  <section>
+    <div style="text-align:center; margin-bottom:48px;">
+      <div class="section-label">Who Is Anchor For?</div>
+      <h2 class="section-title">Built for both sides of the journey.</h2>
+    </div>
+    <div class="home-paths">
+      <div class="path-card student" onclick="showPage('students')">
+        <div class="path-tag">For Students</div>
+        <h3>Take your first step with confidence.</h3>
+        <p>Aged 15–18 and curious about the working world? Anchor connects you with real businesses for short, guided placements — no experience needed.</p>
+        <a class="path-link">Learn More →</a>
+      </div>
+      <div class="path-card business" onclick="showPage('businesses')">
+        <div class="path-tag">For Businesses</div>
+        <h3>Open your doors to the next generation.</h3>
+        <p>Small business with limited HR capacity? We make hosting a student simple, low-commitment, and genuinely rewarding for your whole team.</p>
+        <a class="path-link">Learn More →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPPORTUNITIES PREVIEW -->
+  <section style="background: var(--light-sage);">
+    <div class="opps-header">
+      <div>
+        <div class="section-label">Open Placements</div>
+        <h2 class="section-title">A look at what's available.</h2>
+      </div>
+      <a class="view-all-link" onclick="showPage('opportunities')">View all 20 opportunities →</a>
+    </div>
+    <div class="opps-preview-grid">
+      <div class="opp-preview-card">
+        <div class="opp-industry-label section-label">Jewellery</div>
+        <h3>Diamantina Fine Jewels</h3>
+        <div class="hours">⏱ 5–10 hrs/week · Hybrid</div>
+        <div class="skill-chips"><span class="skill-chip">Social Media</span><span class="skill-chip">Marketing</span><span class="skill-chip">Research</span></div>
+        <div class="opp-footer">
+          <span class="type-badge hybrid"><span class="type-dot"></span>Hybrid</span>
+          <button class="btn-apply" onclick="showPage('opportunities')">View All</button>
+        </div>
+      </div>
+      <div class="opp-preview-card">
+        <div class="opp-industry-label section-label">Finance</div>
+        <h3>MFA Capital</h3>
+        <div class="hours">⏱ 15–20 hrs/week · In Person</div>
+        <div class="skill-chips"><span class="skill-chip">Research</span><span class="skill-chip">Data/Spreadsheets</span><span class="skill-chip">Content Writing</span></div>
+        <div class="opp-footer">
+          <span class="type-badge inperson"><span class="type-dot"></span>In Person</span>
+          <button class="btn-apply" onclick="showPage('opportunities')">View All</button>
+        </div>
+      </div>
+      <div class="opp-preview-card">
+        <div class="opp-industry-label section-label">Food / Bakery</div>
+        <h3>Bombay Bizare Baker</h3>
+        <div class="hours">⏱ 5–10 hrs/week · Hybrid</div>
+        <div class="skill-chips"><span class="skill-chip">Social Media</span><span class="skill-chip">Content Writing</span><span class="skill-chip">Photography</span></div>
+        <div class="opp-footer">
+          <span class="type-badge hybrid"><span class="type-dot"></span>Hybrid</span>
+          <button class="btn-apply" onclick="showPage('opportunities')">View All</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <h2>Ready to <em>set your course?</em></h2>
+    <p>Whether you're a student taking your first step or a business ready to open your doors — Anchor makes it simple.</p>
+    <div class="final-ctas">
+      <a class="btn-cta-light" onclick="showPage('students')">I'm a Student</a>
+      <a class="btn-cta-ghost" onclick="showPage('businesses')">I'm a Business</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%23bed3c3'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23212e53'%3E⚓%3C/text%3E%3C/svg%3E" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
+      </div>
+      <div class="footer-col"><h4>Platform</h4><ul>
+        <li><a onclick="showPage('opportunities')">Opportunities</a></li>
+        <li><a onclick="showPage('home'); document.getElementById('hiw').scrollIntoView({behavior:'smooth'})">How It Works</a></li>
+        <li><a onclick="showPage('students')">For Students</a></li>
+        <li><a onclick="showPage('businesses')">For Businesses</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a onclick="showPage('home')">About Anchor</a></li>
+        <li><a onclick="showPage('home')">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul>
+        <li><a href="Anchor-Privacy-Policy.docx" download>Privacy Policy</a></li>
+        <li><a href="Anchor-Terms-and-Conditions.docx" download>Terms of Use</a></li>
+        <li><a>Safeguarding</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Anchor. All rights reserved.</span>
+      <span style="color: var(--sage); opacity:0.6; letter-spacing:0.12em; font-size:0.7rem;">SET YOUR COURSE</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     OPPORTUNITIES PAGE
+══════════════════════════════════════════ -->
+<div id="page-opportunities" class="page">
+  <div class="opps-page-hero">
+    <div class="section-label">All Placements</div>
+    <h1>Find your placement.</h1>
+    <p>Browse all 20 open work experience opportunities. Filter by type, domain or skills to find your perfect match.</p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <a class="btn-primary" style="cursor:pointer" onclick="document.getElementById('oppsList').scrollIntoView({behavior:'smooth'})">Browse Placements ↓</a>
+      <a class="btn-outline" onclick="showPage('students')">New to Anchor? Start Here</a>
+    </div>
+  </div>
+
+  <div class="opps-main" id="oppsList">
+    <div class="filter-bar">
+      <div class="filter-group">
+        <div class="filter-group-label">Type</div>
+        <div class="filter-pills">
+          <button class="fpill active" onclick="setTypeF(this,'')" data-type="">All</button>
+          <button class="fpill" onclick="setTypeF(this,'In person')" data-type="In person">In Person</button>
+          <button class="fpill" onclick="setTypeF(this,'Remote')" data-type="Remote">Remote</button>
+          <button class="fpill" onclick="setTypeF(this,'Hybrid')" data-type="Hybrid">Hybrid</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-group-label">Skill</div>
+        <div class="filter-pills">
+          <button class="fpill active" onclick="setSkillF(this,'')" data-skill="">All Skills</button>
+          <button class="fpill" onclick="setSkillF(this,'Social Media')" data-skill="Social Media">Social Media</button>
+          <button class="fpill" onclick="setSkillF(this,'Research')" data-skill="Research">Research</button>
+          <button class="fpill" onclick="setSkillF(this,'Content Writing')" data-skill="Content Writing">Content Writing</button>
+          <button class="fpill" onclick="setSkillF(this,'Data')" data-skill="Data">Data / Spreadsheets</button>
+          <button class="fpill" onclick="setSkillF(this,'Customer Support')" data-skill="Customer Support">Customer Support</button>
+          <button class="fpill" onclick="setSkillF(this,'General Assistance')" data-skill="General Assistance">General Assistance</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-group-label">Domain</div>
+        <div class="filter-pills">
+          <button class="fpill active" onclick="setDomainF(this,'')" data-domain="">All Domains</button>
+          <button class="fpill" onclick="setDomainF(this,'Finance')" data-domain="Finance">Finance</button>
+          <button class="fpill" onclick="setDomainF(this,'Law')" data-domain="Law">Law</button>
+          <button class="fpill" onclick="setDomainF(this,'Tech')" data-domain="Tech">Tech</button>
+          <button class="fpill" onclick="setDomainF(this,'Marketing')" data-domain="Marketing">Marketing</button>
+          <button class="fpill" onclick="setDomainF(this,'Jewellery')" data-domain="Jewellery">Jewellery</button>
+          <button class="fpill" onclick="setDomainF(this,'Manufacturing')" data-domain="Manufacturing">Manufacturing</button>
+          <button class="fpill" onclick="setDomainF(this,'Food')" data-domain="Food">Food</button>
+          <button class="fpill" onclick="setDomainF(this,'Travel')" data-domain="Travel">Travel</button>
+          <button class="fpill" onclick="setDomainF(this,'Science')" data-domain="Science">Science</button>
+          <button class="fpill" onclick="setDomainF(this,'Consulting')" data-domain="Consulting">Consulting</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-group-label">Search</div>
+        <div class="search-wrap">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="searchQ" placeholder="Company or skill..." oninput="runFilter()" />
+        </div>
+      </div>
+    </div>
+
+    <div class="opps-meta">
+      <span class="result-count" id="rCount">17 placements</span>
+    </div>
+
+    <div class="opps-grid" id="oppsGrid">
+      <!-- 1 -->
+      <div class="opp-card-full" data-type="Hybrid" data-skills="Social Media Marketing Research" data-co="Diamantina Fine Jewels" data-domain="Jewellery" onclick="openBizDrawer(this)">
+        <div class="type-badge hybrid" style="margin-bottom:10px;"><span class="type-dot"></span>Hybrid</div>
+        <div class="opp-industry-label section-label">Jewellery</div>
+        <h3>Diamantina Fine Jewels</h3>
+        <div class="hours">⏱ 5–10 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Social Media / Marketing</span><span class="skill-chip">Research</span></div>
+        <div class="opp-footer"><span class="type-badge hybrid"><span class="type-dot"></span>Hybrid</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 2 -->
+      <div class="opp-card-full" data-type="In person" data-skills="Social Media Marketing Customer Support" data-co="Creative Propack Ltd" data-domain="Manufacturing" onclick="openBizDrawer(this)">
+        <div class="type-badge inperson" style="margin-bottom:10px;"><span class="type-dot"></span>In Person</div>
+        <div class="opp-industry-label section-label">Manufacturing</div>
+        <h3>Creative Propack Ltd</h3>
+        <div class="hours">⏱ 15–20 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Social Media / Marketing</span><span class="skill-chip">Customer Support</span></div>
+        <div class="opp-footer"><span class="type-badge inperson"><span class="type-dot"></span>In Person</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 3 -->
+      <div class="opp-card-full" data-type="Remote" data-skills="Research" data-co="Wealth Advisor" data-domain="Finance" onclick="openBizDrawer(this)">
+        <div class="type-badge remote" style="margin-bottom:10px;"><span class="type-dot"></span>Remote</div>
+        <div class="opp-industry-label section-label">Stocks / Finance</div>
+        <h3>Wealth Advisor</h3>
+        <div class="hours">⏱ 5–10 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Research</span></div>
+        <div class="opp-footer"><span class="type-badge remote"><span class="type-dot"></span>Remote</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 4 -->
+      <div class="opp-card-full" data-type="In person" data-skills="Research Data Spreadsheets" data-co="360F Advisory" data-domain="Finance" onclick="openBizDrawer(this)">
+        <div class="type-badge inperson" style="margin-bottom:10px;"><span class="type-dot"></span>In Person</div>
+        <div class="opp-industry-label section-label">Product / Advisory</div>
+        <h3>360F Advisory</h3>
+        <div class="hours">⏱ 5–10 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Research</span><span class="skill-chip">Data / Spreadsheets</span></div>
+        <div class="opp-footer"><span class="type-badge inperson"><span class="type-dot"></span>In Person</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 5 -->
+      <div class="opp-card-full" data-type="In person" data-skills="Research Engineering" data-co="Benzo Chem Industries Pvt Ltd" data-domain="Science" onclick="openBizDrawer(this)">
+        <div class="type-badge inperson" style="margin-bottom:10px;"><span class="type-dot"></span>In Person</div>
+        <div class="opp-industry-label section-label">Specialty Chemicals</div>
+        <h3>Benzo Chem Industries Pvt Ltd</h3>
+        <div class="hours">⏱ 5–10 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Research</span><span class="skill-chip">Engineering Background</span></div>
+        <div class="opp-footer"><span class="type-badge inperson"><span class="type-dot"></span>In Person</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 6 -->
+      <div class="opp-card-full" data-type="In person" data-skills="Research General Assistance" data-co="YNA Legal LLP" data-domain="Law" onclick="openBizDrawer(this)">
+        <div class="type-badge inperson" style="margin-bottom:10px;"><span class="type-dot"></span>In Person</div>
+        <div class="opp-industry-label section-label">Law</div>
+        <h3>YNA Legal LLP</h3>
+        <div class="hours">⏱ 15–20 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Research</span><span class="skill-chip">General Assistance</span></div>
+        <div class="opp-footer"><span class="type-badge inperson"><span class="type-dot"></span>In Person</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 9 -->
+      <div class="opp-card-full" data-type="Remote" data-skills="Customer Support General Assistance" data-co="Vista Infotel LLP" data-domain="Tech" onclick="openBizDrawer(this)">
+        <div class="type-badge remote" style="margin-bottom:10px;"><span class="type-dot"></span>Remote</div>
+        <div class="opp-industry-label section-label">Electronics Distribution</div>
+        <h3>Vista Infotel LLP</h3>
+        <div class="hours">⏱ 15–20 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Customer Support</span><span class="skill-chip">General Assistance</span></div>
+        <div class="opp-footer"><span class="type-badge remote"><span class="type-dot"></span>Remote</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 10 -->
+      <div class="opp-card-full" data-type="In person" data-skills="Social Media Marketing Content Writing Customer Support" data-co="Ghanasingh Be True" data-domain="Jewellery" onclick="openBizDrawer(this)">
+        <div class="type-badge inperson" style="margin-bottom:10px;"><span class="type-dot"></span>In Person</div>
+        <div class="opp-industry-label section-label">Jewellery</div>
+        <h3>Ghanasingh Be True</h3>
+        <div class="hours">⏱ 15–20 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Social Media / Marketing</span><span class="skill-chip">Content Writing</span><span class="skill-chip">Customer Support</span></div>
+        <div class="opp-footer"><span class="type-badge inperson"><span class="type-dot"></span>In Person</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 11 -->
+      <div class="opp-card-full" data-type="Remote" data-skills="Research General Assistance" data-co="Bumblebee Consulting" data-domain="Consulting" onclick="openBizDrawer(this)">
+        <div class="type-badge remote" style="margin-bottom:10px;"><span class="type-dot"></span>Remote</div>
+        <div class="opp-industry-label section-label">Public Relations &amp; Consulting</div>
+        <h3>Bumblebee Consulting</h3>
+        <div class="hours">⏱ 5–10 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Research</span><span class="skill-chip">General Assistance</span></div>
+        <div class="opp-footer"><span class="type-badge remote"><span class="type-dot"></span>Remote</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 12 -->
+      <div class="opp-card-full" data-type="In person" data-skills="Research Content Writing General Assistance" data-co="Premier Legal Practices" data-domain="Law" onclick="openBizDrawer(this)">
+        <div class="type-badge inperson" style="margin-bottom:10px;"><span class="type-dot"></span>In Person</div>
+        <div class="opp-industry-label section-label">Law</div>
+        <h3>Premier Legal Practices</h3>
+        <div class="hours">⏱ 15–20 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Research</span><span class="skill-chip">Content Writing</span><span class="skill-chip">General Assistance</span></div>
+        <div class="opp-footer"><span class="type-badge inperson"><span class="type-dot"></span>In Person</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 13 -->
+      <div class="opp-card-full" data-type="Hybrid" data-skills="Social Media Marketing Content Writing Data Spreadsheets" data-co="Khemka Glass Products Pvt Ltd" data-domain="Manufacturing" onclick="openBizDrawer(this)">
+        <div class="type-badge hybrid" style="margin-bottom:10px;"><span class="type-dot"></span>Hybrid</div>
+        <div class="opp-industry-label section-label">Manufacturing</div>
+        <h3>Khemka Glass Products Pvt Ltd</h3>
+        <div class="hours">⏱ 10–15 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Social Media / Marketing</span><span class="skill-chip">Content Writing</span><span class="skill-chip">Data / Spreadsheets</span></div>
+        <div class="opp-footer"><span class="type-badge hybrid"><span class="type-dot"></span>Hybrid</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 15 -->
+      <div class="opp-card-full" data-type="In person" data-skills="Social Media Marketing Research Content Writing Data Spreadsheets Customer Support General Assistance" data-co="MFA Capital" data-domain="Finance" onclick="openBizDrawer(this)">
+        <div class="type-badge inperson" style="margin-bottom:10px;"><span class="type-dot"></span>In Person</div>
+        <div class="opp-industry-label section-label">Finance</div>
+        <h3>MFA Capital</h3>
+        <div class="hours">⏱ 15–20 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Social Media / Marketing</span><span class="skill-chip">Research</span><span class="skill-chip">Content Writing</span><span class="skill-chip">Data / Spreadsheets</span><span class="skill-chip">Customer Support</span></div>
+        <div class="opp-footer"><span class="type-badge inperson"><span class="type-dot"></span>In Person</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 16 -->
+      <div class="opp-card-full" data-type="Hybrid" data-skills="Social Media Marketing Data Spreadsheets General Assistance" data-co="InSyync" data-domain="Marketing" onclick="openBizDrawer(this)">
+        <div class="type-badge hybrid" style="margin-bottom:10px;"><span class="type-dot"></span>Hybrid</div>
+        <div class="opp-industry-label section-label">Marketing</div>
+        <h3>InSyync</h3>
+        <div class="hours">⏱ 10–15 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Social Media / Marketing</span><span class="skill-chip">Data / Spreadsheets</span><span class="skill-chip">General Assistance</span></div>
+        <div class="opp-footer"><span class="type-badge hybrid"><span class="type-dot"></span>Hybrid</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 17 -->
+      <div class="opp-card-full" data-type="In person" data-skills="Research Customer Support General Assistance Travel Itinerary" data-co="Three Pisces Travels" data-domain="Travel" onclick="openBizDrawer(this)">
+        <div class="type-badge inperson" style="margin-bottom:10px;"><span class="type-dot"></span>In Person</div>
+        <div class="opp-industry-label section-label">Travel Agency</div>
+        <h3>Three Pisces Travels</h3>
+        <div class="hours">⏱ 15–20 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Research</span><span class="skill-chip">Customer Support</span><span class="skill-chip">Itinerary Planning</span></div>
+        <div class="opp-footer"><span class="type-badge inperson"><span class="type-dot"></span>In Person</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 18 -->
+      <div class="opp-card-full" data-type="In person" data-skills="Research Data Spreadsheets" data-co="Vedanta Ltd" data-domain="Science" onclick="openBizDrawer(this)">
+        <div class="type-badge inperson" style="margin-bottom:10px;"><span class="type-dot"></span>In Person</div>
+        <div class="opp-industry-label section-label">Metals &amp; Minerals</div>
+        <h3>Vedanta Ltd</h3>
+        <div class="hours">⏱ 10–15 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Research</span><span class="skill-chip">Data / Spreadsheets</span></div>
+        <div class="opp-footer"><span class="type-badge inperson"><span class="type-dot"></span>In Person</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 19 -->
+      <div class="opp-card-full" data-type="Hybrid" data-skills="Social Media Marketing Content Writing Photography" data-co="Bombay Bizare Baker" data-domain="Food" onclick="openBizDrawer(this)">
+        <div class="type-badge hybrid" style="margin-bottom:10px;"><span class="type-dot"></span>Hybrid</div>
+        <div class="opp-industry-label section-label">Food / Home Bakery</div>
+        <h3>Bombay Bizare Baker</h3>
+        <div class="hours">⏱ 5–10 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">Social Media / Marketing</span><span class="skill-chip">Content Writing</span><span class="skill-chip">Photography</span></div>
+        <div class="opp-footer"><span class="type-badge hybrid"><span class="type-dot"></span>Hybrid</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+      <!-- 20 -->
+      <div class="opp-card-full" data-type="In person" data-skills="General Assistance" data-co="FYNDNA TechCorp Pvt Ltd" data-domain="Tech" onclick="openBizDrawer(this)">
+        <div class="type-badge inperson" style="margin-bottom:10px;"><span class="type-dot"></span>In Person</div>
+        <div class="opp-industry-label section-label">FinTech</div>
+        <h3>FYNDNA TechCorp Pvt Ltd</h3>
+        <div class="hours">⏱ 10–15 hrs/week</div>
+        <div class="skills-label">Skills You'll Build</div>
+        <div class="skill-chips"><span class="skill-chip">General Assistance</span></div>
+        <div class="opp-footer"><span class="type-badge inperson"><span class="type-dot"></span>In Person</span><button class="btn-apply" onclick="event.stopPropagation(); openForm(this)">Apply Now</button></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%23bed3c3'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23212e53'%3E⚓%3C/text%3E%3C/svg%3E" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
+      </div>
+      <div class="footer-col"><h4>Platform</h4><ul>
+        <li><a onclick="showPage('opportunities')">Opportunities</a></li>
+        <li><a onclick="showPage('students')">For Students</a></li>
+        <li><a onclick="showPage('businesses')">For Businesses</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a onclick="showPage('home')">About Anchor</a></li><li><a onclick="showPage('home')">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="Anchor-Privacy-Policy.docx" download>Privacy Policy</a></li><li><a href="Anchor-Terms-and-Conditions.docx" download>Terms of Use</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 Anchor. <a onclick="showPage('admin')" style="color:rgba(255,255,255,0.15); cursor:pointer; text-decoration:none; font-size:0.7rem;" title="Admin">·</a></span><span style="color: var(--sage); opacity:0.6; letter-spacing:0.12em; font-size:0.7rem;">SET YOUR COURSE</span></div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FOR STUDENTS PAGE
+══════════════════════════════════════════ -->
+<div id="page-students" class="page">
+
+  <section class="students-hero">
+    <div class="students-hero-content">
+      <div class="section-label">For Students</div>
+      <h1>Explore the working world. Build real <em>confidence</em>.</h1>
+      <p>You don\'t need experience to get started. Anchor places students aged 15–18 with local businesses for short, supported work experience — so you can figure out what you love before anyone expects you to know.</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn-primary" onclick="showPage('opportunities')">Browse Placements</a>
+      </div>
+    </div>
+    <div class="students-hero-visual">
+      <div class="journey-visual">
+        <h4>Your Journey</h4>
+        <div class="journey-steps">
+          <div class="journey-step"><div class="jstep-num">1</div><div class="jstep-text"><strong>Land on Anchor</strong><span>Discover what work experience can look like for you</span></div></div>
+          <div class="journey-step"><div class="jstep-num">2</div><div class="jstep-text"><strong>Explore Placements</strong><span>Browse by industry, skills, or work type</span></div></div>
+          <div class="journey-step"><div class="jstep-num">3</div><div class="jstep-text"><strong>Submit Your Interest</strong><span>Short form — no CV, no cover letter needed</span></div></div>
+          <div class="journey-step"><div class="jstep-num">4</div><div class="jstep-text"><strong>Get Matched</strong><span>We confirm your placement and prepare you</span></div></div>
+          <div class="journey-step"><div class="jstep-num">5</div><div class="jstep-text"><strong>Show Up &amp; Learn</strong><span>Gain real skills, grow your confidence</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="students-benefits">
+    <div class="section-label">What You'll Get</div>
+    <h2 class="section-title">More than just work experience.</h2>
+    <p class="section-sub">Every Anchor placement is designed to give you something that matters — real skills, real confidence, and a real story to tell.</p>
+    <div class="benefits-4-grid">
+      <div class="benefit-tile">
+        <span class="tile-icon">🔍</span>
+        <h4>Explore Without Pressure</h4>
+        <p>Try a career area before committing to anything. No expectations, no judgement — just genuine exploration.</p>
+      </div>
+      <div class="benefit-tile">
+        <span class="tile-icon">🛠️</span>
+        <h4>Build Practical Skills</h4>
+        <p>Learn things school doesn't teach — how to communicate professionally, use real tools, and work as part of a team.</p>
+      </div>
+      <div class="benefit-tile">
+        <span class="tile-icon">💬</span>
+        <h4>Something to Talk About</h4>
+        <p>Walk away with a real story for future applications, university interviews, and conversations with mentors.</p>
+      </div>
+      <div class="benefit-tile">
+        <span class="tile-icon">🌱</span>
+        <h4>Zero Experience Required</h4>
+        <p>Anchor is built for first-timers. Every business knows you're there to learn — not to already know everything.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="skills-areas">
+    <div class="skills-header">
+      <div class="section-label">Interest Areas</div>
+      <h2 class="section-title">Find what interests you.</h2>
+      <p class="section-sub">Placements are organised around what excites you — not job titles.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-area-card"><span class="area-icon">📱</span><h4>Social Media &amp; Marketing</h4></div>
+      <div class="skill-area-card"><span class="area-icon">💼</span><h4>Finance &amp; Advisory</h4></div>
+      <div class="skill-area-card"><span class="area-icon">⚖️</span><h4>Law &amp; Legal Research</h4></div>
+      <div class="skill-area-card"><span class="area-icon">✍️</span><h4>Content &amp; Writing</h4></div>
+      <div class="skill-area-card"><span class="area-icon">🏭</span><h4>Manufacturing &amp; Industry</h4></div>
+      <div class="skill-area-card"><span class="area-icon">💎</span><h4>Jewellery &amp; Luxury</h4></div>
+      <div class="skill-area-card"><span class="area-icon">🎵</span><h4>Music &amp; Entertainment</h4></div>
+      <div class="skill-area-card"><span class="area-icon">✈️</span><h4>Travel &amp; Hospitality</h4></div>
+    </div>
+  </section>
+
+  <section class="students-faq">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Questions you might have.</h2>
+    <div class="faq-grid" id="studentFaq">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Do I need any experience to apply?</span><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg></div>
+        <div class="faq-a">Not at all. Anchor is specifically designed for students who have never had a job. Every business knows they\'re welcoming a learner — that's the whole point.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>How long are the placements?</span><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg></div>
+        <div class="faq-a">Placements range from 5 to 20 hours per week. Duration varies by business but is always short, focused, and manageable alongside school.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Will my parents need to be involved?</span><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg></div>
+        <div class="faq-a">Yes, and that's a good thing. We keep parents informed throughout the process and provide all the information they need to feel confident.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>What if I don\'t enjoy the placement?</span><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg></div>
+        <div class="faq-a">That's actually useful information! Discovering what you don\'t enjoy is just as valuable as finding what you love. Reach out to us anytime if you need support.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Are there remote options?</span><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg></div>
+        <div class="faq-a">Yes. Many placements are available remotely or as hybrid. You can filter by type when browsing opportunities.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Is there a cost to join Anchor?</span><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg></div>
+        <div class="faq-a">Anchor is completely free for students. There is no fee to register, apply, or participate in any placement.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="students-cta">
+    <div class="section-label">Ready?</div>
+    <h2>Find your <em>placement</em> today.</h2>
+    <p>It takes five minutes to express interest. There's no CV, no cover letter — just you and what you're curious about.</p>
+    <a class="btn-primary" onclick="showPage('opportunities')">Browse All Placements</a>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%23bed3c3'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23212e53'%3E⚓%3C/text%3E%3C/svg%3E" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
+      </div>
+      <div class="footer-col"><h4>Platform</h4><ul><li><a onclick="showPage('opportunities')">Opportunities</a></li><li><a onclick="showPage('students')">For Students</a></li><li><a onclick="showPage('businesses')">For Businesses</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a onclick="showPage('home')">About Anchor</a></li><li><a onclick="showPage('home')">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="Anchor-Privacy-Policy.docx" download>Privacy Policy</a></li><li><a href="Anchor-Terms-and-Conditions.docx" download>Terms of Use</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 Anchor. <a onclick="showPage('admin')" style="color:rgba(255,255,255,0.15); cursor:pointer; text-decoration:none; font-size:0.7rem;" title="Admin">·</a></span><span style="color: var(--sage); opacity:0.6; letter-spacing:0.12em; font-size:0.7rem;">SET YOUR COURSE</span></div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FOR BUSINESSES PAGE
+══════════════════════════════════════════ -->
+<div id="page-businesses" class="page">
+
+  <section class="biz-hero">
+    <div class="biz-hero-content">
+      <div class="section-label">For Businesses</div>
+      <h1>Open your doors to the <em>next generation</em>.</h1>
+      <p>Hosting a student through Anchor is one of the most meaningful things a small business can do for its community — and it\'s simpler than you think.</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn-primary">Register Your Business</a>
+        <a class="btn-outline" onclick="document.getElementById('bizProcess').scrollIntoView({behavior:'smooth'})">See How It Works ↓</a>
+      </div>
+    </div>
+    <div class="biz-hero-stats">
+      <div class="stat-card">
+        <div class="stat-num">20</div>
+        <div class="stat-desc"><strong>Businesses Already Listed</strong><span>Across finance, law, jewellery, tech, food &amp; more</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5–20</div>
+        <div class="stat-desc"><strong>Hours Per Week</strong><span>You choose a commitment that works for your team</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0</div>
+        <div class="stat-desc"><strong>HR Headcount Required</strong><span>We handle matching, onboarding guidance, and family communication</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="biz-process" id="bizProcess">
+    <div class="process-header">
+      <div class="section-label">The Process</div>
+      <h2 class="section-title">Simple from start to finish.</h2>
+      <p class="section-sub">We've designed the business experience to be as light-touch as possible — so you can focus on what you do best.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <span class="process-icon">📝</span>
+        <span class="process-step-num">Step 01</span>
+        <h3>Register Your Business</h3>
+        <p>Fill in a short form telling us about your business, the kind of student you're looking for, and your preferred hours and work type.</p>
+      </div>
+      <div class="process-step">
+        <span class="process-icon">🤝</span>
+        <span class="process-step-num">Step 02</span>
+        <h3>We Match You</h3>
+        <p>Anchor finds a student whose interests and goals align with what your business offers. We introduce you before anything is confirmed.</p>
+      </div>
+      <div class="process-step">
+        <span class="process-icon">🌱</span>
+        <span class="process-step-num">Step 03</span>
+        <h3>Welcome Them In</h3>
+        <p>The student joins your team for a short placement. We provide a simple guide for how to make the most of it for both sides.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUSINESS VERIFICATION -->
+  <section style="background:#f7f9f8; padding:72px 24px;">
+    <div style="max-width:900px; margin:0 auto;">
+      <div class="section-label" style="text-align:center; margin-bottom:12px;">Trust & Safety</div>
+      <h2 class="section-title" style="text-align:center; color:#212e53; margin-bottom:12px;">How we verify partner businesses.</h2>
+      <p style="text-align:center; color:#555; max-width:580px; margin:0 auto 48px; line-height:1.7; font-size:0.97rem;">Every business on Anchor goes through a structured review before students can apply. We take our duty of care to students seriously.</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px;">
+        <div style="background:white; border-radius:14px; padding:28px 24px; box-shadow:0 2px 12px rgba(33,46,83,0.07);">
+          <div style="font-size:1.6rem; margin-bottom:12px;">🏢</div>
+          <h4 style="color:#212e53; margin-bottom:8px; font-size:0.97rem; font-weight:600;">Business Identity Check</h4>
+          <p style="color:#666; font-size:0.87rem; line-height:1.65;">We verify legal business registration details before any listing goes live. Only registered entities are permitted on the platform.</p>
+        </div>
+        <div style="background:white; border-radius:14px; padding:28px 24px; box-shadow:0 2px 12px rgba(33,46,83,0.07);">
+          <div style="font-size:1.6rem; margin-bottom:12px;">📋</div>
+          <h4 style="color:#212e53; margin-bottom:8px; font-size:0.97rem; font-weight:600;">Safeguarding Agreement</h4>
+          <p style="color:#666; font-size:0.87rem; line-height:1.65;">All businesses must sign Anchor's safeguarding commitment, agreeing to child-safe practices and a designated point of contact for every student.</p>
+        </div>
+        <div style="background:white; border-radius:14px; padding:28px 24px; box-shadow:0 2px 12px rgba(33,46,83,0.07);">
+          <div style="font-size:1.6rem; margin-bottom:12px;">📞</div>
+          <h4 style="color:#212e53; margin-bottom:8px; font-size:0.97rem; font-weight:600;">Direct Vetting Call</h4>
+          <p style="color:#666; font-size:0.87rem; line-height:1.65;">Before approval, a member of the Anchor team holds a short onboarding call to confirm the placement is genuine, structured, and appropriate.</p>
+        </div>
+        <div style="background:white; border-radius:14px; padding:28px 24px; box-shadow:0 2px 12px rgba(33,46,83,0.07);">
+          <div style="font-size:1.6rem; margin-bottom:12px;">✅</div>
+          <h4 style="color:#212e53; margin-bottom:8px; font-size:0.97rem; font-weight:600;">Approved Badge</h4>
+          <p style="color:#666; font-size:0.87rem; line-height:1.65;">Verified businesses receive an Anchor Approved status visible to students and parents. Listings remain active only while businesses remain in good standing.</p>
+        </div>
+        <div style="background:white; border-radius:14px; padding:28px 24px; box-shadow:0 2px 12px rgba(33,46,83,0.07);">
+          <div style="font-size:1.6rem; margin-bottom:12px;">🔄</div>
+          <h4 style="color:#212e53; margin-bottom:8px; font-size:0.97rem; font-weight:600;">Ongoing Review</h4>
+          <p style="color:#666; font-size:0.87rem; line-height:1.65;">After each placement, Anchor collects feedback from both student and business. Any concerns are investigated and can result in suspension from the platform.</p>
+        </div>
+        <div style="background:white; border-radius:14px; padding:28px 24px; box-shadow:0 2px 12px rgba(33,46,83,0.07);">
+          <div style="font-size:1.6rem; margin-bottom:12px;">👨‍👩‍👧</div>
+          <h4 style="color:#212e53; margin-bottom:8px; font-size:0.97rem; font-weight:600;">Parental Consent Required</h4>
+          <p style="color:#666; font-size:0.87rem; line-height:1.65;">Every student application requires verified parental consent before it reaches a business. Parents are kept informed throughout the process.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="biz-handle">
+    <div class="handle-header">
+      <div class="section-label">What Anchor Handles</div>
+      <h2 class="section-title" style="color:white;">We take care of the details.</h2>
+      <p class="section-sub" style="color: rgba(255,255,255,0.55);">So you only need to focus on being a great host.</p>
+    </div>
+    <div class="handle-grid">
+      <div class="handle-item"><span class="hi-icon">🔍</span><h4>Student Matching</h4><p>We find students whose interests genuinely align with what your business does — no random placements.</p></div>
+      <div class="handle-item"><span class="hi-icon">📬</span><h4>Family Communication</h4><p>We keep parents and guardians informed and answer their questions so you don\'t have to.</p></div>
+      <div class="handle-item"><span class="hi-icon">📋</span><h4>Onboarding Guidance</h4><p>We give you a simple guide on how to structure the student's time and what to expect day-to-day.</p></div>
+      <div class="handle-item"><span class="hi-icon">✅</span><h4>Confirmation &amp; Logistics</h4><p>We confirm placement dates, manage scheduling, and handle any changes that come up along the way.</p></div>
+      <div class="handle-item"><span class="hi-icon">💬</span><h4>Ongoing Support</h4><p>We're available throughout the placement if you or the student have any questions or concerns.</p></div>
+      <div class="handle-item"><span class="hi-icon">📊</span><h4>Feedback Collection</h4><p>After the placement, we gather feedback from both sides to help improve future experiences for everyone.</p></div>
+    </div>
+  </section>
+
+  <section class="biz-voice">
+    <div class="biz-voice-inner">
+      <div>
+        <div class="section-label">From the Community</div>
+        <p class="biz-quote">"We weren't sure if we'd have the capacity. But it was much simpler than we expected. Our student brought genuine enthusiasm — and honestly helped us look at a few things with completely fresh eyes."</p>
+        <div class="biz-quote-author">
+          <strong>James, Business Owner</strong>
+          <span>Host Business — Anchor Partner</span>
+        </div>
+      </div>
+      <div class="biz-voice-points">
+        <div class="biz-point">
+          <span class="biz-point-icon">⏱️</span>
+          <div><h5>Short, manageable commitment</h5><p>Two weeks, flexible hours. Fits around your real workload.</p></div>
+        </div>
+        <div class="biz-point">
+          <span class="biz-point-icon">🌍</span>
+          <div><h5>Real community impact</h5><p>The experience you give a student stays with them for years.</p></div>
+        </div>
+        <div class="biz-point">
+          <span class="biz-point-icon">✨</span>
+          <div><h5>Fresh perspective in your team</h5><p>Students ask questions no one else thinks to ask. That's often the most valuable thing.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="biz-cta">
+    <div class="section-label">Get Involved</div>
+    <h2>Ready to open your <em>doors</em>?</h2>
+    <p>Register your business in minutes. We'll handle the rest and be in touch as soon as we have a great match for you.</p>
+    <a class="btn-primary" style="cursor:pointer;">Register Your Business</a>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%23bed3c3'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23212e53'%3E⚓%3C/text%3E%3C/svg%3E" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
+      </div>
+      <div class="footer-col"><h4>Platform</h4><ul><li><a onclick="showPage('opportunities')">Opportunities</a></li><li><a onclick="showPage('students')">For Students</a></li><li><a onclick="showPage('businesses')">For Businesses</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a onclick="showPage('home')">About Anchor</a></li><li><a onclick="showPage('home')">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="Anchor-Privacy-Policy.docx" download>Privacy Policy</a></li><li><a href="Anchor-Terms-and-Conditions.docx" download>Terms of Use</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 Anchor. <a onclick="showPage('admin')" style="color:rgba(255,255,255,0.15); cursor:pointer; text-decoration:none; font-size:0.7rem;" title="Admin">·</a></span><span style="color: var(--sage); opacity:0.6; letter-spacing:0.12em; font-size:0.7rem;">SET YOUR COURSE</span></div>
+  </footer>
+</div>
+
+<script>
+  // ── PAGE NAVIGATION ──
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const pg = document.getElementById('page-' + name);
+    if (pg) pg.classList.add('active');
+    window.scrollTo({ top: 0 });
+    document.querySelectorAll('.nav-links [data-page]').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === name);
+    });
+  }
+
+  // ── NAV SCROLL SHADOW ──
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ── STEP REVEAL ──
+  const stepObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('[data-step]').forEach(el => stepObs.observe(el));
+
+  // ── OPPORTUNITIES FILTERING (multi-select) ──
+  let activeTypes = new Set(), activeSkills = new Set(), activeDomains = new Set();
+
+  function setTypeF(btn, type) {
+    if (type === '') {
+      activeTypes.clear();
+      document.querySelectorAll('#page-opportunities .fpill[data-type]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    } else {
+      document.querySelector('#page-opportunities .fpill[data-type=""]').classList.remove('active');
+      btn.classList.toggle('active');
+      if (activeTypes.has(type)) activeTypes.delete(type); else activeTypes.add(type);
+      if (activeTypes.size === 0) document.querySelector('#page-opportunities .fpill[data-type=""]').classList.add('active');
+    }
+    runFilter();
+  }
+  function setSkillF(btn, skill) {
+    if (skill === '') {
+      activeSkills.clear();
+      document.querySelectorAll('#page-opportunities .fpill[data-skill]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    } else {
+      document.querySelector('#page-opportunities .fpill[data-skill=""]').classList.remove('active');
+      btn.classList.toggle('active');
+      if (activeSkills.has(skill)) activeSkills.delete(skill); else activeSkills.add(skill);
+      if (activeSkills.size === 0) document.querySelector('#page-opportunities .fpill[data-skill=""]').classList.add('active');
+    }
+    runFilter();
+  }
+  function setDomainF(btn, domain) {
+    if (domain === '') {
+      activeDomains.clear();
+      document.querySelectorAll('#page-opportunities .fpill[data-domain]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    } else {
+      document.querySelector('#page-opportunities .fpill[data-domain=""]').classList.remove('active');
+      btn.classList.toggle('active');
+      if (activeDomains.has(domain)) activeDomains.delete(domain); else activeDomains.add(domain);
+      if (activeDomains.size === 0) document.querySelector('#page-opportunities .fpill[data-domain=""]').classList.add('active');
+    }
+    runFilter();
+  }
+  function runFilter() {
+    const q = (document.getElementById('searchQ') || {value:''}).value.toLowerCase();
+    const cards = document.querySelectorAll('.opp-card-full');
+    let count = 0;
+    cards.forEach(card => {
+      const t = card.dataset.type || '';
+      const s = (card.dataset.skills || '').toLowerCase();
+      const c = (card.dataset.co || '').toLowerCase();
+      const d = (card.dataset.domain || '');
+      const typeOk   = activeTypes.size === 0   || activeTypes.has(t);
+      const skillOk  = activeSkills.size === 0  || [...activeSkills].some(sk => s.includes(sk.toLowerCase()));
+      const domainOk = activeDomains.size === 0 || activeDomains.has(d);
+      const qOk = !q || c.includes(q) || s.includes(q);
+      const show = typeOk && skillOk && domainOk && qOk;
+      card.classList.toggle('hidden', !show);
+      if (show) count++;
+    });
+    const rc = document.getElementById('rCount');
+    if (rc) rc.textContent = count + ' placement' + (count !== 1 ? 's' : '');
+  }
+
+  // ── FAQ TOGGLE ──
+  function toggleFaq(item) {
+    item.classList.toggle('open');
+  }
+
+  // ── LOGIN TAB SWITCH ──
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.ltab').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    const idx = tab === 'signin' ? 0 : 1;
+    document.querySelectorAll('.ltab')[idx].classList.add('active');
+  }
+
+  // ── ROLE SELECT ──
+  function setRole(btn, role) {
+    const parent = btn.closest('.login-role-select');
+    parent.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    // Show/hide age field on signup
+    const ag = document.getElementById('ageGroup');
+    if (ag) ag.style.display = role === 'student' ? 'flex' : 'none';
+  }
+
+  // ── LOGIN HANDLER (placeholder) ──
+  function handleLogin() {
+    // Placeholder — connect to your auth backend
+    showPage('home');
+  }
+
+  // ── GOOGLE FORM LINKS PER COMPANY ──
+  // Paste each company’s Google Form URL below when ready.
+  // Leave as '#' until you have the link — button will show a "coming soon" message.
+  const FORM_LINKS = {
+    'Diamantina Fine Jewels': 'https://forms.gle/mzgeLwEHz1CrsxPB6',
+    'Creative Propack Ltd': 'https://forms.gle/6vNZmcZWLHyNP8N69',
+    'Wealth Advisor': 'https://forms.gle/eKVXmo1woRNrSrjF6',
+    '360F Advisory': 'https://forms.gle/tVbSM87YJj4gkkcd7',
+    'Benzo Chem Industries Pvt Ltd': 'https://forms.gle/G9PF18RotLBnVCVE7',
+    'YNA Legal LLP': 'https://forms.gle/gDV1gTVXDgcw8j2d8',
+        'Vista Infotel LLP': 'https://forms.gle/yMAfqto1GKGNe5737',
+    'Ghanasingh Be True': 'https://forms.gle/QhKCB95AcyU6e6dU8',
+    'Bumblebee Consulting': 'https://forms.gle/niNzgWKu7VtQxHxc8',
+    'Premier Legal Practices': 'https://forms.gle/svQ3pRk5onQMFM6NA',
+    'Khemka Glass Products Pvt Ltd': 'https://forms.gle/o94XH51FaVaqgEog8',
+        'MFA Capital': 'https://forms.gle/SFKaivS3RPR4Nmk17',
+    'InSyync': 'https://forms.gle/WFLVabrUAhvcDG84A',
+    'Three Pisces Travels': 'https://forms.gle/zZTpYUuKXzzcQY9D8',
+    'Vedanta Ltd': 'https://forms.gle/iGDbbpHbKz2bFQxC8',
+    'Bombay Bizare Baker': 'https://forms.gle/gwAGXfw4Lr7zuiwLA',
+    'FYNDNA TechCorp Pvt Ltd': 'https://forms.gle/rhsttzzc9mxcFsVL8',
+  };
+
+  function openForm(btn) {
+    const card = btn.closest('.opp-card-full');
+    const company = card ? card.querySelector('h3').innerText.trim() : '';
+    const url = FORM_LINKS[company];
+    if (!url || url === '#') {
+      // Show coming-soon modal
+      document.getElementById('modalCompany').innerText = company;
+      document.getElementById('formComingSoon').style.display = 'block';
+      document.getElementById('formReady').style.display = 'none';
+      document.getElementById('formModal').classList.add('open');
+    } else {
+      // Open the Google Form directly in a new tab
+      window.open(url, '_blank');
+    }
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('formModal')) {
+      document.getElementById('formModal').classList.remove('open');
+    }
+  }
+
+
+  // ══════════════════════════════════════════
+  //  ADMIN SYSTEM
+  // ══════════════════════════════════════════
+
+  // Default password — change this in Settings once you're in
+  const DEFAULT_ADMIN_PASS = 'anchor2025';
+  let adminAuthenticated = false;
+
+  // Per-company Google Form links (also editable in admin Companies tab)
+  // This mirrors FORM_LINKS above — admin panel writes to this same object
+  const COMPANY_DETAILS = [
+    { name: 'Diamantina Fine Jewels', industry: 'Jewellery', domain: 'Jewellery', type: 'Hybrid', hours: '5–10 hrs/week',
+      desc: 'Diamantina Fine Jewels is a boutique jewellery label crafting luxury pieces with a focus on natural gemstones and artisan design. Based in Mumbai, the brand blends traditional Indian craftsmanship with contemporary aesthetics.',
+      what: ['Help create and schedule social media content', 'Research competitors and market trends', 'Assist with product photography and catalogue work'] },
+    { name: 'Creative Propack Ltd', industry: 'Manufacturing', domain: 'Manufacturing', type: 'In Person', hours: '15–20 hrs/week',
+      desc: 'Creative Propack is a packaging solutions company designing and manufacturing custom packaging for FMCG and retail brands. They work with a wide range of materials and serve clients across India.',
+      what: ['Support marketing campaigns and content creation', 'Assist with client communications and customer support', 'Learn how a manufacturing business operates day-to-day'] },
+    { name: 'Wealth Advisor', industry: 'Stocks / Finance', domain: 'Finance', type: 'Remote', hours: '5–10 hrs/week',
+      desc: 'Wealth Advisor is a financial advisory firm helping individuals and families navigate investment planning, wealth management, and market research. The team works closely with clients to build personalised financial strategies.',
+      what: ['Research market trends and investment products', 'Summarise financial reports and articles', 'Support the team with data organisation and analysis'] },
+    { name: '360F Advisory', industry: 'Product / Advisory', domain: 'Finance', type: 'In Person', hours: '5–10 hrs/week',
+      desc: '360F Advisory provides business and product advisory services to startups and growth-stage companies. The team helps clients with strategy, product thinking, and operational improvements.',
+      what: ['Assist with research on industry trends and competitors', 'Help build and organise data in spreadsheets', 'Support client presentations and documentation'] },
+    { name: 'Benzo Chem Industries Pvt Ltd', industry: 'Specialty Chemicals', domain: 'Science', type: 'In Person', hours: '5–10 hrs/week',
+      desc: 'Benzo Chem Industries is a specialty chemicals company supplying raw materials to the pharmaceutical, cosmetics, and industrial sectors. They operate with a strong focus on research, quality control, and compliance.',
+      what: ['Support the R&D or procurement team with research tasks', 'Learn how chemical testing and documentation works', 'Observe and assist with laboratory or quality-check processes'] },
+    { name: 'YNA Legal LLP', industry: 'Law', domain: 'Law', type: 'In Person', hours: '15–20 hrs/week',
+      desc: 'YNA Legal LLP is a full-service law firm based in Mumbai with expertise in corporate, commercial, and dispute resolution matters. The firm works with businesses, startups, and individuals across a range of legal needs.',
+      what: ['Research case law and assist with legal memos', 'Help organise client files and documentation', 'Sit in on client meetings or drafting sessions where appropriate'] },
+    { name: 'Vista Infotel LLP', industry: 'Electronics Distribution', domain: 'Tech', type: 'Remote', hours: '15–20 hrs/week',
+      desc: 'Vista Infotel distributes electronics components and IT products to businesses and retailers. Operating in a fast-paced B2B environment, they manage a large product catalogue and logistics network.',
+      what: ['Support customer service and order tracking queries', 'Help maintain product listings and internal records', 'Assist with general operations and administrative tasks'] },
+    { name: 'Ghanasingh Be True', industry: 'Jewellery', domain: 'Jewellery', type: 'In Person', hours: '15–20 hrs/week',
+      desc: 'Ghanasingh Be True is one of India&#39;s most established diamond and jewellery brands, known for its craftsmanship and commitment to authenticity. With decades of heritage, the brand continues to grow its retail and digital presence.',
+      what: ['Create and manage social media content', 'Assist with content writing for campaigns', 'Support the customer engagement and retail team'] },
+    { name: 'Bumblebee Consulting', industry: 'PR & Consulting', domain: 'Consulting', type: 'Remote', hours: '5–10 hrs/week',
+      desc: 'Bumblebee Consulting is a boutique public relations and communications consultancy working with brands, startups, and public figures. They specialise in narrative building, media outreach, and reputation management.',
+      what: ['Research media contacts and PR opportunities', 'Assist with drafting press notes and client briefs', 'Support day-to-day operations and research tasks'] },
+    { name: 'Premier Legal Practices', industry: 'Law', domain: 'Law', type: 'In Person', hours: '15–20 hrs/week',
+      desc: 'Premier Legal Practices is a law firm offering services across corporate law, real estate, family law, and litigation. The firm prides itself on a client-first approach and practical legal guidance.',
+      what: ['Research legal topics and assist with document preparation', 'Help draft basic correspondence and summaries', 'Support paralegals and lawyers with general assistance'] },
+    { name: 'Khemka Glass Products Pvt Ltd', industry: 'Manufacturing', domain: 'Manufacturing', type: 'Hybrid', hours: '10–15 hrs/week',
+      desc: 'Khemka Glass Products is a manufacturer of specialty glass products serving the construction, interior design, and industrial sectors. They combine traditional glasswork with modern manufacturing processes.',
+      what: ['Help with social media and content creation', 'Assist in writing product descriptions and marketing materials', 'Support data entry and catalogue management'] },
+    { name: 'MFA Capital', industry: 'Finance', domain: 'Finance', type: 'In Person', hours: '15–20 hrs/week',
+      desc: 'MFA Capital is a financial services firm offering investment advisory, portfolio management, and capital market services. The team works with high-net-worth clients and institutional investors.',
+      what: ['Support research across multiple asset classes', 'Assist with content writing, social media, and reports', 'Help organise client data and presentations'] },
+    { name: 'InSyync', industry: 'Marketing', domain: 'Marketing', type: 'Hybrid', hours: '10–15 hrs/week',
+      desc: 'InSyync is a digital marketing agency helping brands grow their online presence through strategy, content, and performance campaigns. They work with clients across e-commerce, lifestyle, and tech.',
+      what: ['Create and schedule social media content', 'Assist with data tracking and performance reports', 'Support the team with research and general tasks'] },
+    { name: 'Three Pisces Travels', industry: 'Travel Agency', domain: 'Travel', type: 'In Person', hours: '15–20 hrs/week',
+      desc: 'Three Pisces Travels is a boutique travel agency curating personalised holidays and corporate travel experiences. They specialise in off-the-beaten-path itineraries and high-touch client service.',
+      what: ['Research destinations, hotels, and travel logistics', 'Support clients with queries and trip coordination', 'Help plan and build travel itineraries for clients'] },
+    { name: 'Vedanta Ltd', industry: 'Metals & Minerals', domain: 'Science', type: 'In Person', hours: '10–15 hrs/week',
+      desc: 'Vedanta is a global diversified natural resources company with significant operations in metals, mining, and energy. Their Mumbai office works across strategy, finance, and operations supporting the group’s Indian business.',
+      what: ['Support research into commodities, markets, and policy', 'Help organise and analyse data in spreadsheets', 'Assist with documentation and reporting tasks'] },
+    { name: 'Bombay Bizare Baker', industry: 'Food / Home Bakery', domain: 'Food', type: 'Hybrid', hours: '5–10 hrs/week',
+      desc: 'Bombay Bizare Baker is a home-grown artisan bakery known for inventive flavour combinations and beautifully crafted baked goods. They have a strong social media following and sell through both direct orders and pop-ups.',
+      what: ['Create photo and video content for social media', 'Write captions, product descriptions, and blog posts', 'Assist with order management and customer communications'] },
+    { name: 'FYNDNA TechCorp Pvt Ltd', industry: 'FinTech', domain: 'Tech', type: 'In Person', hours: '10–15 hrs/week',
+      desc: 'FYNDNA TechCorp is a fintech startup building tools for financial inclusion and digital identity. They work at the intersection of technology, data, and financial services to solve real problems for underserved communities.',
+      what: ['Assist with research, documentation, and general operations', 'Support product and business development tasks', 'Learn how an early-stage tech startup operates'] },
+  ];
+
+  // ── Drawer logic ──
+  let drawerFormUrl = '';
+
+  function openBizDrawer(card) {
+    const co = card.querySelector('h3').innerText.trim();
+    const data = COMPANY_DETAILS.find(c => c.name === co);
+    if (!data) return;
+
+    document.getElementById('drawerCompany').innerText = data.name;
+    document.getElementById('drawerIndustry').innerText = data.industry;
+
+    // badges
+    const typeClass = data.type === 'In Person' ? 'inperson' : data.type === 'Remote' ? 'remote' : 'hybrid';
+    document.getElementById('drawerBadges').innerHTML =
+      `<span class="type-badge ${typeClass}"><span class="type-dot"></span>${data.type}</span>
+       <span class="skill-chip">${data.domain}</span>`;
+
+    // meta row
+    document.getElementById('drawerMeta').innerHTML =
+      `<div class="drawer-meta-item"><span class="drawer-meta-key">Hours</span><span class="drawer-meta-val">⏱ ${data.hours}</span></div>
+       <div class="drawer-meta-item"><span class="drawer-meta-key">Format</span><span class="drawer-meta-val">${data.type}</span></div>
+       <div class="drawer-meta-item"><span class="drawer-meta-key">Domain</span><span class="drawer-meta-val">${data.domain}</span></div>`;
+
+    // description
+    document.getElementById('drawerDesc').innerText = data.desc;
+
+    // what you'll do
+    const whatItems = data.what.map(w => `<li>${w}</li>`).join('');
+    document.getElementById('drawerWhat').innerHTML =
+      `<p class="drawer-section-label" style="margin-bottom:8px;">What You'll Do</p><ul>${whatItems}</ul>`;
+
+    // skills
+    const skillChips = card.querySelectorAll('.skill-chip');
+    document.getElementById('drawerSkills').innerHTML =
+      [...skillChips].map(c => `<span class="skill-chip">${c.innerText}</span>`).join('');
+
+    // store form url for apply button
+    drawerFormUrl = FORM_LINKS[co] || '';
+
+    document.getElementById('bizDrawer').classList.add('open');
+    document.getElementById('bizDrawerOverlay').classList.add('open');
+  }
+
+  function closeBizDrawer() {
+    document.getElementById('bizDrawer').classList.remove('open');
+    document.getElementById('bizDrawerOverlay').classList.remove('open');
+  }
+
+  function applyFromDrawer() {
+    if (drawerFormUrl && drawerFormUrl !== '#') {
+      window.open(drawerFormUrl, '_blank');
+    }
+  }
+
+  // In-memory application store (populated from Google Sheet)
+  let allApplications = [];
+  let connectedSheetId = localStorage.getItem('anchor_sheet_id') || '';
+  let adminPass = localStorage.getItem('anchor_admin_pass') || DEFAULT_ADMIN_PASS;
+
+  // ── Password check ──
+  function checkAdminPass() {
+    const val = document.getElementById('adminPassInput').value;
+    if (val === adminPass) {
+      adminAuthenticated = true;
+      document.getElementById('adminLock').style.display = 'none';
+      document.getElementById('adminDash').style.display = 'block';
+      initAdminDash();
+    } else {
+      document.getElementById('adminPassError').style.display = 'block';
+      document.getElementById('adminPassInput').value = '';
+      document.getElementById('adminPassInput').focus();
+    }
+  }
+
+  function adminLogout() {
+    adminAuthenticated = false;
+    document.getElementById('adminDash').style.display = 'none';
+    document.getElementById('adminLock').style.display = 'flex';
+    document.getElementById('adminPassInput').value = '';
+    document.getElementById('adminPassError').style.display = 'none';
+    showPage('home');
+  }
+
+  // ── Init dashboard ──
+  function initAdminDash() {
+    buildCompanyGrid();
+    if (connectedSheetId) {
+      document.getElementById('sheetIdInput').value = connectedSheetId;
+      document.getElementById('sheetIdSettings').value = connectedSheetId;
+      loadSheetData(connectedSheetId);
+    }
+    updateOverviewCompanyBreakdown([]);
+  }
+
+  // ── Tab switching ──
+  function adminTab(name) {
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
+    document.getElementById('admin-tab-' + name).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  // ── Build Companies grid ──
+  function buildCompanyGrid() {
+    const grid = document.getElementById('adminCompanyGrid');
+    grid.innerHTML = COMPANY_DETAILS.map(c => {
+      const savedLink = FORM_LINKS[c.name] && FORM_LINKS[c.name] !== '#' ? FORM_LINKS[c.name] : '';
+      const linked = savedLink !== '';
+      return `
+        <div class="admin-company-card">
+          <div class="acc-header">
+            <div>
+              <div class="acc-name">${c.name}</div>
+              <div class="acc-industry">${c.industry}</div>
+            </div>
+          </div>
+          <div class="acc-form-row">
+            <input class="acc-form-input" id="link-${c.name.replace(/[^a-z0-9]/gi,'_')}"
+              placeholder="Paste Google Form URL here..."
+              value="${savedLink}" />
+            <button class="acc-save-btn" onclick="saveFormLink('${c.name}')">Save</button>
+          </div>
+          <div class="acc-status ${linked ? 'linked' : 'unlinked'}" id="status-${c.name.replace(/[^a-z0-9]/gi,'_')}">
+            ${linked ? '✓ Form linked — Apply Now is live' : '○ No form linked yet'}
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  // ── Save a form link ──
+  function saveFormLink(companyName) {
+    const key = companyName.replace(/[^a-z0-9]/gi,'_');
+    const url = document.getElementById('link-' + key).value.trim();
+    FORM_LINKS[companyName] = url || '#';
+    // Persist to localStorage
+    const saved = JSON.parse(localStorage.getItem('anchor_form_links') || '{}');
+    saved[companyName] = url || '#';
+    localStorage.setItem('anchor_form_links', JSON.stringify(saved));
+    // Update status
+    const statusEl = document.getElementById('status-' + key);
+    if (url && url !== '#') {
+      statusEl.className = 'acc-status linked';
+      statusEl.textContent = '✓ Form linked — Apply Now is live';
+    } else {
+      statusEl.className = 'acc-status unlinked';
+      statusEl.textContent = '○ No form linked yet';
+    }
+  }
+
+  // ── Load saved form links from localStorage on startup ──
+  (function loadSavedLinks() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('anchor_form_links') || '{}');
+      Object.entries(saved).forEach(([co, url]) => { if (FORM_LINKS.hasOwnProperty(co)) FORM_LINKS[co] = url; });
+    } catch(e) {}
+  })();
+
+  // ── Google Sheet connection ──
+  function connectSheet() {
+    const id = document.getElementById('sheetIdInput').value.trim();
+    if (!id) return;
+    connectedSheetId = id;
+    localStorage.setItem('anchor_sheet_id', id);
+    document.getElementById('sheetIdSettings').value = id;
+    loadSheetData(id);
+  }
+
+  function connectSheetFromSettings() {
+    const id = document.getElementById('sheetIdSettings').value.trim();
+    if (!id) return;
+    connectedSheetId = id;
+    localStorage.setItem('anchor_sheet_id', id);
+    document.getElementById('sheetIdInput').value = id;
+    loadSheetData(id);
+  }
+
+  function refreshSheet() {
+    if (connectedSheetId) loadSheetData(connectedSheetId);
+  }
+
+  // Fetch Google Sheet as JSON (requires sheet to be publicly readable)
+  // Sheet must be published: File → Share → Publish to web → CSV
+  function loadSheetData(sheetId) {
+    const statusEl = document.getElementById('adminSheetStatus');
+    statusEl.textContent = '⟳ Connecting...';
+    statusEl.className = 'sheet-status';
+
+    // Use the Sheets API gviz endpoint (no API key needed for public sheets)
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
+
+    fetch(url)
+      .then(r => r.text())
+      .then(text => {
+        // Strip the google callback wrapper
+        const json = JSON.parse(text.replace(/^[^(]+\(/, '').replace(/\);?$/, ''));
+        const cols = json.table.cols.map(c => c.label);
+        const rows = json.table.rows.map(row => {
+          const obj = {};
+          row.c.forEach((cell, i) => { obj[cols[i] || 'col'+i] = cell ? cell.v : ''; });
+          return obj;
+        });
+        allApplications = rows;
+        statusEl.textContent = `✓ Connected (${rows.length} rows)`;
+        statusEl.className = 'sheet-status connected';
+        updateStats(rows);
+        renderAppTable(rows);
+        updateOverviewCompanyBreakdown(rows);
+      })
+      .catch(err => {
+        statusEl.textContent = '✗ Connection failed — check Sheet ID & sharing';
+        statusEl.className = 'sheet-status';
+        console.error('Sheet load error:', err);
+      });
+  }
+
+  // ── Update stats ──
+  function updateStats(rows) {
+    document.getElementById('stat-total').textContent = rows.length;
+    const today = new Date().toLocaleDateString();
+    const todayCount = rows.filter(r => {
+      const d = Object.values(r).find(v => v && String(v).includes('/'));
+      return d && new Date(d).toLocaleDateString() === today;
+    }).length;
+    document.getElementById('stat-today').textContent = todayCount;
+    const pending = rows.filter(r => !r.Status || r.Status === '' || r.Status === 'Unreviewed').length;
+    document.getElementById('stat-pending').textContent = pending;
+  }
+
+  // ── Overview company breakdown ──
+  function updateOverviewCompanyBreakdown(rows) {
+    const container = document.getElementById('overviewBreakdown');
+    const counts = {};
+    COMPANY_DETAILS.forEach(c => { counts[c.name] = 0; });
+    rows.forEach(r => {
+      const co = r['Company'] || r['company'] || r['Which company are you applying for?'] || '';
+      if (counts.hasOwnProperty(co)) counts[co]++;
+    });
+    container.innerHTML = Object.entries(counts).map(([name, count]) => `
+      <div class="acb-card">
+        <span class="acb-name">${name}</span>
+        <span class="acb-count ${count === 0 ? 'zero' : ''}">${count}</span>
+      </div>`).join('');
+  }
+
+  // ── Render applications table ──
+  let appStatuses = JSON.parse(localStorage.getItem('anchor_app_statuses') || '{}');
+
+  function renderAppTable(rows) {
+    const tbody = document.getElementById('appTableBody');
+    if (!rows.length) {
+      tbody.innerHTML = '<tr><td colspan="7" class="admin-empty-state" style="padding:40px;text-align:center;">No applications yet.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = rows.map((r, i) => {
+      // Try to map common Google Form column names
+      const name    = r['Name'] || r['Full Name'] || r['name'] || '—';
+      const email   = r['Email'] || r['Email Address'] || r['email'] || '—';
+      const age     = r['Age'] || r['age'] || '—';
+      const company = r['Company'] || r['Which company are you applying for?'] || r['company'] || '—';
+      const date    = r['Timestamp'] || r['Date'] || r['date'] || '—';
+      const status  = appStatuses[i] || 'Unreviewed';
+      return `
+        <tr data-name="${name.toLowerCase()}" data-company="${company}">
+          <td style="font-weight:400;">${name}</td>
+          <td><a href="mailto:${email}" style="color:var(--teal); text-decoration:none;">${email}</a></td>
+          <td>${age}</td>
+          <td>${company}</td>
+          <td style="font-size:0.78rem; color:rgba(33,46,83,0.5);">${typeof date === 'number' ? new Date(date).toLocaleDateString() : date}</td>
+          <td>
+            <select class="status-pill status-${status}" onchange="updateStatus(${i}, this)"
+              style="border:none; outline:none; font-family:inherit; cursor:pointer; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; padding:3px 8px; border-radius:100px;">
+              <option ${status==='Unreviewed'?'selected':''}>Unreviewed</option>
+              <option ${status==='Shortlisted'?'selected':''}>Shortlisted</option>
+              <option ${status==='Accepted'?'selected':''}>Accepted</option>
+              <option ${status==='Declined'?'selected':''}>Declined</option>
+            </select>
+          </td>
+          <td><button class="admin-action-btn" onclick="viewApp(${i})">View</button></td>
+        </tr>`;
+    }).join('');
+  }
+
+  function updateStatus(idx, select) {
+    const val = select.value;
+    appStatuses[idx] = val;
+    localStorage.setItem('anchor_app_statuses', JSON.stringify(appStatuses));
+    select.className = `status-pill status-${val}`;
+  }
+
+  function viewApp(idx) {
+    const r = allApplications[idx];
+    if (!r) return;
+    const info = Object.entries(r).map(([k,v]) => `<strong>${k}:</strong> ${v}`).join('<br>');
+    alert(info); // Simple view — could be expanded to a modal
+  }
+
+  function filterApps() {
+    const q = document.getElementById('appSearch').value.toLowerCase();
+    const co = document.getElementById('appCompanyFilter').value;
+    const st = document.getElementById('appStatusFilter').value;
+    document.querySelectorAll('#appTableBody tr').forEach(row => {
+      const name = (row.dataset.name || '');
+      const company = (row.dataset.company || '');
+      const statusEl = row.querySelector('select');
+      const status = statusEl ? statusEl.value : '';
+      const qMatch = !q || name.includes(q) || company.toLowerCase().includes(q);
+      const coMatch = !co || company === co;
+      const stMatch = !st || status === st;
+      row.style.display = qMatch && coMatch && stMatch ? '' : 'none';
+    });
+  }
+
+  // ── Change admin password ──
+  function changeAdminPass() {
+    const curr = document.getElementById('currPass').value;
+    const nw = document.getElementById('newPass').value;
+    const conf = document.getElementById('confPass').value;
+    const msg = document.getElementById('passChangeMsg');
+    if (curr !== adminPass) {
+      msg.style.display = 'block'; msg.style.color = 'var(--rose)';
+      msg.textContent = 'Current password is incorrect.'; return;
+    }
+    if (nw.length < 8) {
+      msg.style.display = 'block'; msg.style.color = 'var(--rose)';
+      msg.textContent = 'New password must be at least 8 characters.'; return;
+    }
+    if (nw !== conf) {
+      msg.style.display = 'block'; msg.style.color = 'var(--rose)';
+      msg.textContent = 'Passwords do not match.'; return;
+    }
+    adminPass = nw;
+    localStorage.setItem('anchor_admin_pass', nw);
+    msg.style.display = 'block'; msg.style.color = '#27ae60';
+    msg.textContent = '✓ Password updated successfully.';
+    document.getElementById('currPass').value = '';
+    document.getElementById('newPass').value = '';
+    document.getElementById('confPass').value = '';
+  }
+
+  // ── Secret admin access (type "admin" on keyboard anywhere) ──
+  let adminKeyBuffer = '';
+  document.addEventListener('keydown', (e) => {
+    if (document.getElementById('page-admin').classList.contains('active')) return;
+    adminKeyBuffer += e.key.toLowerCase();
+    if (adminKeyBuffer.length > 5) adminKeyBuffer = adminKeyBuffer.slice(-5);
+    if (adminKeyBuffer === 'admin') {
+      showPage('admin');
+      adminKeyBuffer = '';
+    }
+  });
+
+</script>
+
+<!-- ══════════════════════════════════════════
+     LOGIN PAGE
+══════════════════════════════════════════ -->
+<div id="page-login" class="page">
+  <div class="login-wrap">
+    <div class="login-card" id="loginCard">
+
+      <!-- Toggle tabs -->
+      <div class="login-tabs">
+        <button class="ltab active" onclick="switchTab('signin')">Sign In</button>
+        <button class="ltab" onclick="switchTab('signup')">Sign Up</button>
+      </div>
+
+      <!-- Logo -->
+      <div class="login-logo" style="text-align:center">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%23bed3c3'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23212e53'%3E⚓%3C/text%3E%3C/svg%3E" alt="Anchor" style="height:80px; width:auto; display:block; margin:0 auto;" />
+      </div>
+
+      <!-- SIGN IN -->
+      <div id="tab-signin" class="tab-panel active">
+        <h2 class="login-title">Welcome back.</h2>
+        <p class="login-sub">Sign in to view your placements and applications.</p>
+
+        <div class="login-role-select">
+          <button class="role-btn active" onclick="setRole(this,'student')">I'm a Student</button>
+          <button class="role-btn" onclick="setRole(this,'business')">I'm a Business</button>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="you@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" placeholder="••••••••" />
+          <div class="form-hint"><a class="form-link">Forgot password?</a></div>
+        </div>
+        <button class="login-btn" onclick="handleLogin()">Sign In →</button>
+        <p class="login-switch">Don't have an account? <a class="form-link" onclick="switchTab('signup')">Sign up</a></p>
+      </div>
+
+      <!-- SIGN UP -->
+      <div id="tab-signup" class="tab-panel">
+        <h2 class="login-title">Create your account.</h2>
+        <p class="login-sub">Join Anchor and start exploring opportunities.</p>
+
+        <div class="login-role-select">
+          <button class="role-btn active" onclick="setRole(this,'student')">I'm a Student</button>
+          <button class="role-btn" onclick="setRole(this,'business')">I'm a Business</button>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-input" placeholder="First name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-input" placeholder="Last name" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="you@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" placeholder="Create a password" />
+        </div>
+        <div class="form-group" id="ageGroup">
+          <label class="form-label">Your Age</label>
+          <select class="form-input form-select">
+            <option value="">Select age</option>
+            <option>15</option><option>16</option><option>17</option><option>18</option>
+          </select>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="terms" />
+          <label for="terms">I agree to Anchor's <a class="form-link" href="Anchor-Terms-and-Conditions.docx" download>Terms of Use</a> and <a class="form-link" href="Anchor-Privacy-Policy.docx" download>Privacy Policy</a></label>
+        </div>
+        <button class="login-btn" onclick="handleLogin()">Create Account →</button>
+        <p class="login-switch">Already have an account? <a class="form-link" onclick="switchTab('signin')">Sign in</a></p>
+      </div>
+
+    </div>
+
+    <!-- Side panel -->
+    <div class="login-side">
+      <div class="login-side-inner">
+        <div class="side-label">Anchor</div>
+        <h3 class="side-title">Your first step into the working world.</h3>
+        <p class="side-sub">Join hundreds of students exploring careers and local businesses opening their doors.</p>
+        <div class="side-stats">
+          <div class="side-stat"><span class="ss-num">20</span><span class="ss-desc">Open Placements</span></div>
+          <div class="side-stat"><span class="ss-num">3</span><span class="ss-desc">Work Types</span></div>
+          <div class="side-stat"><span class="ss-num">8+</span><span class="ss-desc">Industries</span></div>
+        </div></div>
+    </div>
+  </div>
+  <div class="login-back" onclick="showPage('home')">← Back to Anchor</div>
+</div>
+
+<!-- ══ FORM MODAL ══ -->
+<div id="formModal" class="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('formModal').classList.remove('open')">✕</button>
+    <div class="modal-logo">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%23bed3c3'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23212e53'%3E⚓%3C/text%3E%3C/svg%3E" alt="Anchor" style="height:54px; width:auto;" />
+    </div>
+    <h3 class="modal-title">Apply for this Placement</h3>
+    <p class="modal-sub">You're applying for: <strong id="modalCompany"></strong></p>
+
+    <!-- Coming soon state -->
+    <div id="formComingSoon">
+      <div class="modal-coming-soon">
+        <div class="mcs-icon">📋</div>
+        <h4>Application form coming soon</h4>
+        <p>The Google Form for this placement will be linked here shortly. Check back soon, or register your interest by logging in.</p>
+        <button class="login-btn" style="margin-top:8px;" onclick="document.getElementById('formModal').classList.remove('open'); showPage('login')">Register Your Interest →</button>
+      </div>
+    </div>
+
+    <!-- Live form state (shown when URL is set) -->
+    <div id="formReady" style="display:none;">
+      <p class="modal-note">Click the button below to open the application form. It takes about 3 minutes to complete.</p>
+      <button class="login-btn" style="margin-top:12px;" id="formOpenBtn">Open Application Form →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     ADMIN / DEVELOPER PAGE
+══════════════════════════════════════════ -->
+<div id="page-admin" class="page">
+
+  <!-- Lock screen -->
+  <div id="adminLock" class="admin-lock">
+    <div class="admin-lock-box">
+      <div class="admin-lock-logo">🔒</div>
+      <h2 class="admin-lock-title">Developer Access</h2>
+      <p class="admin-lock-sub">This page is restricted to Anchor administrators only.</p>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-input" id="adminPassInput" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')checkAdminPass()" />
+      </div>
+      <div id="adminPassError" style="display:none; color:var(--rose); font-size:0.78rem; margin-bottom:12px; letter-spacing:0.04em;">Incorrect password. Try again.</div>
+      <button class="login-btn" onclick="checkAdminPass()">Access Dashboard →</button>
+      <p style="text-align:center; margin-top:14px;"><a class="form-link" onclick="showPage('home')">← Back to site</a></p>
+    </div>
+  </div>
+
+  <!-- Dashboard (shown after login) -->
+  <div id="adminDash" style="display:none;">
+    <div class="admin-topbar">
+      <div class="admin-brand">
+        <span class="admin-brand-label">Anchor</span>
+        <span class="admin-brand-badge">Admin</span>
+      </div>
+      <div class="admin-topbar-right">
+        <span id="adminSheetStatus" class="sheet-status">⚪ Not connected</span>
+        <button class="admin-btn-sm" onclick="showPage('home')">← View Site</button>
+        <button class="admin-btn-sm danger" onclick="adminLogout()">Log Out</button>
+      </div>
+    </div>
+
+    <div class="admin-body">
+
+      <!-- Sidebar -->
+      <div class="admin-sidebar">
+        <nav class="admin-nav">
+          <a class="admin-nav-link active" onclick="adminTab('overview')">📊 Overview</a>
+          <a class="admin-nav-link" onclick="adminTab('applications')">📋 Applications</a>
+          <a class="admin-nav-link" onclick="adminTab('companies')">🏢 Companies</a>
+          <a class="admin-nav-link" onclick="adminTab('settings')">⚙️ Settings</a>
+        </nav>
+        <div class="admin-sidebar-footer">
+          <div class="admin-sidebar-label">Sheet Connection</div>
+          <div class="admin-sheet-input-wrap">
+            <input type="text" id="sheetIdInput" class="form-input" placeholder="Paste Google Sheet ID" style="font-size:0.72rem; padding:8px 10px;" />
+            <button class="admin-connect-btn" onclick="connectSheet()">Connect</button>
+          </div>
+          <p class="admin-sidebar-hint">Find your Sheet ID in the URL:<br><code>docs.google.com/spreadsheets/d/<strong>[ID]</strong>/edit</code></p>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="admin-main">
+
+        <!-- OVERVIEW TAB -->
+        <div id="admin-tab-overview" class="admin-tab active">
+          <div class="admin-tab-header">
+            <h1 class="admin-tab-title">Overview</h1>
+            <p class="admin-tab-sub">A snapshot of all Anchor activity.</p>
+          </div>
+
+          <div class="admin-stat-row">
+            <div class="admin-stat-card">
+              <div class="asc-num" id="stat-total">—</div>
+              <div class="asc-label">Total Applications</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="asc-num" id="stat-today">—</div>
+              <div class="asc-label">Received Today</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="asc-num" id="stat-companies">20</div>
+              <div class="asc-label">Active Listings</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="asc-num" id="stat-pending">—</div>
+              <div class="asc-label">Unreviewed</div>
+            </div>
+          </div>
+
+          <div class="admin-section-title">By Company</div>
+          <div class="admin-company-breakdown" id="overviewBreakdown">
+            <div class="admin-empty-state">Connect your Google Sheet to see application data.</div>
+          </div>
+
+          <div class="admin-setup-guide">
+            <div class="admin-setup-title">📌 How to connect your Google Sheet</div>
+            <ol class="admin-setup-steps">
+              <li>Open your Google Form responses sheet (or create a new Sheet and link your Forms to it).</li>
+              <li>Make the Sheet <strong>publicly readable</strong>: Share → Anyone with the link → Viewer.</li>
+              <li>Copy the Sheet ID from the URL (the long string between <code>/d/</code> and <code>/edit</code>).</li>
+              <li>Paste it into the "Sheet Connection" box on the left and click <strong>Connect</strong>.</li>
+              <li>Make sure your Google Form has a question asking for the <strong>company name</strong>, or use one Form per company with separate sheets/tabs.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- APPLICATIONS TAB -->
+        <div id="admin-tab-applications" class="admin-tab">
+          <div class="admin-tab-header">
+            <h1 class="admin-tab-title">Applications</h1>
+            <p class="admin-tab-sub">All submissions from students. Connect your Sheet to populate this table.</p>
+          </div>
+
+          <div class="admin-table-toolbar">
+            <div class="search-wrap" style="max-width:260px;">
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              <input type="text" class="form-input" id="appSearch" placeholder="Search name or company..." oninput="filterApps()" style="padding-left:34px; font-size:0.8rem;" />
+            </div>
+            <select class="form-input form-select" id="appCompanyFilter" onchange="filterApps()" style="width:200px; font-size:0.8rem; padding:8px 12px;">
+              <option value="">All Companies</option>
+              <option>Diamantina Fine Jewels</option>
+              <option>Creative Propack Ltd</option>
+              <option>Wealth Advisor</option>
+              <option>360F Advisory</option>
+              <option>Benzo Chem Industries Pvt Ltd</option>
+              <option>YNA Legal LLP</option>
+              <option>Vista Infotel LLP</option>
+              <option>Ghanasingh Be True</option>
+              <option>Bumblebee Consulting</option>
+              <option>Premier Legal Practices</option>
+              <option>Khemka Glass Products Pvt Ltd</option>
+              <option>MFA Capital</option>
+              <option>InSyync</option>
+              <option>Three Pisces Travels</option>
+              <option>Vedanta Ltd</option>
+              <option>Bombay Bizare Baker</option>
+              <option>FYNDNA TechCorp Pvt Ltd</option>
+            </select>
+            <select class="form-input form-select" id="appStatusFilter" onchange="filterApps()" style="width:160px; font-size:0.8rem; padding:8px 12px;">
+              <option value="">All Statuses</option>
+              <option>Unreviewed</option>
+              <option>Shortlisted</option>
+              <option>Accepted</option>
+              <option>Declined</option>
+            </select>
+            <button class="admin-btn-sm" onclick="refreshSheet()">↻ Refresh</button>
+          </div>
+
+          <div class="admin-table-wrap" id="appTableWrap">
+            <table class="admin-table" id="appTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Age</th>
+                  <th>Company Applied</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="appTableBody">
+                <tr><td colspan="7" class="admin-empty-state" style="padding:40px; text-align:center;">Connect your Google Sheet to see applications here.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- COMPANIES TAB -->
+        <div id="admin-tab-companies" class="admin-tab">
+          <div class="admin-tab-header">
+            <h1 class="admin-tab-title">Companies</h1>
+            <p class="admin-tab-sub">All 20 active listings. Paste Google Form URLs here — they\'ll go live immediately on the site.</p>
+          </div>
+          <div class="admin-companies-grid" id="adminCompanyGrid">
+          </div>
+        </div>
+
+        <!-- SETTINGS TAB -->
+        <div id="admin-tab-settings" class="admin-tab">
+          <div class="admin-tab-header">
+            <h1 class="admin-tab-title">Settings</h1>
+            <p class="admin-tab-sub">Admin configuration for Anchor.</p>
+          </div>
+
+          <div class="admin-settings-card">
+            <div class="admin-settings-section">
+              <h3 class="admin-settings-heading">Change Admin Password</h3>
+              <div class="form-group" style="max-width:320px;">
+                <label class="form-label">Current Password</label>
+                <input type="password" class="form-input" id="currPass" placeholder="Current password" />
+              </div>
+              <div class="form-group" style="max-width:320px;">
+                <label class="form-label">New Password</label>
+                <input type="password" class="form-input" id="newPass" placeholder="New password (min 8 chars)" />
+              </div>
+              <div class="form-group" style="max-width:320px;">
+                <label class="form-label">Confirm New Password</label>
+                <input type="password" class="form-input" id="confPass" placeholder="Confirm new password" />
+              </div>
+              <div id="passChangeMsg" style="font-size:0.82rem; margin-bottom:12px; display:none;"></div>
+              <button class="login-btn" style="max-width:200px;" onclick="changeAdminPass()">Update Password</button>
+            </div>
+
+            <div class="admin-settings-section">
+              <h3 class="admin-settings-heading">Google Sheet Connection</h3>
+              <p style="font-size:0.85rem; color:rgba(33,46,83,0.6); font-weight:300; line-height:1.7; margin-bottom:16px;">
+                Connect your Google Sheet so application data appears in the dashboard. Your sheet must be set to <strong>Anyone with the link can view</strong>.
+              </p>
+              <div class="form-group" style="max-width:440px;">
+                <label class="form-label">Google Sheet ID</label>
+                <input type="text" class="form-input" id="sheetIdSettings" placeholder="e.g. 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms" />
+              </div>
+              <button class="login-btn" style="max-width:200px;" onclick="connectSheetFromSettings()">Save & Connect</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /admin-main -->
+    </div><!-- /admin-body -->
+  </div><!-- /adminDash -->
+</div>
+
+
+<!-- ── Business Detail Drawer ── -->
+<div id="bizDrawerOverlay" onclick="closeBizDrawer()"></div>
+<div id="bizDrawer">
+  <div class="drawer-header">
+    <div class="drawer-header-top">
+      <div>
+        <h2 class="drawer-company" id="drawerCompany">Company Name</h2>
+        <div class="drawer-industry" id="drawerIndustry">Industry</div>
+      </div>
+      <button class="drawer-close" onclick="closeBizDrawer()">✕</button>
+    </div>
+    <div class="drawer-badges" id="drawerBadges"></div>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-meta-row" id="drawerMeta"></div>
+    <p class="drawer-section-label">About</p>
+    <p class="drawer-desc" id="drawerDesc"></p>
+    <div class="drawer-what" id="drawerWhat"></div>
+    <p class="drawer-section-label">Skills You'll Build</p>
+    <div class="drawer-skills" id="drawerSkills"></div>
+    <button class="drawer-apply-btn" id="drawerApplyBtn" onclick="applyFromDrawer()">Apply Now →</button>
+    <p style="font-size:0.78rem; color:#aaa; text-align:center;">Application takes about 3 minutes. No CV needed.</p>
+  </div>
+</div>
+
+</body>
+</html>
