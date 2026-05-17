@@ -1955,7 +1955,17 @@ function handleLogin() {
   // Go back to homepage
   showPage('home');
 }
+// Show saved user on page load
+window.onload = function() {
+  const savedUser = localStorage.getItem('anchorUser');
 
+  if (savedUser) {
+    const logoText = document.querySelector('.side-label');
+    if (logoText) {
+      logoText.innerText = "Hi, " + savedUser;
+    }
+  }
+}
   // ── GOOGLE FORM LINKS PER COMPANY ──
   // Paste each company’s Google Form URL below when ready.
   // Leave as '#' until you have the link — button will show a "coming soon" message.
@@ -1990,8 +2000,15 @@ function handleLogin() {
       document.getElementById('formReady').style.display = 'none';
       document.getElementById('formModal').classList.add('open');
     } else {
-      // Open the Google Form directly in a new tab
-      window.open(url, '_blank');
+      // Check if user is logged in first
+const loggedIn = localStorage.getItem('loggedIn');
+
+if (loggedIn === 'true') {
+  window.open(url, '_blank');
+} else {
+  alert('Please sign in or create an account before applying.');
+  showPage('login');
+}
     }
   }
 
