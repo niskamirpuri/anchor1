@@ -49,7 +49,7 @@
     display: flex; align-items: center; gap: 10px;
     text-decoration: none; color: var(--navy); cursor: pointer;
   }
-  .logo png { height: 50px; width: auto; object-fit: contain; }
+  .logo img { height: 50px; width: auto; object-fit: contain; }
 
   .nav-links {
     display: flex; align-items: center; gap: 30px;
@@ -1070,6 +1070,24 @@
   .drawer-meta-key { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: #9aa0a6; font-weight: 600; }
   .drawer-meta-val { font-size: 0.9rem; color: #212e53; font-weight: 500; }
 
+
+  /* ── Personalised greeting ── */
+  #heroGreeting {
+    display: none;
+    font-size: 0.82rem; font-weight: 400; letter-spacing: 0.08em;
+    color: var(--teal); margin-bottom: 10px;
+    animation: fadeInDown 0.5s ease forwards;
+  }
+  @keyframes fadeInDown { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+  #logoutBtn {
+    background: none; border: 1px solid rgba(33,46,83,0.2);
+    color: rgba(33,46,83,0.5); font-size: 0.65rem; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 5px 12px; border-radius: 100px;
+    cursor: pointer; font-family: inherit; margin-left: 10px;
+    transition: all 0.2s; vertical-align: middle;
+  }
+  #logoutBtn:hover { border-color: var(--rose); color: var(--rose); }
+
 </style>
 </head>
 <body>
@@ -1077,14 +1095,15 @@
 <!-- ══════════════ NAV ══════════════ -->
 <nav id="mainNav">
   <a class="logo" onclick="showPage('home')">
-   <img src="logo.png" alt="Anchor — Set Your Course" style="height:54px; width:auto;" />
+    <img src="download.png" alt="Anchor — Set Your Course" style="height:54px; width:auto;" />
   </a>
   <ul class="nav-links">
     <li><a onclick="showPage('home')" data-page="home">Home</a></li>
     <li><a onclick="showPage('opportunities')" data-page="opportunities">Opportunities</a></li>
     <li><a onclick="showPage('students')" data-page="students">For Students</a></li>
     <li><a onclick="showPage('businesses')" data-page="businesses">For Businesses</a></li>
-    <li><a onclick="showPage('login')" class="btn-login" data-page="login">Login</a></li><li><a onclick="showPage('opportunities')" class="btn-nav" data-page="">Get Started</a></li>
+    <li id="navLoginItem"><a onclick="showPage('login')" class="btn-login" data-page="login">Login</a></li>
+    <li id="navUserItem" style="display:none;"><span id="navGreeting" style="font-size:0.75rem;color:var(--teal);font-weight:500;"></span><button id="logoutBtn" onclick="doLogout()">Logout</button></li><li><a onclick="showPage('opportunities')" class="btn-nav" data-page="">Get Started</a></li>
   </ul>
 </nav>
 
@@ -1097,10 +1116,10 @@
   <section class="hero">
     <canvas id="heroCanvas"></canvas>
     <div class="hero-content">
+      <div id="heroGreeting"></div>
       <div class="hero-badge fade-up"><span></span>Real Work Experience for Students</div>
       <h1 class="fade-up-d1">Your first step into the <em>working world</em> starts here.</h1>
-<p class="fade-up-d2">Anchor connects students aged 15–18 with local businesses for short, meaningful work experience placements. Explore careers. Build confidence. Start your journey.</p>
-<p class="fade-up-d2" style="margin-top: 8px; font-size: 14px; opacity: 0.7;">By Niska Mirpuri</p>
+      <p class="fade-up-d2">Anchor connects students aged 15–18 with local businesses for short, meaningful work experience placements. Explore careers. Build confidence. Start your journey.</p>
       <div class="hero-ctas fade-up-d3">
         <a class="btn-primary" onclick="showPage('opportunities')">Explore Opportunities</a>
         <a class="btn-outline" onclick="showPage('home'); document.getElementById('hiw').scrollIntoView({behavior:'smooth'})">How It Works ↓</a>
@@ -1244,7 +1263,7 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%23bed3c3'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23212e53'%3E⚓%3C/text%3E%3C/svg%3E" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <img src="download.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
         <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
       </div>
       <div class="footer-col"><h4>Platform</h4><ul>
@@ -1258,7 +1277,7 @@
         <li><a onclick="showPage('home')">Contact</a></li>
       </ul></div>
       <div class="footer-col"><h4>Legal</h4><ul>
-       <li><a href="Anchor-Privacy-Policy.docx" download>Privacy Policy</a></li>
+        <li><a href="Anchor-Privacy-Policy.docx" download>Privacy Policy</a></li>
         <li><a href="Anchor-Terms-and-Conditions.docx" download>Terms of Use</a></li>
         <li><a>Safeguarding</a></li>
       </ul></div>
@@ -1513,7 +1532,7 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%23bed3c3'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23212e53'%3E⚓%3C/text%3E%3C/svg%3E" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <img src="download.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
         <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
       </div>
       <div class="footer-col"><h4>Platform</h4><ul>
@@ -1643,7 +1662,7 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%23bed3c3'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23212e53'%3E⚓%3C/text%3E%3C/svg%3E" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <img src="download.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
         <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
       </div>
       <div class="footer-col"><h4>Platform</h4><ul><li><a onclick="showPage('opportunities')">Opportunities</a></li><li><a onclick="showPage('students')">For Students</a></li><li><a onclick="showPage('businesses')">For Businesses</a></li></ul></div>
@@ -1807,7 +1826,7 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%23bed3c3'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23212e53'%3E⚓%3C/text%3E%3C/svg%3E" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <img src="download.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
         <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
       </div>
       <div class="footer-col"><h4>Platform</h4><ul><li><a onclick="showPage('opportunities')">Opportunities</a></li><li><a onclick="showPage('students')">For Students</a></li><li><a onclick="showPage('businesses')">For Businesses</a></li></ul></div>
@@ -1930,42 +1949,59 @@
   }
 
   // ── LOGIN HANDLER (placeholder) ──
-function handleLogin() {
-  // Get first name from sign-up form
-  const firstNameInput = document.querySelector('input[name="first_name"]');
-  
-  if (firstNameInput && firstNameInput.value) {
-    localStorage.setItem('anchorUser', firstNameInput.value);
+  function handleLogin() {
+    // Get first name from signup form if on signup tab
+    const isSignup = document.getElementById('tab-signup').classList.contains('active');
+    let firstName = '';
+    if (isSignup) {
+      const firstInput = document.querySelector('#tab-signup .form-input[placeholder="First name"]');
+      firstName = firstInput ? firstInput.value.trim() : '';
+    }
+    // Fall back to email prefix if no name
+    if (!firstName) {
+      const emailInput = document.querySelector('.tab-panel.active .form-input[type="email"]');
+      if (emailInput && emailInput.value) {
+        firstName = emailInput.value.split('@')[0];
+        firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+      }
+    }
+    if (firstName) localStorage.setItem('anchorUser', firstName);
+    localStorage.setItem('loggedIn', 'true');
+    showPage('home');
+    initUserState();
   }
 
-  // Check if user already saved
-  const savedUser = localStorage.getItem('anchorUser');
+  function doLogout() {
+    localStorage.removeItem('anchorUser');
+    localStorage.removeItem('loggedIn');
+    location.reload();
+  }
 
-  // Update homepage greeting if user exists
-  if (savedUser) {
-    const logoText = document.querySelector('.side-label');
-    if (logoText) {
-      logoText.innerText = "Hi, " + savedUser;
+  function initUserState() {
+    const name = localStorage.getItem('anchorUser');
+    const loggedIn = localStorage.getItem('loggedIn');
+    const greetingEl = document.getElementById('heroGreeting');
+    const navLogin = document.getElementById('navLoginItem');
+    const navUser = document.getElementById('navUserItem');
+    const navGreetingEl = document.getElementById('navGreeting');
+
+    if (loggedIn && name) {
+      // Show hero greeting
+      if (greetingEl) {
+        greetingEl.textContent = 'Hi, ' + name + ' 👋';
+        greetingEl.style.display = 'block';
+      }
+      // Swap nav Login → greeting + logout
+      if (navLogin) navLogin.style.display = 'none';
+      if (navUser) navUser.style.display = 'flex';
+      if (navGreetingEl) navGreetingEl.textContent = 'Hi, ' + name;
+    } else {
+      if (greetingEl) greetingEl.style.display = 'none';
+      if (navLogin) navLogin.style.display = '';
+      if (navUser) navUser.style.display = 'none';
     }
   }
 
-  // Mark user as logged in
-  localStorage.setItem('loggedIn', 'true');
-
-  // Go back to homepage
-  showPage('home');
-}
-// Show saved user on page load
-window.onload = function() {
-  const savedUser = localStorage.getItem('anchorUser');
-
-  if (savedUser) {
-    const logoText = document.querySelector('.side-label');
-    if (logoText) {
-      logoText.innerText = "Hi, " + savedUser;
-    }
-  }
-}
   // ── GOOGLE FORM LINKS PER COMPANY ──
   // Paste each company’s Google Form URL below when ready.
   // Leave as '#' until you have the link — button will show a "coming soon" message.
@@ -1989,29 +2025,21 @@ window.onload = function() {
     'FYNDNA TechCorp Pvt Ltd': 'https://forms.gle/rhsttzzc9mxcFsVL8',
   };
 
-function openForm(btn) {
-  const card = btn.closest('.opp-card-full');
-  const company = card ? card.querySelector('h3').innerText.trim() : '';
-  const url = FORM_LINKS[company];
-
-  if (!url || url === '#') {
-    // Show coming-soon modal
-    document.getElementById('modalCompany').innerText = company;
-    document.getElementById('formComingSoon').style.display = 'block';
-    document.getElementById('formReady').style.display = 'none';
-    document.getElementById('formModal').classList.add('open');
-  } else {
-    // Check if user is logged in
-    const loggedIn = localStorage.getItem('loggedIn');
-
-    if (loggedIn === 'true') {
-      window.open(url, '_blank');
+  function openForm(btn) {
+    const card = btn.closest('.opp-card-full');
+    const company = card ? card.querySelector('h3').innerText.trim() : '';
+    const url = FORM_LINKS[company];
+    if (!url || url === '#') {
+      // Show coming-soon modal
+      document.getElementById('modalCompany').innerText = company;
+      document.getElementById('formComingSoon').style.display = 'block';
+      document.getElementById('formReady').style.display = 'none';
+      document.getElementById('formModal').classList.add('open');
     } else {
-      alert('Please sign in before applying.');
-      showPage('login');
+      // Open the Google Form directly in a new tab
+      window.open(url, '_blank');
     }
   }
-}
 
   function closeModal(e) {
     if (e.target === document.getElementById('formModal')) {
@@ -2435,6 +2463,8 @@ function openForm(btn) {
     }
   });
 
+
+
 </script>
 
 <!-- ══════════════════════════════════════════
@@ -2452,7 +2482,7 @@ function openForm(btn) {
 
       <!-- Logo -->
       <div class="login-logo" style="text-align:center">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%23bed3c3'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23212e53'%3E⚓%3C/text%3E%3C/svg%3E" alt="Anchor" style="height:80px; width:auto; display:block; margin:0 auto;" />
+        <img src="download.png" alt="Anchor" style="height:80px; width:auto; display:block; margin:0 auto;" />
       </div>
 
       <!-- SIGN IN -->
@@ -2487,40 +2517,37 @@ function openForm(btn) {
           <button class="role-btn active" onclick="setRole(this,'student')">I'm a Student</button>
           <button class="role-btn" onclick="setRole(this,'business')">I'm a Business</button>
         </div>
-<form action="https://formspree.io/f/mredzopz" method="POST">
+
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">First Name</label>
-            <input type="text" name="first_name" class="form-input" placeholder="First name" />
+            <input type="text" class="form-input" placeholder="First name" />
           </div>
           <div class="form-group">
             <label class="form-label">Last Name</label>
-          <input type="text" name="last_name" class="form-input" placeholder="Last name" />
+            <input type="text" class="form-input" placeholder="Last name" />
           </div>
         </div>
         <div class="form-group">
           <label class="form-label">Email Address</label>
-          <input type="email" name="email" class="form-input" placeholder="you@email.com" />
+          <input type="email" class="form-input" placeholder="you@email.com" />
         </div>
         <div class="form-group">
           <label class="form-label">Password</label>
-          <input type="password" name="password" class="form-input" placeholder="Create a password" />
+          <input type="password" class="form-input" placeholder="Create a password" />
         </div>
         <div class="form-group" id="ageGroup">
           <label class="form-label">Your Age</label>
-         <select name="age" class="form-input form-select">
+          <select class="form-input form-select">
             <option value="">Select age</option>
             <option>15</option><option>16</option><option>17</option><option>18</option>
           </select>
         </div>
-  
-  <button type="submit" class="login-btn">Create Account →</button>
-       <div class="form-check">
-  <input type="checkbox" id="signin-consent" required />
-  <label for="signin-consent">I consent to Anchor's <a class="form-link" href="Anchor-Terms-and-Conditions.docx" download>Terms of Use</a> and <a class="form-link" href="Anchor-Privacy-Policy.docx" download>Privacy Policy</a></label>
-</div>
-<button class="login-btn" onclick="handleLogin()">Sign In →</button>
-  </form>
+        <div class="form-check">
+          <input type="checkbox" id="terms" />
+          <label for="terms">I agree to Anchor's <a class="form-link" href="Anchor-Terms-and-Conditions.docx" download>Terms of Use</a> and <a class="form-link" href="Anchor-Privacy-Policy.docx" download>Privacy Policy</a></label>
+        </div>
+        <button class="login-btn" onclick="handleLogin()">Create Account →</button>
         <p class="login-switch">Already have an account? <a class="form-link" onclick="switchTab('signin')">Sign in</a></p>
       </div>
 
@@ -2547,7 +2574,7 @@ function openForm(btn) {
   <div class="modal-box">
     <button class="modal-close" onclick="document.getElementById('formModal').classList.remove('open')">✕</button>
     <div class="modal-logo">
-    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%23bed3c3'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23212e53'%3E⚓%3C/text%3E%3C/svg%3E" alt="Anchor" style="height:54px; width:auto;" />
+    <img src="download.png" alt="Anchor" style="height:54px; width:auto; filter: none;" />
     </div>
     <h3 class="modal-title">Apply for this Placement</h3>
     <p class="modal-sub">You're applying for: <strong id="modalCompany"></strong></p>
