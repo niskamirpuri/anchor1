@@ -1989,35 +1989,29 @@ window.onload = function() {
     'FYNDNA TechCorp Pvt Ltd': 'https://forms.gle/rhsttzzc9mxcFsVL8',
   };
 
-  function openForm(btn) {
-    const card = btn.closest('.opp-card-full');
-    const company = card ? card.querySelector('h3').innerText.trim() : '';
-    const url = FORM_LINKS[company];
-    if (!url || url === '#') {
-      // Show coming-soon modal
-      document.getElementById('modalCompany').innerText = company;
-      document.getElementById('formComingSoon').style.display = 'block';
-      document.getElementById('formReady').style.display = 'none';
-      document.getElementById('formModal').classList.add('open');
+function openForm(btn) {
+  const card = btn.closest('.opp-card-full');
+  const company = card ? card.querySelector('h3').innerText.trim() : '';
+  const url = FORM_LINKS[company];
+
+  if (!url || url === '#') {
+    // Show coming-soon modal
+    document.getElementById('modalCompany').innerText = company;
+    document.getElementById('formComingSoon').style.display = 'block';
+    document.getElementById('formReady').style.display = 'none';
+    document.getElementById('formModal').classList.add('open');
+  } else {
+    // Check if user is logged in
+    const loggedIn = localStorage.getItem('loggedIn');
+
+    if (loggedIn === 'true') {
+      window.open(url, '_blank');
     } else {
-      // Check if user is logged in first
-const loggedIn = localStorage.getItem('loggedIn');
-
-if (loggedIn === 'true') {
-  const loggedIn = localStorage.getItem('loggedIn');
-
-if (loggedIn === 'true') {
-  window.open(url, '_blank');
-} else {
-  alert('Please sign in before applying.');
-  showPage('login');
-}
-} else {
-  alert('Please sign in or create an account before applying.');
-  showPage('login');
-}
+      alert('Please sign in before applying.');
+      showPage('login');
     }
   }
+}
 
   function closeModal(e) {
     if (e.target === document.getElementById('formModal')) {
