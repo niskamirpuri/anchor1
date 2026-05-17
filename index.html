@@ -2478,7 +2478,11 @@
           <input type="checkbox" id="terms" />
           <label for="terms">I agree to Anchor's <a class="form-link" href="Anchor-Terms-and-Conditions.docx" download>Terms of Use</a> and <a class="form-link" href="Anchor-Privacy-Policy.docx" download>Privacy Policy</a></label>
         </div>
-        <button class="login-btn" onclick="handleLogin()">Create Account →</button>
+       <div class="form-check">
+  <input type="checkbox" id="signin-consent" required />
+  <label for="signin-consent">I consent to Anchor's <a class="form-link" href="Anchor-Terms-and-Conditions.docx" download>Terms of Use</a> and <a class="form-link" href="Anchor-Privacy-Policy.docx" download>Privacy Policy</a></label>
+</div>
+<button class="login-btn" onclick="handleLogin()">Sign In →</button>
         <p class="login-switch">Already have an account? <a class="form-link" onclick="switchTab('signin')">Sign in</a></p>
       </div>
 
