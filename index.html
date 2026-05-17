@@ -1930,9 +1930,31 @@
   }
 
   // ── LOGIN HANDLER (placeholder) ──
-  function handleLogin() {
-    // Placeholder — connect to your auth backend
-    showPage('home');
+function handleLogin() {
+  // Get first name from sign-up form
+  const firstNameInput = document.querySelector('input[name="first_name"]');
+  
+  if (firstNameInput && firstNameInput.value) {
+    localStorage.setItem('anchorUser', firstNameInput.value);
+  }
+
+  // Check if user already saved
+  const savedUser = localStorage.getItem('anchorUser');
+
+  // Update homepage greeting if user exists
+  if (savedUser) {
+    const logoText = document.querySelector('.side-label');
+    if (logoText) {
+      logoText.innerText = "Hi, " + savedUser;
+    }
+  }
+
+  // Mark user as logged in
+  localStorage.setItem('loggedIn', 'true');
+
+  // Go back to homepage
+  showPage('home');
+}
   }
 
   // ── GOOGLE FORM LINKS PER COMPANY ──
