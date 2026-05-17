@@ -2004,7 +2004,14 @@ window.onload = function() {
 const loggedIn = localStorage.getItem('loggedIn');
 
 if (loggedIn === 'true') {
+  const loggedIn = localStorage.getItem('loggedIn');
+
+if (loggedIn === 'true') {
   window.open(url, '_blank');
+} else {
+  alert('Please sign in before applying.');
+  showPage('login');
+}
 } else {
   alert('Please sign in or create an account before applying.');
   showPage('login');
