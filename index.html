@@ -2448,28 +2448,28 @@
           <button class="role-btn active" onclick="setRole(this,'student')">I'm a Student</button>
           <button class="role-btn" onclick="setRole(this,'business')">I'm a Business</button>
         </div>
-
+<form action="https://formspree.io/f/mredzopz" method="POST">
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">First Name</label>
-            <input type="text" class="form-input" placeholder="First name" />
+            <input type="text" name="first_name" class="form-input" placeholder="First name" />
           </div>
           <div class="form-group">
             <label class="form-label">Last Name</label>
-            <input type="text" class="form-input" placeholder="Last name" />
+          <input type="text" name="last_name" class="form-input" placeholder="Last name" />
           </div>
         </div>
         <div class="form-group">
           <label class="form-label">Email Address</label>
-          <input type="email" class="form-input" placeholder="you@email.com" />
+          <input type="email" name="email" class="form-input" placeholder="you@email.com" />
         </div>
         <div class="form-group">
           <label class="form-label">Password</label>
-          <input type="password" class="form-input" placeholder="Create a password" />
+          <input type="password" name="password" class="form-input" placeholder="Create a password" />
         </div>
         <div class="form-group" id="ageGroup">
           <label class="form-label">Your Age</label>
-          <select class="form-input form-select">
+         <select name="age" class="form-input form-select">
             <option value="">Select age</option>
             <option>15</option><option>16</option><option>17</option><option>18</option>
           </select>
@@ -2478,11 +2478,13 @@
           <input type="checkbox" id="terms" />
           <label for="terms">I agree to Anchor's <a class="form-link" href="Anchor-Terms-and-Conditions.docx" download>Terms of Use</a> and <a class="form-link" href="Anchor-Privacy-Policy.docx" download>Privacy Policy</a></label>
         </div>
+  <button type="submit" class="login-btn">Create Account →</button>
        <div class="form-check">
   <input type="checkbox" id="signin-consent" required />
   <label for="signin-consent">I consent to Anchor's <a class="form-link" href="Anchor-Terms-and-Conditions.docx" download>Terms of Use</a> and <a class="form-link" href="Anchor-Privacy-Policy.docx" download>Privacy Policy</a></label>
 </div>
 <button class="login-btn" onclick="handleLogin()">Sign In →</button>
+  </form>
         <p class="login-switch">Already have an account? <a class="form-link" onclick="switchTab('signin')">Sign in</a></p>
       </div>
 
