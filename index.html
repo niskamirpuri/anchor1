@@ -1088,6 +1088,47 @@
   }
   #logoutBtn:hover { border-color: var(--rose); color: var(--rose); }
 
+
+  /* ── Parental Consent Modal ── */
+  #consentModal {
+    position: fixed; inset: 0; z-index: 10000;
+    background: rgba(33,46,83,0.55); backdrop-filter: blur(6px);
+    display: none; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  #consentModal.open { display: flex; }
+  .consent-box {
+    background: white; border-radius: 20px;
+    padding: 40px 36px; max-width: 540px; width: 100%;
+    box-shadow: 0 24px 80px rgba(33,46,83,0.2);
+    position: relative; animation: slideUpFade 0.3s ease;
+  }
+  @keyframes slideUpFade { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+  .consent-header { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .consent-icon { width: 40px; height: 40px; background: #fef0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .consent-title { font-size: 1.15rem; font-weight: 600; color: #212e53; }
+  .consent-subtitle { font-size: 0.78rem; color: #888; margin-bottom: 20px; margin-top: 4px; padding-left: 52px; }
+  .consent-divider { height: 1px; background: #f0f0f0; margin: 0 0 20px; }
+  .consent-body { background: #f8faf9; border-radius: 12px; padding: 18px 20px; margin-bottom: 20px; font-size: 0.88rem; color: #444; line-height: 1.75; border: 1px solid #e8eeec; }
+  .consent-body p { margin-bottom: 10px; }
+  .consent-body p:last-child { margin-bottom: 0; }
+  .consent-body strong { color: #212e53; font-weight: 600; }
+  .consent-fields { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .consent-field { display: flex; flex-direction: column; gap: 4px; }
+  .consent-field label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #9aa0a6; }
+  .consent-field input { border: 1px solid #e0e4e8; border-radius: 8px; padding: 9px 13px; font-size: 0.9rem; font-family: inherit; color: #212e53; outline: none; transition: border-color 0.2s; }
+  .consent-field input:focus { border-color: #4a919e; }
+  .consent-check { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; cursor: pointer; }
+  .consent-check input[type="checkbox"] { width: 17px; height: 17px; margin-top: 2px; accent-color: #4a919e; flex-shrink: 0; cursor: pointer; }
+  .consent-check span { font-size: 0.82rem; color: #555; line-height: 1.6; }
+  .consent-actions { display: flex; gap: 10px; }
+  .consent-cancel { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid #e0e4e8; background: white; color: #888; font-size: 0.85rem; font-family: inherit; cursor: pointer; transition: all 0.2s; }
+  .consent-cancel:hover { border-color: #ce6a6b; color: #ce6a6b; }
+  .consent-submit { flex: 2; padding: 12px; border-radius: 10px; background: linear-gradient(135deg, #4a919e, #3d7a87); color: white; border: none; font-size: 0.88rem; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 14px rgba(74,145,158,0.3); }
+  .consent-submit:hover { background: linear-gradient(135deg, #3d7a87, #212e53); transform: translateY(-1px); }
+  .consent-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .consent-company-name { font-weight: 600; color: #4a919e; }
+
 </style>
 </head>
 <body>
@@ -1095,7 +1136,7 @@
 <!-- ══════════════ NAV ══════════════ -->
 <nav id="mainNav">
   <a class="logo" onclick="showPage('home')">
-    <img src="logo.png"="download.png" alt="Anchor — Set Your Course" style="height:54px; width:auto;" />
+    <img src="logo.png" alt="Anchor — Set Your Course" style="height:54px; width:auto;" />
   </a>
   <ul class="nav-links">
     <li><a onclick="showPage('home')" data-page="home">Home</a></li>
@@ -1103,7 +1144,7 @@
     <li><a onclick="showPage('students')" data-page="students">For Students</a></li>
     <li><a onclick="showPage('businesses')" data-page="businesses">For Businesses</a></li>
     <li id="navLoginItem"><a onclick="showPage('login')" class="btn-login" data-page="login">Login</a></li>
-    <li id="navUserItem" style="display:none;"><span id="navGreeting" style="font-size:0.75rem;color:var(--teal);font-weight:500;"></span><button id="logoutBtn" onclick="doLogout()">Logout</button></li><li><a onclick="showPage('opportunities')" class="btn-nav" data-page="">Get Started</a></li>
+    <li id="navUserItem" style="display:none;"><button id="logoutBtn" onclick="doLogout()">Logout</button></li><li><a onclick="showPage('opportunities')" class="btn-nav" data-page="">Get Started</a></li>
   </ul>
 </nav>
 
@@ -1263,7 +1304,7 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="logo.png"="download.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <img src="logo.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
         <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
       </div>
       <div class="footer-col"><h4>Platform</h4><ul>
@@ -1532,7 +1573,7 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="logo.png"="download.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <img src="logo.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
         <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
       </div>
       <div class="footer-col"><h4>Platform</h4><ul>
@@ -1662,7 +1703,7 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="logo.png"="download.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <img src="logo.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
         <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
       </div>
       <div class="footer-col"><h4>Platform</h4><ul><li><a onclick="showPage('opportunities')">Opportunities</a></li><li><a onclick="showPage('students')">For Students</a></li><li><a onclick="showPage('businesses')">For Businesses</a></li></ul></div>
@@ -1826,7 +1867,7 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="download.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <img src="logo.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
         <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
       </div>
       <div class="footer-col"><h4>Platform</h4><ul><li><a onclick="showPage('opportunities')">Opportunities</a></li><li><a onclick="showPage('students')">For Students</a></li><li><a onclick="showPage('businesses')">For Businesses</a></li></ul></div>
@@ -1983,7 +2024,6 @@
     const greetingEl = document.getElementById('heroGreeting');
     const navLogin = document.getElementById('navLoginItem');
     const navUser = document.getElementById('navUserItem');
-    const navGreetingEl = document.getElementById('navGreeting');
 
     if (loggedIn && name) {
       // Show hero greeting
@@ -1994,7 +2034,6 @@
       // Swap nav Login → greeting + logout
       if (navLogin) navLogin.style.display = 'none';
       if (navUser) navUser.style.display = 'flex';
-      if (navGreetingEl) navGreetingEl.textContent = 'Hi, ' + name;
     } else {
       if (greetingEl) greetingEl.style.display = 'none';
       if (navLogin) navLogin.style.display = '';
@@ -2030,14 +2069,12 @@
     const company = card ? card.querySelector('h3').innerText.trim() : '';
     const url = FORM_LINKS[company];
     if (!url || url === '#') {
-      // Show coming-soon modal
       document.getElementById('modalCompany').innerText = company;
       document.getElementById('formComingSoon').style.display = 'block';
       document.getElementById('formReady').style.display = 'none';
       document.getElementById('formModal').classList.add('open');
     } else {
-      // Open the Google Form directly in a new tab
-      window.open(url, '_blank');
+      openConsent(company, url);
     }
   }
 
@@ -2162,7 +2199,8 @@
 
   function applyFromDrawer() {
     if (drawerFormUrl && drawerFormUrl !== '#') {
-      window.open(drawerFormUrl, '_blank');
+      const co = document.getElementById('drawerCompany').innerText.trim();
+      openConsent(co, drawerFormUrl);
     }
   }
 
@@ -2464,6 +2502,49 @@
   });
 
 
+
+
+  // ── Parental Consent Modal Logic ──
+  let pendingFormUrl = '';
+
+  function openConsent(company, url) {
+    pendingFormUrl = url;
+    document.getElementById('consentCompanyName').innerText = company;
+    document.getElementById('consentParentName').value = '';
+    document.getElementById('consentStudentName').value = '';
+    document.getElementById('consentCheck').checked = false;
+    document.getElementById('consentSubmitBtn').disabled = true;
+    document.getElementById('consentModal').classList.add('open');
+  }
+
+  function closeConsent() {
+    document.getElementById('consentModal').classList.remove('open');
+    pendingFormUrl = '';
+  }
+
+  function updateConsentBtn() {
+    const checked = document.getElementById('consentCheck').checked;
+    document.getElementById('consentSubmitBtn').disabled = !checked;
+  }
+
+  function submitConsent() {
+    const parent = document.getElementById('consentParentName').value.trim();
+    const student = document.getElementById('consentStudentName').value.trim();
+    if (!parent || !student) {
+      document.getElementById('consentParentName').style.borderColor = parent ? '#e0e4e8' : '#ce6a6b';
+      document.getElementById('consentStudentName').style.borderColor = student ? '#e0e4e8' : '#ce6a6b';
+      return;
+    }
+    closeConsent();
+    window.open(pendingFormUrl, '_blank');
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var cm = document.getElementById('consentModal');
+    if (cm) cm.addEventListener('click', function(e) {
+      if (e.target === this) closeConsent();
+    });
+  });
 
 </script>
 
@@ -2839,6 +2920,42 @@
     <div class="drawer-skills" id="drawerSkills"></div>
     <button class="drawer-apply-btn" id="drawerApplyBtn" onclick="applyFromDrawer()">Apply Now →</button>
     <p style="font-size:0.78rem; color:#aaa; text-align:center;">Application takes about 3 minutes. No CV needed.</p>
+  </div>
+</div>
+
+
+<!-- ── Parental Consent Modal ── -->
+<div id="consentModal">
+  <div class="consent-box">
+    <div class="consent-header">
+      <div class="consent-icon">📋</div>
+      <div class="consent-title">Parental Consent Required</div>
+    </div>
+    <div class="consent-subtitle">This step is required before your application is submitted.</div>
+    <div class="consent-divider"></div>
+    <div class="consent-body">
+      <p>I, the parent or legal guardian of the applicant, hereby give my full consent for my child to participate in a short-term work experience placement facilitated by <strong>Anchor</strong> with <strong class="consent-company-name" id="consentCompanyName">this company</strong>.</p>
+      <p>I understand that this is an unpaid, educational work experience opportunity designed to help my child explore career pathways. I acknowledge that Anchor has verified the host business and that my child will be supervised throughout the placement.</p>
+      <p>I confirm that my child has my permission to attend all agreed sessions, and I take responsibility for ensuring they do so safely and responsibly.</p>
+    </div>
+    <div class="consent-fields">
+      <div class="consent-field">
+        <label>Parent / Guardian Full Name</label>
+        <input type="text" id="consentParentName" placeholder="e.g. Priya Mirpuri"/>
+      </div>
+      <div class="consent-field">
+        <label>Student Full Name</label>
+        <input type="text" id="consentStudentName" placeholder="e.g. Niska Mirpuri"/>
+      </div>
+    </div>
+    <label class="consent-check">
+      <input type="checkbox" id="consentCheck" onchange="updateConsentBtn()"/>
+      <span>I have read and agree to the above consent statement. I understand this is a digital acknowledgement and carries the same weight as a signed consent form.</span>
+    </label>
+    <div class="consent-actions">
+      <button class="consent-cancel" onclick="closeConsent()">Cancel</button>
+      <button class="consent-submit" id="consentSubmitBtn" disabled onclick="submitConsent()">Confirm &amp; Continue to Application →</button>
+    </div>
   </div>
 </div>
 
