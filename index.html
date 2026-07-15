@@ -454,6 +454,72 @@
   .opp-card-full .skill-chips { margin-bottom: 16px; }
   .opp-card-full .opp-footer { border-top: 1px solid rgba(33,46,83,0.06); padding-top: 14px; margin-top: auto; }
 
+/* ===== RESOURCES ===== */
+.resources-hero{
+padding:130px 5% 90px;
+background:linear-gradient(180deg,#fafaf8,#f4f8f8);
+text-align:center;
+}
+.resources-hero-content{max-width:760px;margin:auto;}
+.resources-hero h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:200;line-height:1.1;margin:20px 0;}
+.resources-hero h1 em{font-style:normal;color:var(--teal);}
+.resources-hero p{max-width:620px;margin:auto;line-height:1.9;color:rgba(33,46,83,.65);}
+
+.resources-feature,.resources-grid-section,.community-section{
+padding:80px 5%;
+}
+
+.featured-resource-card{
+background:linear-gradient(135deg,#ffffff,#f7fbfb);
+border-radius:28px;
+padding:50px;
+box-shadow:0 20px 45px rgba(33,46,83,.08);
+}
+
+.resource-chip{
+display:inline-block;
+background:rgba(74,145,158,.12);
+color:var(--teal);
+padding:8px 16px;
+border-radius:100px;
+font-size:.72rem;
+letter-spacing:.08em;
+text-transform:uppercase;
+margin-bottom:18px;
+}
+
+.featured-resource-card h2{font-size:2rem;font-weight:300;margin-bottom:20px;}
+.featured-resource-card p{max-width:700px;line-height:1.9;color:rgba(33,46,83,.7);margin-bottom:28px;}
+
+.resources-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:28px;
+margin-top:40px;
+}
+
+.resource-card{
+background:#fff;
+padding:34px;
+border-radius:24px;
+box-shadow:0 10px 30px rgba(33,46,83,.06);
+transition:.25s;
+}
+.resource-card:hover{transform:translateY(-6px);}
+.resource-card h3{margin:16px 0;}
+.resource-card p{line-height:1.8;color:rgba(33,46,83,.65);}
+
+.community-input{
+width:100%;
+min-height:180px;
+border-radius:24px;
+border:1px solid rgba(33,46,83,.12);
+padding:24px;
+font-family:inherit;
+font-size:1rem;
+background:white;
+resize:vertical;
+}
   /* ═══════════════════════════════════
      FOR STUDENTS PAGE
   ═══════════════════════════════════ */
@@ -1592,7 +1658,86 @@
     <div class="footer-bottom"><span>© 2025 Anchor. <a onclick="showPage('admin')" style="color:rgba(255,255,255,0.15); cursor:pointer; text-decoration:none; font-size:0.7rem;" title="Admin">·</a></span><span style="color: var(--sage); opacity:0.6; letter-spacing:0.12em; font-size:0.7rem;">SET YOUR COURSE</span></div>
   </footer>
 </div>
+<!-- ══════════════════════════════════════════
+     RESOURCES PAGE
+══════════════════════════════════════════ -->
+<div id="page-resources" class="page">
 
+<section class="resources-hero">
+  <div class="resources-hero-content">
+    <div class="section-label">Resources</div>
+    <h1>Work experience isn't about <em>checking a box.</em></h1>
+    <p>Explore practical guides to help you choose meaningful opportunities, build confidence, and make informed career decisions.</p>
+  </div>
+</section>
+
+<section class="resources-feature">
+  <div class="featured-resource-card">
+    <span class="resource-chip">Featured Guide • 5 min read</span>
+    <h2>Why Work Experience Isn't Just Another Box to Check</h2>
+    <p>The most valuable placements are the ones that help you discover your interests, develop transferable skills, and gain confidence—not simply another line on your CV.</p>
+    <a class="btn-primary">Read Article</a>
+  </div>
+</section>
+
+<section class="resources-grid-section">
+  <div class="section-label">Career Library</div>
+  <h2 class="section-title">Browse Guides</h2>
+
+  <div class="resources-grid">
+
+    <div class="resource-card">
+      <span class="resource-chip">Guide</span>
+      <h3>Choosing the Right Opportunity</h3>
+      <p>Learn how to evaluate placements based on learning, mentorship and genuine exposure.</p>
+    </div>
+
+    <div class="resource-card">
+      <span class="resource-chip">Applications</span>
+      <h3>How to Write a Strong Application</h3>
+      <p>Simple tips that help you stand out without exaggerating your experience.</p>
+    </div>
+
+    <div class="resource-card">
+      <span class="resource-chip">Interview</span>
+      <h3>Preparing for Your First Interview</h3>
+      <p>What to expect, common questions and how to make a positive impression.</p>
+    </div>
+
+    <div class="resource-card">
+      <span class="resource-chip">Workplace</span>
+      <h3>Making the Most of Your Placement</h3>
+      <p>Build confidence, ask thoughtful questions and leave a lasting impression.</p>
+    </div>
+
+    <div class="resource-card">
+      <span class="resource-chip">Reflection</span>
+      <h3>Student Success Stories</h3>
+      <p>Read experiences from students who completed work experience through Anchor.</p>
+    </div>
+
+    <div class="resource-card">
+      <span class="resource-chip">FAQ</span>
+      <h3>Frequently Asked Questions</h3>
+      <p>Everything you need to know before applying for your first placement.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="community-section">
+  <div class="section-label">Community</div>
+  <h2 class="section-title">Join the Conversation</h2>
+  <p class="section-sub">Share advice, ask questions or tell others about your experience.</p>
+
+  <textarea class="community-input" placeholder="Share your thoughts..."></textarea>
+
+  <div style="margin-top:18px;">
+    <button class="btn-primary">Post Comment</button>
+  </div>
+</section>
+
+</div>
 <!-- ══════════════════════════════════════════
      FOR STUDENTS PAGE
 ══════════════════════════════════════════ -->
@@ -2089,33 +2234,7 @@
     }
   }
 
-<!-- ══════════════════════════════════════════
-     RESOURCES PAGE
-══════════════════════════════════════════ -->
-<div id="page-resources" class="page">
 
-<section class="resources-hero">
-
-    <div class="resources-hero-content">
-
-        <div class="section-label">Resources</div>
-
-        <h1>
-            Work experience isn't about
-            <em>checking a box.</em>
-        </h1>
-
-        <p>
-            Discover practical advice on choosing the right opportunity,
-            making the most of your placement, and building skills that
-            last long after your internship ends.
-        </p>
-
-    </div>
-
-</section>
-
-</div>
   // ══════════════════════════════════════════
   //  ADMIN SYSTEM
   // ══════════════════════════════════════════
