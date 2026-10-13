@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anchor — Set Your Course</title>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #212e53;
@@ -454,72 +454,6 @@
   .opp-card-full .skill-chips { margin-bottom: 16px; }
   .opp-card-full .opp-footer { border-top: 1px solid rgba(33,46,83,0.06); padding-top: 14px; margin-top: auto; }
 
-/* ===== RESOURCES ===== */
-.resources-hero{
-padding:130px 5% 90px;
-background:linear-gradient(180deg,#fafaf8,#f4f8f8);
-text-align:center;
-}
-.resources-hero-content{max-width:760px;margin:auto;}
-.resources-hero h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:200;line-height:1.1;margin:20px 0;}
-.resources-hero h1 em{font-style:normal;color:var(--teal);}
-.resources-hero p{max-width:620px;margin:auto;line-height:1.9;color:rgba(33,46,83,.65);}
-
-.resources-feature,.resources-grid-section,.community-section{
-padding:80px 5%;
-}
-
-.featured-resource-card{
-background:linear-gradient(135deg,#ffffff,#f7fbfb);
-border-radius:28px;
-padding:50px;
-box-shadow:0 20px 45px rgba(33,46,83,.08);
-}
-
-.resource-chip{
-display:inline-block;
-background:rgba(74,145,158,.12);
-color:var(--teal);
-padding:8px 16px;
-border-radius:100px;
-font-size:.72rem;
-letter-spacing:.08em;
-text-transform:uppercase;
-margin-bottom:18px;
-}
-
-.featured-resource-card h2{font-size:2rem;font-weight:300;margin-bottom:20px;}
-.featured-resource-card p{max-width:700px;line-height:1.9;color:rgba(33,46,83,.7);margin-bottom:28px;}
-
-.resources-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:28px;
-margin-top:40px;
-}
-
-.resource-card{
-background:#fff;
-padding:34px;
-border-radius:24px;
-box-shadow:0 10px 30px rgba(33,46,83,.06);
-transition:.25s;
-}
-.resource-card:hover{transform:translateY(-6px);}
-.resource-card h3{margin:16px 0;}
-.resource-card p{line-height:1.8;color:rgba(33,46,83,.65);}
-
-.community-input{
-width:100%;
-min-height:180px;
-border-radius:24px;
-border:1px solid rgba(33,46,83,.12);
-padding:24px;
-font-family:inherit;
-font-size:1rem;
-background:white;
-resize:vertical;
-}
   /* ═══════════════════════════════════
      FOR STUDENTS PAGE
   ═══════════════════════════════════ */
@@ -1195,6 +1129,490 @@ resize:vertical;
   .consent-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
   .consent-company-name { font-weight: 600; color: #4a919e; }
 
+
+  /* ══ RESOURCES / GUIDE PAGE ══ */
+  #page-resources .guide-hero {
+    padding: 140px 5% 80px;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(33,46,83,0.07);
+    position: relative; overflow: hidden;
+  }
+  #page-resources .guide-hero::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 340px; height: 340px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(190,211,195,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #page-resources .guide-hero::after {
+    content: ''; position: absolute; bottom: -40px; left: 5%;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(235,172,162,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #page-resources .hero-inner { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
+  #page-resources .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.65rem; font-weight: 400; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 24px;
+  }
+  #page-resources .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--teal); }
+  #page-resources .guide-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 300; line-height: 1.1; color: var(--navy);
+    margin-bottom: 20px; letter-spacing: -0.01em;
+  }
+  #page-resources .guide-title em { font-style: italic; color: var(--teal); }
+  #page-resources .guide-meta {
+    display: flex; align-items: center; gap: 16px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.68rem; font-weight: 300; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #7a7a7a; margin-bottom: 28px;
+  }
+  #page-resources .guide-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--sage); }
+  #page-resources .guide-intro {
+    font-size: 1.05rem; line-height: 1.8; color: rgba(44,44,44,0.8);
+    font-weight: 300; max-width: 640px;
+    border-left: 2px solid var(--sage); padding-left: 20px;
+  }
+  #page-resources .article-wrap {
+    max-width: 1100px; margin: 0 auto;
+    padding: 72px 5% 80px;
+    display: grid; grid-template-columns: 1fr 220px;
+    gap: 56px; align-items: start;
+  }
+  #page-resources .sidebar { position: sticky; top: 100px; }
+  #page-resources .sidebar-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #7a7a7a; margin-bottom: 16px;
+  }
+  #page-resources .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+  #page-resources .sidebar-nav li a {
+    display: block; font-family: 'Inter', sans-serif;
+    font-size: 0.8rem; font-weight: 300; color: rgba(33,46,83,0.55);
+    text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent;
+    transition: all 0.2s; line-height: 1.4;
+  }
+  #page-resources .sidebar-nav li a:hover { color: var(--teal); border-left-color: var(--sage); }
+  #page-resources .sidebar-nav li a.active { color: var(--teal); border-left-color: var(--teal); font-weight: 400; }
+  #page-resources .sidebar-divider { height: 1px; background: rgba(33,46,83,0.08); margin: 20px 0; }
+  #page-resources .sidebar-reading {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #7a7a7a; display: flex; align-items: center; gap: 8px;
+  }
+  #page-resources .reading-bar { flex: 1; height: 2px; background: rgba(33,46,83,0.1); border-radius: 2px; overflow: hidden; }
+  #page-resources .reading-fill { height: 100%; background: var(--teal); border-radius: 2px; width: 0%; transition: width 0.3s; }
+  #page-resources .article-body { min-width: 0; }
+  #page-resources .article-section { margin-bottom: 56px; scroll-margin-top: 100px; }
+  #page-resources .section-label-guide {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
+  }
+  #page-resources .section-label-guide::after { content: ''; flex: 1; height: 1px; background: rgba(74,145,158,0.2); }
+  #page-resources .section-title-guide {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.85rem; font-weight: 400; color: var(--navy);
+    line-height: 1.2; margin-bottom: 18px; letter-spacing: -0.01em;
+  }
+  #page-resources .section-title-guide em { font-style: italic; }
+  #page-resources .article-body p {
+    font-size: 0.97rem; line-height: 1.85; color: rgba(44,44,44,0.82);
+    font-weight: 300; margin-bottom: 18px;
+  }
+  #page-resources .article-body p strong { font-weight: 500; color: var(--navy); }
+  #page-resources .pull-quote {
+    background: var(--cream); border-radius: 16px;
+    padding: 28px 32px; margin: 36px 0;
+    border-left: 3px solid var(--teal); position: relative;
+  }
+  #page-resources .pull-quote::before {
+    content: '\201C'; font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; color: var(--sage); line-height: 0.6;
+    position: absolute; top: 24px; left: 20px; opacity: 0.6;
+  }
+  #page-resources .pull-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; font-style: italic; font-weight: 300;
+    color: var(--navy); line-height: 1.5; margin: 0; padding-left: 16px;
+  }
+  #page-resources .think-box {
+    background: white; border-radius: 18px; padding: 32px 36px; margin: 36px 0;
+    border: 1px solid rgba(33,46,83,0.08); box-shadow: 0 4px 24px rgba(33,46,83,0.06);
+    position: relative; overflow: hidden;
+  }
+  #page-resources .think-box::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--sage), var(--blush));
+  }
+  #page-resources .think-label {
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+  }
+  #page-resources .think-label span { font-size: 1rem; }
+  #page-resources .think-box h4 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400;
+    color: var(--navy); margin-bottom: 20px; line-height: 1.3;
+  }
+  #page-resources .think-questions { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  #page-resources .think-questions li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 0.92rem; line-height: 1.6; color: rgba(44,44,44,0.8); font-weight: 300;
+  }
+  #page-resources .think-questions li::before { content: '\2192'; color: var(--teal); font-weight: 400; flex-shrink: 0; margin-top: 1px; }
+  #page-resources .takeaway-box {
+    background: var(--navy); border-radius: 20px; padding: 40px 40px 36px;
+    margin: 40px 0; position: relative; overflow: hidden;
+  }
+  #page-resources .takeaway-box::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(190,211,195,0.12) 0%, transparent 70%);
+  }
+  #page-resources .takeaway-label {
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+  }
+  #page-resources .takeaway-label::after { content: ''; flex: 1; height: 1px; background: rgba(190,211,195,0.25); }
+  #page-resources .takeaway-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 4px; }
+  #page-resources .takeaway-card {
+    background: rgba(255,255,255,0.06); border-radius: 12px; padding: 22px 20px;
+    border: 1px solid rgba(255,255,255,0.08); transition: background 0.2s;
+  }
+  #page-resources .takeaway-card:hover { background: rgba(255,255,255,0.1); }
+  #page-resources .takeaway-word {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300;
+    font-style: italic; color: white; margin-bottom: 8px; display: block;
+  }
+  #page-resources .takeaway-desc { font-size: 0.78rem; font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.6); }
+  #page-resources .article-hr {
+    border: none; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(33,46,83,0.12), transparent);
+    margin: 48px 0;
+  }
+  #page-resources .back-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.68rem; font-weight: 400;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal);
+    text-decoration: none; transition: gap 0.2s; cursor: pointer;
+  }
+  #page-resources .back-link:hover { gap: 12px; }
+  #page-resources .back-link::before { content: '\2190'; }
+  #page-resources .continue-section {
+    background: var(--cream); padding: 72px 5%;
+    border-top: 1px solid rgba(33,46,83,0.07);
+  }
+  #page-resources .continue-inner { max-width: 1100px; margin: 0 auto; }
+  #page-resources .continue-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--navy);
+  }
+  #page-resources .guide-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  #page-resources .guide-card {
+    background: white; border-radius: 16px; padding: 28px 26px;
+    border: 1px solid rgba(33,46,83,0.07); box-shadow: 0 2px 12px rgba(33,46,83,0.05);
+    cursor: pointer; transition: all 0.28s; text-decoration: none;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  #page-resources .guide-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(33,46,83,0.12); border-color: rgba(74,145,158,0.2); }
+  #page-resources .guide-card-tag { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); }
+  #page-resources .guide-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--navy); line-height: 1.3; }
+  #page-resources .guide-card-desc { font-size: 0.82rem; font-weight: 300; color: #7a7a7a; line-height: 1.6; flex: 1; }
+  #page-resources .guide-card-arrow { font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-top: 4px; transition: letter-spacing 0.2s; }
+  #page-resources .guide-card:hover .guide-card-arrow { letter-spacing: 0.18em; }
+  #page-resources .guide-card-coming { opacity: 0.55; cursor: default; }
+  #page-resources .guide-card-coming:hover { transform: none; box-shadow: 0 2px 12px rgba(33,46,83,0.05); border-color: rgba(33,46,83,0.07); }
+  #page-resources .coming-chip { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(33,46,83,0.07); color: #7a7a7a; padding: 3px 10px; border-radius: 100px; display: inline-block; margin-top: 4px; }
+  #page-resources .comments-section { background: #fafaf8; padding: 72px 5%; border-top: 1px solid rgba(33,46,83,0.07); }
+  #page-resources .comments-inner { max-width: 720px; margin: 0 auto; }
+  #page-resources .comments-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300; color: var(--navy); }
+  #page-resources .comments-header p { font-size: 0.88rem; color: #7a7a7a; font-weight: 300; line-height: 1.6; margin-top: 8px; }
+  #page-resources .comment-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px; }
+  #page-resources .comment-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  #page-resources .comment-input { border: 1px solid rgba(33,46,83,0.15); border-radius: 10px; padding: 12px 16px; font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 300; color: var(--navy); background: white; outline: none; transition: border-color 0.2s; }
+  #page-resources .comment-input:focus { border-color: var(--teal); }
+  #page-resources .comment-textarea { border: 1px solid rgba(33,46,83,0.15); border-radius: 10px; padding: 14px 16px; font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 300; color: var(--navy); background: white; outline: none; transition: border-color 0.2s; resize: vertical; min-height: 120px; line-height: 1.7; width: 100%; }
+  #page-resources .comment-textarea:focus { border-color: var(--teal); }
+  #page-resources .comment-submit { align-self: flex-start; background: linear-gradient(135deg, var(--teal), #3d7a87); color: white; border: none; border-radius: 100px; padding: 12px 28px; font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.25s; box-shadow: 0 4px 14px rgba(74,145,158,0.3); }
+  #page-resources .comment-submit:hover { background: linear-gradient(135deg, #3d7a87, var(--navy)); transform: translateY(-2px); }
+  #page-resources .comments-list { display: flex; flex-direction: column; gap: 20px; }
+  #page-resources .comment-item { background: white; border-radius: 14px; padding: 22px 24px; border: 1px solid rgba(33,46,83,0.07); box-shadow: 0 2px 8px rgba(33,46,83,0.04); }
+  #page-resources .comment-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  #page-resources .comment-avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--sage)); display: flex; align-items: center; justify-content: center; font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; font-weight: 600; color: white; flex-shrink: 0; }
+  #page-resources .comment-name { font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; color: var(--navy); }
+  #page-resources .comment-date { font-size: 0.7rem; color: #7a7a7a; font-weight: 300; }
+  #page-resources .comment-text { font-size: 0.88rem; line-height: 1.7; color: rgba(44,44,44,0.75); font-weight: 300; }
+  #page-resources .guide-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  #page-resources .guide-reveal.visible { opacity: 1; transform: translateY(0); }
+  @media (max-width: 768px) {
+    #page-resources .article-wrap { grid-template-columns: 1fr; }
+    #page-resources .sidebar { display: none; }
+    #page-resources .guide-cards { grid-template-columns: 1fr; }
+    #page-resources .takeaway-grid { grid-template-columns: 1fr; }
+    #page-resources .comment-row { grid-template-columns: 1fr; }
+  }
+
+
+  /* ══ RESOURCES HUB ══ */
+  #page-resources-hub { }
+  .resources-hero {
+    padding: 140px 5% 72px;
+    background: linear-gradient(135deg, #f8f6f2 0%, #eef4f0 60%, #faf5f3 100%);
+    border-bottom: 1px solid rgba(33,46,83,0.07);
+    position: relative; overflow: hidden;
+  }
+  .resources-hero::before {
+    content: ''; position: absolute; top: -80px; right: -60px;
+    width: 380px; height: 380px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(190,211,195,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .resources-hero::after {
+    content: ''; position: absolute; bottom: -40px; left: 3%;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(235,172,162,0.16) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .resources-hero-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+  .res-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.63rem; font-weight: 400;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 20px;
+  }
+  .res-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--teal); }
+  .resources-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2.6rem, 5vw, 4rem); line-height: 1.08; color: var(--navy);
+    margin-bottom: 18px; letter-spacing: -0.02em;
+  }
+  .resources-title em { font-style: italic; color: var(--teal); }
+  .resources-subtitle {
+    font-size: 1rem; line-height: 1.75; color: rgba(44,44,44,0.72);
+    font-weight: 300; max-width: 580px;
+  }
+  .resources-grid-wrap { max-width: 1100px; margin: 0 auto; padding: 64px 5% 80px; }
+  .resources-section-head { margin-bottom: 32px; }
+  .res-section-label {
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal);
+    margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
+  }
+  .res-section-label::after { content: ''; flex: 1; height: 1px; background: rgba(74,145,158,0.2); }
+  .res-section-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.7rem;
+    font-weight: 300; color: var(--navy);
+  }
+  .resources-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 22px; margin-bottom: 64px; }
+  .res-card {
+    background: white; border-radius: 18px; padding: 32px 28px;
+    border: 1px solid rgba(33,46,83,0.07); box-shadow: 0 2px 16px rgba(33,46,83,0.06);
+    cursor: pointer; transition: all 0.28s; display: flex; flex-direction: column; gap: 14px;
+    position: relative; overflow: hidden;
+  }
+  .res-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--sage));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+  }
+  .res-card:hover { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(33,46,83,0.13); border-color: rgba(74,145,158,0.18); }
+  .res-card:hover::before { transform: scaleX(1); }
+  .res-card-icon { font-size: 2rem; line-height: 1; }
+  .res-card-tag {
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal);
+  }
+  .res-card-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
+    font-weight: 400; color: var(--navy); line-height: 1.25;
+  }
+  .res-card-desc { font-size: 0.85rem; font-weight: 300; color: #6a6a6a; line-height: 1.65; flex: 1; }
+  .res-card-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #9a9a9a; margin-top: 4px;
+  }
+  .res-card-cta { color: var(--teal); transition: letter-spacing 0.2s; }
+  .res-card:hover .res-card-cta { letter-spacing: 0.15em; }
+  .res-card-featured {
+    border-color: rgba(74,145,158,0.2);
+    background: linear-gradient(135deg, #fff 0%, #f5faf8 100%);
+  }
+  .res-card-featured::before { background: linear-gradient(90deg, var(--teal), var(--blush)); }
+
+  /* ══ APTITUDE TEST PAGE ══ */
+  .apt-hero {
+    padding: 140px 5% 64px;
+    background: linear-gradient(135deg, var(--navy) 0%, #1a2540 100%);
+    position: relative; overflow: hidden;
+  }
+  .apt-hero::before {
+    content: ''; position: absolute; top: -60px; right: -40px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,145,158,0.2) 0%, transparent 70%);
+  }
+  .apt-hero::after {
+    content: ''; position: absolute; bottom: -60px; left: 5%;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(190,211,195,0.1) 0%, transparent 70%);
+  }
+  .apt-hero-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
+  .apt-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.63rem; font-weight: 400;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); margin-bottom: 20px;
+  }
+  .apt-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--sage); }
+  .apt-hero-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1.08; color: white;
+    margin-bottom: 16px; letter-spacing: -0.02em;
+  }
+  .apt-hero-title em { font-style: italic; color: var(--blush); }
+  .apt-hero-sub {
+    font-size: 0.95rem; line-height: 1.75; color: rgba(255,255,255,0.62);
+    font-weight: 300; max-width: 520px; margin-bottom: 28px;
+  }
+  .apt-progress-wrap { display: flex; align-items: center; gap: 14px; }
+  .apt-progress-bar {
+    flex: 1; height: 3px; background: rgba(255,255,255,0.12); border-radius: 3px; overflow: hidden;
+  }
+  .apt-progress-fill {
+    height: 100%; background: linear-gradient(90deg, var(--teal), var(--blush));
+    border-radius: 3px; transition: width 0.5s ease; width: 0%;
+  }
+  .apt-progress-label {
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.62rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.45); white-space: nowrap;
+  }
+
+  /* Test body */
+  .apt-body { max-width: 760px; margin: 0 auto; padding: 56px 5% 80px; }
+  .apt-question-wrap { display: none; }
+  .apt-question-wrap.active { display: block; }
+  .apt-q-number {
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px;
+  }
+  .apt-question {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.65rem; font-weight: 300;
+    color: var(--navy); line-height: 1.3; margin-bottom: 32px;
+  }
+  .apt-options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+  .apt-option {
+    background: white; border: 1px solid rgba(33,46,83,0.12); border-radius: 14px;
+    padding: 18px 22px; cursor: pointer; transition: all 0.22s;
+    display: flex; align-items: flex-start; gap: 14px;
+    font-size: 0.93rem; font-weight: 300; color: rgba(33,46,83,0.8); line-height: 1.5;
+    box-shadow: 0 2px 10px rgba(33,46,83,0.04);
+  }
+  .apt-option:hover { border-color: var(--teal); box-shadow: 0 4px 20px rgba(74,145,158,0.15); transform: translateX(4px); }
+  .apt-option.selected { border-color: var(--teal); background: linear-gradient(135deg, #f0f8f9, #e8f4f5); box-shadow: 0 4px 20px rgba(74,145,158,0.2); }
+  .apt-option-dot {
+    width: 20px; height: 20px; border-radius: 50%; border: 2px solid rgba(33,46,83,0.2);
+    flex-shrink: 0; margin-top: 1px; transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+  }
+  .apt-option.selected .apt-option-dot { border-color: var(--teal); background: var(--teal); }
+  .apt-option.selected .apt-option-dot::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: white; }
+  .apt-nav { display: flex; align-items: center; justify-content: space-between; }
+  .apt-btn-back {
+    background: none; border: 1px solid rgba(33,46,83,0.18); border-radius: 100px;
+    padding: 11px 24px; font-family: 'Josefin Sans', sans-serif; font-size: 0.68rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: rgba(33,46,83,0.5);
+    cursor: pointer; font-family: inherit; transition: all 0.2s;
+  }
+  .apt-btn-back:hover { border-color: var(--navy); color: var(--navy); }
+  .apt-btn-next {
+    background: linear-gradient(135deg, var(--teal), #3d7a87); color: white;
+    border: none; border-radius: 100px; padding: 12px 30px;
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; font-weight: 400;
+    letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;
+    transition: all 0.25s; box-shadow: 0 4px 16px rgba(74,145,158,0.3);
+  }
+  .apt-btn-next:hover { background: linear-gradient(135deg, #3d7a87, var(--navy)); transform: translateY(-2px); }
+  .apt-btn-next:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* Results */
+  .apt-results { display: none; }
+  .apt-results.show { display: block; }
+  .apt-result-hero {
+    text-align: center; padding: 48px 24px 36px;
+    background: linear-gradient(135deg, #f8f6f2, #eef4f0);
+    border-radius: 20px; margin-bottom: 32px;
+    border: 1px solid rgba(33,46,83,0.07);
+    box-shadow: 0 4px 32px rgba(33,46,83,0.08);
+  }
+  .result-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(74,145,158,0.1); border: 1px solid rgba(74,145,158,0.25);
+    padding: 6px 16px; border-radius: 100px;
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.62rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 20px;
+  }
+  .result-type {
+    font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300;
+    color: var(--navy); margin-bottom: 10px; line-height: 1.1;
+  }
+  .result-type em { font-style: italic; color: var(--teal); }
+  .result-desc {
+    font-size: 0.95rem; color: rgba(44,44,44,0.7); font-weight: 300;
+    line-height: 1.75; max-width: 540px; margin: 0 auto 24px;
+  }
+  .result-traits { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .result-trait {
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.62rem; letter-spacing: 0.1em;
+    text-transform: uppercase; border: 1px solid rgba(74,145,158,0.35);
+    color: var(--teal); padding: 5px 14px; border-radius: 100px;
+  }
+  .apt-matches-label {
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal);
+    margin-bottom: 8px; margin-top: 36px; display: flex; align-items: center; gap: 10px;
+  }
+  .apt-matches-label::after { content: ''; flex: 1; height: 1px; background: rgba(74,145,158,0.2); }
+  .apt-matches-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.6rem;
+    font-weight: 300; color: var(--navy); margin-bottom: 20px;
+  }
+  .apt-match-cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+  .apt-match-card {
+    background: white; border-radius: 14px; padding: 22px 24px;
+    border: 1px solid rgba(33,46,83,0.08); box-shadow: 0 2px 12px rgba(33,46,83,0.05);
+    display: flex; align-items: center; gap: 18px;
+    cursor: pointer; transition: all 0.25s;
+  }
+  .apt-match-card:hover { transform: translateX(6px); border-color: rgba(74,145,158,0.25); box-shadow: 0 6px 24px rgba(33,46,83,0.1); }
+  .match-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .match-info { flex: 1; }
+  .match-co { font-weight: 500; font-size: 0.92rem; color: var(--navy); margin-bottom: 3px; }
+  .match-role { font-size: 0.78rem; color: #7a7a7a; font-weight: 300; }
+  .match-domain {
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--teal); background: rgba(74,145,158,0.08);
+    padding: 4px 10px; border-radius: 100px; flex-shrink: 0;
+  }
+  .match-arrow { color: rgba(33,46,83,0.3); font-size: 0.9rem; flex-shrink: 0; }
+  .apt-result-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .apt-btn-retake {
+    border: 1px solid rgba(33,46,83,0.2); background: white; color: rgba(33,46,83,0.6);
+    padding: 12px 24px; border-radius: 100px; font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .apt-btn-retake:hover { border-color: var(--navy); color: var(--navy); }
+  .apt-btn-explore {
+    background: linear-gradient(135deg, var(--teal), #3d7a87); color: white;
+    border: none; border-radius: 100px; padding: 12px 28px;
+    font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; font-weight: 400;
+    letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;
+    transition: all 0.25s; box-shadow: 0 4px 14px rgba(74,145,158,0.3);
+  }
+  .apt-btn-explore:hover { background: linear-gradient(135deg, #3d7a87, var(--navy)); transform: translateY(-2px); }
+
 </style>
 </head>
 <body>
@@ -1202,18 +1620,14 @@ resize:vertical;
 <!-- ══════════════ NAV ══════════════ -->
 <nav id="mainNav">
   <a class="logo" onclick="showPage('home')">
-    <img src="logo.png" alt="Anchor — Set Your Course" style="height:54px; width:auto;" />
+    <img src="download.png" alt="Anchor — Set Your Course" style="height:54px; width:auto;" />
   </a>
   <ul class="nav-links">
-   <li><a onclick="showPage('home')" data-page="home">Home</a></li>
-
-<li><a onclick="showPage('opportunities')" data-page="opportunities">Opportunities</a></li>
-
-<li><a onclick="showPage('resources')" data-page="resources">Resources</a></li>
-
-<li><a onclick="showPage('students')" data-page="students">For Students</a></li>
-
-<li><a onclick="showPage('businesses')" data-page="businesses">For Businesses</a></li>
+    <li><a onclick="showPage('home')" data-page="home">Home</a></li>
+    <li><a onclick="showPage('opportunities')" data-page="opportunities">Opportunities</a></li>
+    <li><a onclick="showPage('students')" data-page="students">For Students</a></li>
+    <li><a onclick="showPage('businesses')" data-page="businesses">For Businesses</a></li>
+    <li><a onclick="showPage('resources')" data-page="resources">Resources</a></li>
     <li id="navLoginItem"><a onclick="showPage('login')" class="btn-login" data-page="login">Login</a></li>
     <li id="navUserItem" style="display:none;"><button id="logoutBtn" onclick="doLogout()">Logout</button></li><li><a onclick="showPage('opportunities')" class="btn-nav" data-page="">Get Started</a></li>
   </ul>
@@ -1375,7 +1789,7 @@ resize:vertical;
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="logo.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <img src="download.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
         <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
       </div>
       <div class="footer-col"><h4>Platform</h4><ul>
@@ -1644,7 +2058,7 @@ resize:vertical;
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="logo.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <img src="download.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
         <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
       </div>
       <div class="footer-col"><h4>Platform</h4><ul>
@@ -1658,88 +2072,7 @@ resize:vertical;
     <div class="footer-bottom"><span>© 2025 Anchor. <a onclick="showPage('admin')" style="color:rgba(255,255,255,0.15); cursor:pointer; text-decoration:none; font-size:0.7rem;" title="Admin">·</a></span><span style="color: var(--sage); opacity:0.6; letter-spacing:0.12em; font-size:0.7rem;">SET YOUR COURSE</span></div>
   </footer>
 </div>
-<!-- ══════════════════════════════════════════
-     RESOURCES PAGE
-══════════════════════════════════════════ -->
-<div id="page-resources" class="page">
 
-<section class="resources-hero">
-  <div class="resources-hero-content">
-    <div class="section-label">Resources</div>
-    <h1>Work experience isn't about <em>checking a box.</em></h1>
-    <p>Explore practical guides to help you choose meaningful opportunities, build confidence, and make informed career decisions.</p>
-  </div>
-</section>
-
-<section class="resources-feature">
-  <div class="featured-resource-card">
-    <span class="resource-chip">Featured Guide • 5 min read</span>
-    <h2>Why Work Experience Isn't Just Another Box to Check</h2>
-    <p>The most valuable placements are the ones that help you discover your interests, develop transferable skills, and gain confidence—not simply another line on your CV.</p>
-  <a class="btn-primary" onclick="alert(document.getElementById('page-guide1'))">
-    Read Article →
-</a>
-  </div>
-</section>
-
-<section class="resources-grid-section">
-  <div class="section-label">Career Library</div>
-  <h2 class="section-title">Browse Guides</h2>
-
-  <div class="resources-grid">
-
-    <div class="resource-card">
-      <span class="resource-chip">Guide</span>
-      <h3>Choosing the Right Opportunity</h3>
-      <p>Learn how to evaluate placements based on learning, mentorship and genuine exposure.</p>
-    </div>
-
-    <div class="resource-card">
-      <span class="resource-chip">Applications</span>
-      <h3>How to Write a Strong Application</h3>
-      <p>Simple tips that help you stand out without exaggerating your experience.</p>
-    </div>
-
-    <div class="resource-card">
-      <span class="resource-chip">Interview</span>
-      <h3>Preparing for Your First Interview</h3>
-      <p>What to expect, common questions and how to make a positive impression.</p>
-    </div>
-
-    <div class="resource-card">
-      <span class="resource-chip">Workplace</span>
-      <h3>Making the Most of Your Placement</h3>
-      <p>Build confidence, ask thoughtful questions and leave a lasting impression.</p>
-    </div>
-
-    <div class="resource-card">
-      <span class="resource-chip">Reflection</span>
-      <h3>Student Success Stories</h3>
-      <p>Read experiences from students who completed work experience through Anchor.</p>
-    </div>
-
-    <div class="resource-card">
-      <span class="resource-chip">FAQ</span>
-      <h3>Frequently Asked Questions</h3>
-      <p>Everything you need to know before applying for your first placement.</p>
-    </div>
-
-  </div>
-</section>
-
-<section class="community-section">
-  <div class="section-label">Community</div>
-  <h2 class="section-title">Join the Conversation</h2>
-  <p class="section-sub">Share advice, ask questions or tell others about your experience.</p>
-
-  <textarea class="community-input" placeholder="Share your thoughts..."></textarea>
-
-  <div style="margin-top:18px;">
-    <button class="btn-primary">Post Comment</button>
-  </div>
-</section>
-
-</div>
 <!-- ══════════════════════════════════════════
      FOR STUDENTS PAGE
 ══════════════════════════════════════════ -->
@@ -1855,7 +2188,7 @@ resize:vertical;
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="logo.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <img src="download.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
         <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
       </div>
       <div class="footer-col"><h4>Platform</h4><ul><li><a onclick="showPage('opportunities')">Opportunities</a></li><li><a onclick="showPage('students')">For Students</a></li><li><a onclick="showPage('businesses')">For Businesses</a></li></ul></div>
@@ -2019,7 +2352,7 @@ resize:vertical;
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="logo.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
+        <img src="download.png" alt="Anchor" style="height:44px; width:auto; opacity:0.75;" />
         <p>Connecting students aged 15–18 with local businesses for meaningful work experience placements.</p>
       </div>
       <div class="footer-col"><h4>Platform</h4><ul><li><a onclick="showPage('opportunities')">Opportunities</a></li><li><a onclick="showPage('students')">For Students</a></li><li><a onclick="showPage('businesses')">For Businesses</a></li></ul></div>
@@ -2033,13 +2366,15 @@ resize:vertical;
 <script>
   // ── PAGE NAVIGATION ──
   function showPage(name) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const pg = document.getElementById('page-' + name);
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+    var pg = document.getElementById('page-' + name);
     if (pg) pg.classList.add('active');
     window.scrollTo({ top: 0 });
-    document.querySelectorAll('.nav-links [data-page]').forEach(a => {
+    document.querySelectorAll('.nav-links [data-page]').forEach(function(a) {
       a.classList.toggle('active', a.dataset.page === name);
     });
+    if (name === 'guide') { setTimeout(function() { initGuideReveal(); }, 20); }
+    if (name === 'home')  { initUserState(); }
   }
 
   // ── NAV SCROLL SHADOW ──
@@ -2698,11 +3033,726 @@ resize:vertical;
     });
   });
 
+
+  // ── RESOURCES PAGE JS ──────────────────────────────────────────────────
+  const G_SECTIONS = ['g-section-explore','g-section-impress','g-section-title','g-section-think','g-section-takeaway','g-section-conclusion'];
+
+  function updateGuideProgress() {
+    if (!document.getElementById('page-resources').classList.contains('active')) return;
+    const article = document.querySelector('#page-resources .article-body');
+    if (!article) return;
+    const rect = article.getBoundingClientRect();
+    const total = article.offsetHeight - window.innerHeight;
+    const scrolled = Math.max(0, -rect.top);
+    const pct = Math.min(100, Math.round((scrolled / Math.max(total,1)) * 100));
+    const fill = document.getElementById('readingFill');
+    if (fill) fill.style.width = pct + '%';
+
+    // Update sidebar active link
+    let current = G_SECTIONS[0];
+    G_SECTIONS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 130) current = id;
+    });
+    document.querySelectorAll('.g-sidebar-link').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', updateGuideProgress);
+
+  // Scroll reveal for guide page
+  function initGuideReveal() {
+    const revealEls = document.querySelectorAll('#page-guide .guide-reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => obs.observe(el));
+  }
+
+
+
+  // Comments
+  const COMMENT_KEY = 'anchor_guide_comments';
+  function loadComments() { try { return JSON.parse(localStorage.getItem(COMMENT_KEY)) || []; } catch { return []; } }
+  function saveComments(c) { localStorage.setItem(COMMENT_KEY, JSON.stringify(c)); }
+
+  function renderComments() {
+    const comments = loadComments();
+    if (comments.length === 0) return;
+    const list = document.getElementById('commentsList');
+    if (!list) return;
+    const seed = list.querySelector('.comment-item');
+    if (seed) seed.remove();
+    comments.slice().reverse().slice(0,20).forEach(c => {
+      const div = document.createElement('div');
+      div.className = 'comment-item';
+      div.innerHTML = `<div class="comment-meta"><div class="comment-avatar">${escCmt(c.name.charAt(0).toUpperCase())}</div><div><div class="comment-name">${escCmt(c.name)}${c.school ? ' · ' + escCmt(c.school) : ''}</div><div class="comment-date">${escCmt(c.date)}</div></div></div><div class="comment-text">${escCmt(c.text)}</div>`;
+      list.appendChild(div);
+    });
+  }
+
+  function escCmt(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  function postComment() {
+    const name = (document.getElementById('commentName')||{}).value?.trim();
+    const school = (document.getElementById('commentSchool')||{}).value?.trim();
+    const text = (document.getElementById('commentText')||{}).value?.trim();
+    if (!name || !text) {
+      if (document.getElementById('commentName')) document.getElementById('commentName').style.borderColor = name ? '' : '#ce6a6b';
+      if (document.getElementById('commentText')) document.getElementById('commentText').style.borderColor = text ? '' : '#ce6a6b';
+      return;
+    }
+    const date = new Date().toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+    const comments = loadComments();
+    comments.push({name, school, text, date});
+    saveComments(comments);
+    document.getElementById('commentName').value = '';
+    document.getElementById('commentSchool').value = '';
+    document.getElementById('commentText').value = '';
+    document.getElementById('commentName').style.borderColor = '';
+    document.getElementById('commentText').style.borderColor = '';
+    const list = document.getElementById('commentsList');
+    if (list) { list.innerHTML = ''; renderComments(); }
+  }
+
+  renderComments();
+
+
+  // ══ APTITUDE TEST JS ══════════════════════════════════════════════════════
+  var aptScores = { creative: 0, analytical: 0, social: 0, entrepreneurial: 0, tech: 0 };
+  var aptAnswers = new Array(10).fill(null);
+  var aptCurrent = 0;
+
+  const APT_PROFILES = {
+    creative: {
+      label: 'The Creative',
+      title: 'You think in images, words and stories.',
+      desc: 'You\'re drawn to making things — campaigns, content, visuals, narratives. You notice aesthetics, care about how things feel, and have a natural eye for what resonates with people. Environments that let you produce and express will bring out your best.',
+      traits: ['Storytelling', 'Visual thinking', 'Brand instinct', 'Originality'],
+      domains: ['Marketing', 'Jewellery', 'Food'],
+      matches: [
+        { icon: '📣', co: 'InSyync', role: 'Social Media & Content', domain: 'Marketing' },
+        { icon: '💎', co: 'Diamantina Fine Jewels', role: 'Marketing & Creative', domain: 'Jewellery' },
+        { icon: '🍰', co: 'Bombay Bizare Baker', role: 'Content & Social Media', domain: 'Food' },
+        { icon: '💍', co: 'Ghanasingh Be True', role: 'Social Media & Content', domain: 'Jewellery' },
+      ]
+    },
+    analytical: {
+      label: 'The Analyst',
+      title: 'You follow the logic until it clicks.',
+      desc: 'You like to understand things deeply — systems, structures, data, arguments. You\'re methodical, precise and curious about how complex things actually work beneath the surface. Environments that reward careful thinking and depth suit you well.',
+      traits: ['Critical thinking', 'Research', 'Precision', 'Problem solving'],
+      domains: ['Finance', 'Law', 'Science'],
+      matches: [
+        { icon: '⚖️', co: 'YNA Legal LLP', role: 'Legal Research', domain: 'Law' },
+        { icon: '📈', co: 'MFA Capital', role: 'Financial Research', domain: 'Finance' },
+        { icon: '🔬', co: 'Benzo Chem Industries', role: 'R&D Research', domain: 'Science' },
+        { icon: '⚖️', co: 'Premier Legal Practices', role: 'Legal Research', domain: 'Law' },
+      ]
+    },
+    social: {
+      label: 'The People Person',
+      title: 'You do your best work when it matters to someone.',
+      desc: 'You\'re energised by connection — with people, with causes, with the human side of things. You\'re perceptive, empathetic and motivated by work that has a real impact on someone\'s day or life. Client-facing and mission-driven environments bring out your strengths.',
+      traits: ['Empathy', 'Communication', 'Relationship-building', 'Purpose-driven'],
+      domains: ['Consulting', 'Travel', 'Law'],
+      matches: [
+        { icon: '✈️', co: 'Three Pisces Travels', role: 'Client & Travel Planning', domain: 'Travel' },
+        { icon: '🐝', co: 'Bumblebee Consulting', role: 'PR & Communications', domain: 'Consulting' },
+        { icon: '⚖️', co: 'Premier Legal Practices', role: 'Client Support', domain: 'Law' },
+        { icon: '📦', co: 'Creative Propack Ltd', role: 'Marketing & Customer Support', domain: 'Manufacturing' },
+      ]
+    },
+    entrepreneurial: {
+      label: 'The Builder',
+      title: 'You want to make something happen.',
+      desc: 'You think in terms of outcomes, opportunities and momentum. You\'re comfortable with uncertainty and motivated by the idea of building — a product, a process, a business. Fast-moving, hands-on environments where you can contribute meaningfully are where you\'ll thrive.',
+      traits: ['Initiative', 'Strategic thinking', 'Adaptability', 'Execution'],
+      domains: ['Finance', 'Tech', 'Consulting'],
+      matches: [
+        { icon: '💰', co: '360F Advisory', role: 'Business Operations', domain: 'Finance' },
+        { icon: '💻', co: 'FYNDNA TechCorp', role: 'Startup Operations', domain: 'Tech' },
+        { icon: '📊', co: 'MFA Capital', role: 'Finance & Strategy', domain: 'Finance' },
+        { icon: '🐝', co: 'Bumblebee Consulting', role: 'Business Advisory', domain: 'Consulting' },
+      ]
+    },
+    tech: {
+      label: 'The Problem Solver',
+      title: 'You want to know how things work.',
+      desc: 'You\'re drawn to systems, tools and technical challenges. Whether it\'s code, science or data, you like getting into the mechanics of things. You\'re patient, detail-oriented and get genuine satisfaction when something you build or fix actually works.',
+      traits: ['Technical curiosity', 'Logical thinking', 'Attention to detail', 'Systems thinking'],
+      domains: ['Tech', 'Science', 'Finance'],
+      matches: [
+        { icon: '💻', co: 'FYNDNA TechCorp', role: 'Tech & Product Support', domain: 'Tech' },
+        { icon: '🔬', co: 'Benzo Chem Industries', role: 'Lab & Research', domain: 'Science' },
+        { icon: '📡', co: 'Vista Infotel LLP', role: 'Tech Operations', domain: 'Tech' },
+        { icon: '💰', co: 'Wealth Advisor', role: 'Financial Research', domain: 'Finance' },
+      ]
+    }
+  };
+
+  function selectOpt(el, category) {
+    var q = parseInt(el.closest('[data-q]').dataset.q);
+    el.closest('.apt-options').querySelectorAll('.apt-option').forEach(function(o) { o.classList.remove('selected'); });
+    el.classList.add('selected');
+    aptAnswers[q] = category;
+    document.getElementById('aptNext' + q).disabled = false;
+  }
+
+  function nextQ(current) {
+    document.querySelectorAll('.apt-question-wrap')[current].classList.remove('active');
+    document.querySelectorAll('.apt-question-wrap')[current + 1].classList.add('active');
+    aptCurrent = current + 1;
+    updateAptProgress();
+    window.scrollTo({ top: document.querySelector('.apt-hero').offsetTop, behavior: 'smooth' });
+  }
+
+  function prevQ(current) {
+    document.querySelectorAll('.apt-question-wrap')[current].classList.remove('active');
+    document.querySelectorAll('.apt-question-wrap')[current - 1].classList.add('active');
+    aptCurrent = current - 1;
+    updateAptProgress();
+    window.scrollTo({ top: document.querySelector('.apt-hero').offsetTop, behavior: 'smooth' });
+  }
+
+  function updateAptProgress() {
+    var pct = ((aptCurrent) / 10) * 100;
+    var fill = document.getElementById('aptProgressFill');
+    var label = document.getElementById('aptProgressLabel');
+    if (fill) fill.style.width = pct + '%';
+    if (label) label.textContent = 'Q ' + (aptCurrent + 1) + ' of 10';
+  }
+
+  function showAptResults() {
+    // Tally scores
+    aptScores = { creative: 0, analytical: 0, social: 0, entrepreneurial: 0, tech: 0 };
+    aptAnswers.forEach(function(a) { if (a && aptScores[a] !== undefined) aptScores[a]++; });
+
+    // Find winner
+    var winner = Object.keys(aptScores).reduce(function(a, b) { return aptScores[a] >= aptScores[b] ? a : b; });
+    var profile = APT_PROFILES[winner];
+
+    // Show results section
+    document.getElementById('aptQuestions').style.display = 'none';
+    var results = document.getElementById('aptResults');
+    results.classList.add('show');
+
+    // Fill result hero
+    document.getElementById('resultBadge').textContent = profile.label;
+    document.getElementById('resultType').innerHTML = profile.title.replace('\n', '<br/>');
+    document.getElementById('resultDesc').textContent = profile.desc;
+    var traitsEl = document.getElementById('resultTraits');
+    traitsEl.innerHTML = '';
+    profile.traits.forEach(function(t) {
+      var span = document.createElement('span');
+      span.className = 'result-trait';
+      span.textContent = t;
+      traitsEl.appendChild(span);
+    });
+
+    // Fill match cards
+    var matchEl = document.getElementById('aptMatchCards');
+    matchEl.innerHTML = '';
+    profile.matches.forEach(function(m) {
+      var div = document.createElement('div');
+      div.className = 'apt-match-card';
+      div.onclick = function() { showPage('opportunities'); };
+      div.innerHTML = '<div class="match-icon">' + m.icon + '</div>' +
+        '<div class="match-info"><div class="match-co">' + m.co + '</div><div class="match-role">' + m.role + '</div></div>' +
+        '<div class="match-domain">' + m.domain + '</div>' +
+        '<div class="match-arrow">→</div>';
+      matchEl.appendChild(div);
+    });
+
+    // Update progress to 100%
+    document.getElementById('aptProgressFill').style.width = '100%';
+    document.getElementById('aptProgressLabel').textContent = 'Complete';
+
+    window.scrollTo({ top: document.querySelector('.apt-hero').offsetTop, behavior: 'smooth' });
+  }
+
+  function retakeApt() {
+    aptAnswers = new Array(10).fill(null);
+    aptCurrent = 0;
+    document.querySelectorAll('.apt-question-wrap').forEach(function(q, i) {
+      q.classList.toggle('active', i === 0);
+      q.querySelectorAll('.apt-option').forEach(function(o) { o.classList.remove('selected'); });
+    });
+    document.querySelectorAll('[id^="aptNext"]').forEach(function(b) { b.disabled = true; });
+    document.getElementById('aptQuestions').style.display = '';
+    document.getElementById('aptResults').classList.remove('show');
+    document.getElementById('aptProgressFill').style.width = '0%';
+    document.getElementById('aptProgressLabel').textContent = 'Q 1 of 10';
+    window.scrollTo({ top: document.querySelector('.apt-hero').offsetTop, behavior: 'smooth' });
+  }
+
+  // Make Resources sub-pages work
+
+
+
+
 </script>
 
 <!-- ══════════════════════════════════════════
      LOGIN PAGE
 ══════════════════════════════════════════ -->
+
+<div id="page-resources" class="page">
+<!-- RESOURCES HUB HERO -->
+  <section class="resources-hero">
+    <div class="resources-hero-inner">
+      <div class="res-eyebrow">Anchor Resources</div>
+      <h1 class="resources-title">Your <em>career starts</em><br/>with curiosity.</h1>
+      <p class="resources-subtitle">Tools, guides and self-assessments to help you figure out what you're drawn to — before you commit to anything.</p>
+    </div>
+  </section>
+
+  <!-- RESOURCE CARDS -->
+  <div class="resources-grid-wrap">
+
+    <div class="resources-section-head">
+      <div class="res-section-label">Explore</div>
+      <h2 class="res-section-title">What would you like to do?</h2>
+    </div>
+
+    <div class="resources-cards">
+
+      <!-- Aptitude Test -->
+      <div class="res-card res-card-featured" onclick="showPage('aptitude')">
+        <div class="res-card-icon">🧭</div>
+        <div class="res-card-tag">Interactive · 5 mins</div>
+        <div class="res-card-title">Find Your Career Direction</div>
+        <div class="res-card-desc">Not sure which placement is right for you? Answer 10 questions about how you think and what you enjoy — and we'll match you to the internship domains that suit you best.</div>
+        <div class="res-card-meta">
+          <span>Aptitude Test</span>
+          <span class="res-card-cta">Start →</span>
+        </div>
+      </div>
+
+      <!-- Career Guide -->
+      <div class="res-card" onclick="showPage('guide')">
+        <div class="res-card-icon">📖</div>
+        <div class="res-card-tag">Article · 5 min read</div>
+        <div class="res-card-title">Why Work Experience Isn't Just Another Box to Check</div>
+        <div class="res-card-desc">A guide on how to approach your placement with genuine curiosity — and why the students who benefit most aren't the ones who chose the most impressive-sounding company.</div>
+        <div class="res-card-meta">
+          <span>Career Guide</span>
+          <span class="res-card-cta">Read →</span>
+        </div>
+      </div>
+
+      <!-- Coming soon 1 -->
+      <div class="res-card" style="opacity:0.5; cursor:default;">
+        <div class="res-card-icon">🎤</div>
+        <div class="res-card-tag">Coming Soon</div>
+        <div class="res-card-title">Preparing for Your First Professional Conversation</div>
+        <div class="res-card-desc">What to say, what to ask, and how to be yourself when you walk into a workplace for the first time.</div>
+        <div class="res-card-meta"><span>Interview Guide</span></div>
+      </div>
+
+      <!-- Coming soon 2 -->
+      <div class="res-card" style="opacity:0.5; cursor:default;">
+        <div class="res-card-icon">✍️</div>
+        <div class="res-card-tag">Coming Soon</div>
+        <div class="res-card-title">How to Write a Reflection That Actually Means Something</div>
+        <div class="res-card-desc">Most placement reflections say very little. This guide helps you write one that shows real thinking — useful for portfolios, applications, and your own clarity.</div>
+        <div class="res-card-meta"><span>Writing Guide</span></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="page-guide" class="page">
+
+  <section class="guide-hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Resources · Career Guide</div>
+      <h1 class="guide-title">Why Work Experience<br/>Isn't <em>Just Another</em><br/>Box to Check</h1>
+      <div class="guide-meta">
+        <span>5 min read</span><span class="guide-meta-dot"></span>
+        <span>Career exploration</span><span class="guide-meta-dot"></span>
+        <span>By Anchor</span>
+      </div>
+      <p class="guide-intro">Somewhere along the way, work experience became a competition. A line on a form. A thing you do because everyone else is doing it. But the students who get the most from it aren't the ones who chose the most impressive-sounding company — they're the ones who showed up curious. This guide is about how to make your placement actually mean something.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE -->
+  <div class="article-wrap">
+    <article class="article-body">
+
+      <section class="article-section guide-reveal" id="g-section-explore">
+        <div class="section-label-guide">01 &nbsp; The Bigger Picture</div>
+        <h2 class="section-title-guide">Work experience should be<br/><em>an exploration, not a performance.</em></h2>
+        <p>The pressure to have something impressive to say — at university interviews, on applications, to parents — has turned work experience into a kind of theatre. Students choose placements based on prestige, not genuine interest. They show up hoping to tick a box and leave with a story that sounds good.</p>
+        <p>But here's what the most thoughtful admissions tutors and employers actually want: <strong>evidence that you've engaged with the world with curiosity and honesty.</strong> Not a polished summary of a placement that meant nothing to you, but a genuine account of what you saw, what surprised you, what you'd want to learn more about.</p>
+        <p>Work experience, done right, is the first real opportunity most students have to understand what the working world actually feels like — not as an observer, but as a participant. That experience is rare. It shouldn't be wasted on a name.</p>
+        <div class="pull-quote">
+          <p>The student who spent two weeks in a small law firm and came away understanding why commercial law wasn't for them learned something more valuable than the one who interned at a prestigious firm and never spoke to anyone.</p>
+        </div>
+      </section>
+
+      <hr class="article-hr"/>
+
+      <section class="article-section guide-reveal" id="g-section-impress">
+        <div class="section-label-guide">02 &nbsp; On Choosing</div>
+        <h2 class="section-title-guide">Don't choose an opportunity<br/>because it <em>sounds impressive.</em></h2>
+        <p>The most common mistake students make is confusing the name of a company with the value of an experience. A well-known firm sounds better in conversation — but what does it actually give you? Often, less than you'd expect.</p>
+        <p>Small businesses, local practices, independent studios: these are the places where students are most likely to <strong>actually do things</strong>. To sit in on real meetings, to be asked real questions, to see how decisions get made when there isn't a layer of process between you and the work.</p>
+        <p>The question to ask isn't "will this impress someone?" It's "will I come away understanding something I didn't before?" Those are very different questions, and they usually point to very different choices.</p>
+      </section>
+
+      <hr class="article-hr"/>
+
+      <section class="article-section guide-reveal" id="g-section-title">
+        <div class="section-label-guide">03 &nbsp; What To Look For</div>
+        <h2 class="section-title-guide">Look beyond<br/><em>the job title.</em></h2>
+        <p>A placement in "Marketing" could mean scheduling social media posts, or it could mean sitting in a strategy session and watching how a brand decides what it stands for. The title tells you almost nothing. The environment tells you everything.</p>
+        <p>When you're looking at an opportunity, ask yourself: What kind of people will I be around? What decisions get made here? What does a day actually look like? The best placements are the ones where you come away with a sense of how a place <em>thinks</em> — not just what it does.</p>
+        <p>That understanding — of culture, of decision-making, of what different work environments actually feel like — is genuinely difficult to develop any other way. It's also the kind of thing that makes you a much better judge of where you want to end up.</p>
+
+        <div class="think-box guide-reveal" id="g-section-think">
+          <div class="think-label"><span>💭</span> Think About This</div>
+          <h4>Before you choose a placement, sit with these questions.</h4>
+          <ul class="think-questions">
+            <li>What subject, industry, or type of problem am I genuinely curious about — not what sounds good, but what I actually find myself reading about or thinking about?</li>
+            <li>What is one skill I want to leave this experience having developed or at least encountered — writing, analysis, communication, design, something else entirely?</li>
+            <li>What kind of environment do I think I'd thrive in? Large or small? Structured or fluid? Client-facing or behind the scenes?</li>
+            <li>If no one else was going to hear about this placement — no university, no parent, no teacher — would I still choose it?</li>
+          </ul>
+        </div>
+      </section>
+
+      <hr class="article-hr"/>
+
+      <section class="article-section guide-reveal" id="g-section-takeaway">
+        <div class="section-label-guide">04 &nbsp; What You're Taking Away</div>
+        <h2 class="section-title-guide">What you should actually<br/><em>leave with.</em></h2>
+        <p>At the end of a placement, most students are asked to write a reflection. The ones that read well aren't the ones with the most impressive tasks to report. They're the ones where the student clearly paid attention — to the people, to the culture, to the small moments that reveal how a workplace actually functions.</p>
+        <p>Go in with the intention to notice things. <strong>What surprised you? What made you uncomfortable? What did you enjoy more than expected?</strong> These observations are worth far more than a bullet-pointed list of tasks completed.</p>
+        <p>And importantly: it's completely fine — more than fine, it's valuable — to come away realising that a particular field isn't for you. That's a real answer. It's the kind of answer that saves you years of going in the wrong direction.</p>
+
+        <div class="takeaway-box guide-reveal">
+          <div class="takeaway-label">Anchor Takeaway</div>
+          <div class="takeaway-grid">
+            <div class="takeaway-card">
+              <span class="takeaway-word">Explore.</span>
+              <span class="takeaway-desc">Choose opportunities based on genuine curiosity, not how they'll sound to someone else.</span>
+            </div>
+            <div class="takeaway-card">
+              <span class="takeaway-word">Learn.</span>
+              <span class="takeaway-desc">Pay attention to how a workplace thinks and feels, not just what tasks you're given.</span>
+            </div>
+            <div class="takeaway-card">
+              <span class="takeaway-word">Reflect.</span>
+              <span class="takeaway-desc">What surprised you? What wasn't for you? Both are equally valuable answers.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="article-hr"/>
+
+      <section class="article-section guide-reveal" id="g-section-conclusion">
+        <div class="section-label-guide">Closing</div>
+        <h2 class="section-title-guide">A starting point,<br/><em>not a finished product.</em></h2>
+        <p>Work experience at 15, 16, or 17 is not supposed to define your career. It's supposed to give you a slightly clearer picture of a world that, until now, you've only seen from the outside. That's enough. That's the whole point.</p>
+        <p>The students who approach placements with openness — who are willing to be surprised, to be wrong about what they expected, to ask questions that might seem basic — tend to come away with something real. The ones who are performing for an audience tend to come away with a story, and not much else.</p>
+        <p><strong>Anchor exists to give you real access to real workplaces.</strong> What you do with that access is up to you. We hope you do something honest with it.</p>
+        <span class="back-link" onclick="showPage('resources')" style="margin-top:16px; display:inline-flex; cursor:pointer;">Back to Resources</span>
+      </section>
+
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-label">In this guide</div>
+      <ul class="sidebar-nav">
+        <li><a href="#g-section-explore" class="g-sidebar-link active">The bigger picture</a></li>
+        <li><a href="#g-section-impress" class="g-sidebar-link">On choosing</a></li>
+        <li><a href="#g-section-title" class="g-sidebar-link">Beyond the job title</a></li>
+        <li><a href="#g-section-think" class="g-sidebar-link">Think about this</a></li>
+        <li><a href="#g-section-takeaway" class="g-sidebar-link">What to take away</a></li>
+        <li><a href="#g-section-conclusion" class="g-sidebar-link">Closing thoughts</a></li>
+      </ul>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-reading">
+        <span>Progress</span>
+        <div class="reading-bar"><div class="reading-fill" id="readingFill"></div></div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- CONTINUE EXPLORING -->
+  <section class="continue-section">
+    <div class="continue-inner">
+      <div class="continue-header" style="margin-bottom:36px;">
+        <div class="section-label-guide" style="margin-bottom:8px;">Keep Reading</div>
+        <h2 class="continue-title">Continue Exploring</h2>
+      </div>
+      <div class="guide-cards">
+        <div class="guide-card guide-card-coming">
+          <div class="guide-card-tag">Career Guide</div>
+          <div class="guide-card-title">Choosing the Right Opportunity for You</div>
+          <div class="guide-card-desc">How to match your interests and strengths to the right type of placement — beyond what sounds impressive.</div>
+          <div class="coming-chip">Coming soon</div>
+        </div>
+        <div class="guide-card guide-card-coming">
+          <div class="guide-card-tag">Preparation</div>
+          <div class="guide-card-title">Preparing for Your First Interview</div>
+          <div class="guide-card-desc">What to expect, what to prepare, and how to be yourself without second-guessing every answer.</div>
+          <div class="coming-chip">Coming soon</div>
+        </div>
+        <div class="guide-card guide-card-coming">
+          <div class="guide-card-tag">During Your Placement</div>
+          <div class="guide-card-title">Making the Most of Your Placement</div>
+          <div class="guide-card-desc">How to pay attention, ask good questions, and leave with more than a line on a form.</div>
+          <div class="coming-chip">Coming soon</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMENTS -->
+  <section class="comments-section">
+    <div class="comments-inner">
+      <div class="comments-header" style="margin-bottom:36px;">
+        <div class="section-label-guide" style="margin-bottom:8px;">Join the Conversation</div>
+        <h2>What's your take?</h2>
+        <p>We'd love to hear your thoughts — whether you're a student who's just finished a placement, or someone who's still figuring out where to start.</p>
+      </div>
+      <div class="comment-form">
+        <div class="comment-row">
+          <input class="comment-input" id="commentName" type="text" placeholder="Your first name"/>
+          <input class="comment-input" id="commentSchool" type="text" placeholder="Your school (optional)"/>
+        </div>
+        <textarea class="comment-textarea" id="commentText" placeholder="Share a thought, a question, or something from your own experience..."></textarea>
+        <button class="comment-submit" onclick="postComment()">Post Comment →</button>
+      </div>
+      <div class="comments-list" id="commentsList">
+        <div class="comment-item">
+          <div class="comment-meta">
+            <div class="comment-avatar">A</div>
+            <div>
+              <div class="comment-name">Anchor Team</div>
+              <div class="comment-date">Be the first to share your thoughts below.</div>
+            </div>
+          </div>
+          <div class="comment-text">This space is for students to share honestly — what surprised you about your placement, what you wish you'd known beforehand, or what you're still figuring out. There are no wrong answers here.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="page-aptitude" class="page">
+
+  <!-- HERO -->
+  <section class="apt-hero">
+    <div class="apt-hero-inner">
+      <div class="apt-eyebrow">Resources · Career Aptitude</div>
+      <h1 class="apt-hero-title">What kind of work<br/><em>calls to you?</em></h1>
+      <p class="apt-hero-sub">10 questions. No right answers. Just an honest look at how you think, what you enjoy, and where you might thrive.</p>
+      <div class="apt-progress-wrap">
+        <div class="apt-progress-bar"><div class="apt-progress-fill" id="aptProgressFill"></div></div>
+        <div class="apt-progress-label" id="aptProgressLabel">Q 1 of 10</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <div class="apt-body">
+
+    <!-- Questions -->
+    <div id="aptQuestions">
+
+      <!-- Q1 -->
+      <div class="apt-question-wrap active" data-q="0">
+        <div class="apt-q-number">Question 01 of 10</div>
+        <div class="apt-question">When you have free time, what are you most likely to be doing?</div>
+        <div class="apt-options">
+          <div class="apt-option" onclick="selectOpt(this, 'creative')"><div class="apt-option-dot"></div>Drawing, writing, designing, making something</div>
+          <div class="apt-option" onclick="selectOpt(this, 'analytical')"><div class="apt-option-dot"></div>Reading, researching, watching documentaries</div>
+          <div class="apt-option" onclick="selectOpt(this, 'social')"><div class="apt-option-dot"></div>Hanging out with people, organising things, chatting</div>
+          <div class="apt-option" onclick="selectOpt(this, 'entrepreneurial')"><div class="apt-option-dot"></div>Working on a side project, selling something, building an idea</div>
+        </div>
+        <div class="apt-nav">
+          <div></div>
+          <button class="apt-btn-next" id="aptNext0" disabled onclick="nextQ(0)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="apt-question-wrap" data-q="1">
+        <div class="apt-q-number">Question 02 of 10</div>
+        <div class="apt-question">A group project lands in your lap. Which role do you naturally take?</div>
+        <div class="apt-options">
+          <div class="apt-option" onclick="selectOpt(this, 'entrepreneurial')"><div class="apt-option-dot"></div>The one who comes up with the plan and delegates</div>
+          <div class="apt-option" onclick="selectOpt(this, 'analytical')"><div class="apt-option-dot"></div>The one who researches and checks the facts</div>
+          <div class="apt-option" onclick="selectOpt(this, 'creative')"><div class="apt-option-dot"></div>The one who designs the presentation or makes it look good</div>
+          <div class="apt-option" onclick="selectOpt(this, 'social')"><div class="apt-option-dot"></div>The one who keeps everyone on track and motivated</div>
+        </div>
+        <div class="apt-nav">
+          <button class="apt-btn-back" onclick="prevQ(1)">← Back</button>
+          <button class="apt-btn-next" id="aptNext1" disabled onclick="nextQ(1)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="apt-question-wrap" data-q="2">
+        <div class="apt-q-number">Question 03 of 10</div>
+        <div class="apt-question">Which of these problems would you most enjoy solving?</div>
+        <div class="apt-options">
+          <div class="apt-option" onclick="selectOpt(this, 'tech')"><div class="apt-option-dot"></div>Why does this website keep crashing, and how do I fix it?</div>
+          <div class="apt-option" onclick="selectOpt(this, 'analytical')"><div class="apt-option-dot"></div>What's causing this company's sales to drop — and what should they do?</div>
+          <div class="apt-option" onclick="selectOpt(this, 'creative')"><div class="apt-option-dot"></div>How do we make this brand's social media actually interesting?</div>
+          <div class="apt-option" onclick="selectOpt(this, 'social')"><div class="apt-option-dot"></div>How do we help more people access this service who can't afford it?</div>
+        </div>
+        <div class="apt-nav">
+          <button class="apt-btn-back" onclick="prevQ(2)">← Back</button>
+          <button class="apt-btn-next" id="aptNext2" disabled onclick="nextQ(2)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="apt-question-wrap" data-q="3">
+        <div class="apt-q-number">Question 04 of 10</div>
+        <div class="apt-question">Which subject do you actually enjoy in school — even when you don't have to?</div>
+        <div class="apt-options">
+          <div class="apt-option" onclick="selectOpt(this, 'analytical')"><div class="apt-option-dot"></div>Maths, Economics, or Sciences</div>
+          <div class="apt-option" onclick="selectOpt(this, 'creative')"><div class="apt-option-dot"></div>Art, English, Languages, or Media</div>
+          <div class="apt-option" onclick="selectOpt(this, 'social')"><div class="apt-option-dot"></div>Psychology, History, Sociology, or Ethics</div>
+          <div class="apt-option" onclick="selectOpt(this, 'tech')"><div class="apt-option-dot"></div>Computer Science, Physics, or Design Technology</div>
+        </div>
+        <div class="apt-nav">
+          <button class="apt-btn-back" onclick="prevQ(3)">← Back</button>
+          <button class="apt-btn-next" id="aptNext3" disabled onclick="nextQ(3)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="apt-question-wrap" data-q="4">
+        <div class="apt-q-number">Question 05 of 10</div>
+        <div class="apt-question">Which work environment sounds most appealing to you?</div>
+        <div class="apt-options">
+          <div class="apt-option" onclick="selectOpt(this, 'entrepreneurial')"><div class="apt-option-dot"></div>A small startup where everyone does everything</div>
+          <div class="apt-option" onclick="selectOpt(this, 'analytical')"><div class="apt-option-dot"></div>A structured firm where work is careful and methodical</div>
+          <div class="apt-option" onclick="selectOpt(this, 'creative')"><div class="apt-option-dot"></div>A studio or agency with creative energy and open space</div>
+          <div class="apt-option" onclick="selectOpt(this, 'social')"><div class="apt-option-dot"></div>An organisation where the mission genuinely helps people</div>
+        </div>
+        <div class="apt-nav">
+          <button class="apt-btn-back" onclick="prevQ(4)">← Back</button>
+          <button class="apt-btn-next" id="aptNext4" disabled onclick="nextQ(4)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="apt-question-wrap" data-q="5">
+        <div class="apt-q-number">Question 06 of 10</div>
+        <div class="apt-question">You've got a month and no obligations. What project do you start?</div>
+        <div class="apt-options">
+          <div class="apt-option" onclick="selectOpt(this, 'creative')"><div class="apt-option-dot"></div>A blog, zine, video series, or something you publish</div>
+          <div class="apt-option" onclick="selectOpt(this, 'entrepreneurial')"><div class="apt-option-dot"></div>A small business or something you can sell</div>
+          <div class="apt-option" onclick="selectOpt(this, 'tech')"><div class="apt-option-dot"></div>An app, tool, or website that solves a problem</div>
+          <div class="apt-option" onclick="selectOpt(this, 'analytical')"><div class="apt-option-dot"></div>Research into something you've always wondered about</div>
+        </div>
+        <div class="apt-nav">
+          <button class="apt-btn-back" onclick="prevQ(5)">← Back</button>
+          <button class="apt-btn-next" id="aptNext5" disabled onclick="nextQ(5)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="apt-question-wrap" data-q="6">
+        <div class="apt-q-number">Question 07 of 10</div>
+        <div class="apt-question">When you do good work, what do you most want to have happened?</div>
+        <div class="apt-options">
+          <div class="apt-option" onclick="selectOpt(this, 'creative')"><div class="apt-option-dot"></div>Someone noticed how it looked, felt, or was written</div>
+          <div class="apt-option" onclick="selectOpt(this, 'analytical')"><div class="apt-option-dot"></div>The numbers worked out and the logic held</div>
+          <div class="apt-option" onclick="selectOpt(this, 'social')"><div class="apt-option-dot"></div>Someone's situation improved because of what you did</div>
+          <div class="apt-option" onclick="selectOpt(this, 'entrepreneurial')"><div class="apt-option-dot"></div>Something got built or launched that didn't exist before</div>
+        </div>
+        <div class="apt-nav">
+          <button class="apt-btn-back" onclick="prevQ(6)">← Back</button>
+          <button class="apt-btn-next" id="aptNext6" disabled onclick="nextQ(6)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="apt-question-wrap" data-q="7">
+        <div class="apt-q-number">Question 08 of 10</div>
+        <div class="apt-question">Which of these people do you find most interesting to learn about?</div>
+        <div class="apt-options">
+          <div class="apt-option" onclick="selectOpt(this, 'entrepreneurial')"><div class="apt-option-dot"></div>Founders, CEOs, and people who built companies from scratch</div>
+          <div class="apt-option" onclick="selectOpt(this, 'creative')"><div class="apt-option-dot"></div>Designers, directors, writers, and creative directors</div>
+          <div class="apt-option" onclick="selectOpt(this, 'analytical')"><div class="apt-option-dot"></div>Scientists, economists, lawyers, and researchers</div>
+          <div class="apt-option" onclick="selectOpt(this, 'social')"><div class="apt-option-dot"></div>Activists, educators, therapists, and community builders</div>
+        </div>
+        <div class="apt-nav">
+          <button class="apt-btn-back" onclick="prevQ(7)">← Back</button>
+          <button class="apt-btn-next" id="aptNext7" disabled onclick="nextQ(7)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="apt-question-wrap" data-q="8">
+        <div class="apt-q-number">Question 09 of 10</div>
+        <div class="apt-question">What's your relationship with numbers and data?</div>
+        <div class="apt-options">
+          <div class="apt-option" onclick="selectOpt(this, 'analytical')"><div class="apt-option-dot"></div>I genuinely enjoy working with data — it tells a story</div>
+          <div class="apt-option" onclick="selectOpt(this, 'entrepreneurial')"><div class="apt-option-dot"></div>I use numbers when I need to — budgets, targets, results</div>
+          <div class="apt-option" onclick="selectOpt(this, 'creative')"><div class="apt-option-dot"></div>Not really my thing — I prefer working with words or visuals</div>
+          <div class="apt-option" onclick="selectOpt(this, 'social')"><div class="apt-option-dot"></div>Only if the numbers connect to something human or meaningful</div>
+        </div>
+        <div class="apt-nav">
+          <button class="apt-btn-back" onclick="prevQ(8)">← Back</button>
+          <button class="apt-btn-next" id="aptNext8" disabled onclick="nextQ(8)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="apt-question-wrap" data-q="9">
+        <div class="apt-q-number">Question 10 of 10</div>
+        <div class="apt-question">If you had to describe what you want your career to feel like — which resonates most?</div>
+        <div class="apt-options">
+          <div class="apt-option" onclick="selectOpt(this, 'creative')"><div class="apt-option-dot"></div>I want to make things that people notice and remember</div>
+          <div class="apt-option" onclick="selectOpt(this, 'analytical')"><div class="apt-option-dot"></div>I want to understand complex things deeply and work precisely</div>
+          <div class="apt-option" onclick="selectOpt(this, 'entrepreneurial')"><div class="apt-option-dot"></div>I want to build something — a product, a team, a company</div>
+          <div class="apt-option" onclick="selectOpt(this, 'social')"><div class="apt-option-dot"></div>I want my work to matter to people — to make a difference</div>
+        </div>
+        <div class="apt-nav">
+          <button class="apt-btn-back" onclick="prevQ(9)">← Back</button>
+          <button class="apt-btn-next" id="aptNext9" disabled onclick="showAptResults()">See My Results →</button>
+        </div>
+      </div>
+
+    </div><!-- /aptQuestions -->
+
+    <!-- Results -->
+    <div class="apt-results" id="aptResults">
+      <div class="apt-result-hero">
+        <div class="result-badge" id="resultBadge">Your Profile</div>
+        <h2 class="result-type" id="resultType">Loading...</h2>
+        <p class="result-desc" id="resultDesc"></p>
+        <div class="result-traits" id="resultTraits"></div>
+      </div>
+
+      <div class="apt-matches-label">Recommended Placements</div>
+      <h3 class="apt-matches-title">Based on your answers, these opportunities suit you best.</h3>
+      <div class="apt-match-cards" id="aptMatchCards"></div>
+
+      <div class="apt-result-actions">
+        <button class="apt-btn-retake" onclick="retakeApt()">Retake Test</button>
+        <button class="apt-btn-explore" onclick="showPage('opportunities')">Browse All Opportunities →</button>
+      </div>
+    </div>
+
+  </div><!-- /apt-body -->
+
+</div><!-- /page-aptitude -->
+
 <div id="page-login" class="page">
   <div class="login-wrap">
     <div class="login-card" id="loginCard">
@@ -2715,7 +3765,7 @@ resize:vertical;
 
       <!-- Logo -->
       <div class="login-logo" style="text-align:center">
-        <img src="logo.png" alt="Anchor" style="height:80px; width:auto; display:block; margin:0 auto;" />
+        <img src="download.png" alt="Anchor" style="height:80px; width:auto; display:block; margin:0 auto;" />
       </div>
 
       <!-- SIGN IN -->
@@ -2807,7 +3857,7 @@ resize:vertical;
   <div class="modal-box">
     <button class="modal-close" onclick="document.getElementById('formModal').classList.remove('open')">✕</button>
     <div class="modal-logo">
-    <img src="logo.png" alt="Anchor" style="height:54px; width:auto; filter: none;" />
+    <img src="download.png" alt="Anchor" style="height:54px; width:auto; filter: none;" />
     </div>
     <h3 class="modal-title">Apply for this Placement</h3>
     <p class="modal-sub">You're applying for: <strong id="modalCompany"></strong></p>
@@ -3049,16 +4099,7 @@ resize:vertical;
   </div><!-- /adminDash -->
 </div>
 
-<!-- ══════════════════════════════════════════
-     GUIDE 1 PAGE
-══════════════════════════════════════════ -->
-<div id="page-guide1" class="page active">
 
-<section style="padding:150px 5%; background:red; color:white; min-height:100vh;">
-    <h1>THIS PAGE IS WORKING</h1>
-</section>
-
-</div>
 <!-- ── Business Detail Drawer ── -->
 <div id="bizDrawerOverlay" onclick="closeBizDrawer()"></div>
 <div id="bizDrawer">
@@ -3102,11 +4143,11 @@ resize:vertical;
     <div class="consent-fields">
       <div class="consent-field">
         <label>Parent / Guardian Full Name</label>
-        <input type="text" id="consentParentName" placeholder="e.g. John Doe"/>
+        <input type="text" id="consentParentName" placeholder="e.g. Priya Mirpuri"/>
       </div>
       <div class="consent-field">
         <label>Student Full Name</label>
-        <input type="text" id="consentStudentName" placeholder="e.g. Jane Doe"/>
+        <input type="text" id="consentStudentName" placeholder="e.g. Niska Mirpuri"/>
       </div>
     </div>
     <label class="consent-check">
