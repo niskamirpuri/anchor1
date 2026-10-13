@@ -1131,230 +1131,230 @@
 
 
   /* ══ RESOURCES / GUIDE PAGE ══ */
-  #page-resources .guide-hero {
+  #page-guide .guide-hero {
     padding: 140px 5% 80px;
     background: var(--cream);
     border-bottom: 1px solid rgba(33,46,83,0.07);
     position: relative; overflow: hidden;
   }
-  #page-resources .guide-hero::before {
+  #page-guide .guide-hero::before {
     content: ''; position: absolute; top: -60px; right: -60px;
     width: 340px; height: 340px; border-radius: 50%;
     background: radial-gradient(circle, rgba(190,211,195,0.3) 0%, transparent 70%);
     pointer-events: none;
   }
-  #page-resources .guide-hero::after {
+  #page-guide .guide-hero::after {
     content: ''; position: absolute; bottom: -40px; left: 5%;
     width: 200px; height: 200px; border-radius: 50%;
     background: radial-gradient(circle, rgba(235,172,162,0.18) 0%, transparent 70%);
     pointer-events: none;
   }
-  #page-resources .hero-inner { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
-  #page-resources .hero-eyebrow {
+  #page-guide .hero-inner { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
+  #page-guide .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 10px;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 0.65rem; font-weight: 400; letter-spacing: 0.18em;
     text-transform: uppercase; color: var(--teal); margin-bottom: 24px;
   }
-  #page-resources .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--teal); }
-  #page-resources .guide-title {
+  #page-guide .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--teal); }
+  #page-guide .guide-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2.4rem, 5vw, 3.8rem);
     font-weight: 300; line-height: 1.1; color: var(--navy);
     margin-bottom: 20px; letter-spacing: -0.01em;
   }
-  #page-resources .guide-title em { font-style: italic; color: var(--teal); }
-  #page-resources .guide-meta {
+  #page-guide .guide-title em { font-style: italic; color: var(--teal); }
+  #page-guide .guide-meta {
     display: flex; align-items: center; gap: 16px;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 0.68rem; font-weight: 300; letter-spacing: 0.1em;
     text-transform: uppercase; color: #7a7a7a; margin-bottom: 28px;
   }
-  #page-resources .guide-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--sage); }
-  #page-resources .guide-intro {
+  #page-guide .guide-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--sage); }
+  #page-guide .guide-intro {
     font-size: 1.05rem; line-height: 1.8; color: rgba(44,44,44,0.8);
     font-weight: 300; max-width: 640px;
     border-left: 2px solid var(--sage); padding-left: 20px;
   }
-  #page-resources .article-wrap {
+  #page-guide .article-wrap {
     max-width: 1100px; margin: 0 auto;
     padding: 72px 5% 80px;
     display: grid; grid-template-columns: 1fr 220px;
     gap: 56px; align-items: start;
   }
-  #page-resources .sidebar { position: sticky; top: 100px; }
-  #page-resources .sidebar-label {
+  #page-guide .sidebar { position: sticky; top: 100px; }
+  #page-guide .sidebar-label {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em;
     text-transform: uppercase; color: #7a7a7a; margin-bottom: 16px;
   }
-  #page-resources .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 2px; }
-  #page-resources .sidebar-nav li a {
+  #page-guide .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+  #page-guide .sidebar-nav li a {
     display: block; font-family: 'Inter', sans-serif;
     font-size: 0.8rem; font-weight: 300; color: rgba(33,46,83,0.55);
     text-decoration: none; padding: 7px 12px; border-left: 2px solid transparent;
     transition: all 0.2s; line-height: 1.4;
   }
-  #page-resources .sidebar-nav li a:hover { color: var(--teal); border-left-color: var(--sage); }
-  #page-resources .sidebar-nav li a.active { color: var(--teal); border-left-color: var(--teal); font-weight: 400; }
-  #page-resources .sidebar-divider { height: 1px; background: rgba(33,46,83,0.08); margin: 20px 0; }
-  #page-resources .sidebar-reading {
+  #page-guide .sidebar-nav li a:hover { color: var(--teal); border-left-color: var(--sage); }
+  #page-guide .sidebar-nav li a.active { color: var(--teal); border-left-color: var(--teal); font-weight: 400; }
+  #page-guide .sidebar-divider { height: 1px; background: rgba(33,46,83,0.08); margin: 20px 0; }
+  #page-guide .sidebar-reading {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
     color: #7a7a7a; display: flex; align-items: center; gap: 8px;
   }
-  #page-resources .reading-bar { flex: 1; height: 2px; background: rgba(33,46,83,0.1); border-radius: 2px; overflow: hidden; }
-  #page-resources .reading-fill { height: 100%; background: var(--teal); border-radius: 2px; width: 0%; transition: width 0.3s; }
-  #page-resources .article-body { min-width: 0; }
-  #page-resources .article-section { margin-bottom: 56px; scroll-margin-top: 100px; }
-  #page-resources .section-label-guide {
+  #page-guide .reading-bar { flex: 1; height: 2px; background: rgba(33,46,83,0.1); border-radius: 2px; overflow: hidden; }
+  #page-guide .reading-fill { height: 100%; background: var(--teal); border-radius: 2px; width: 0%; transition: width 0.3s; }
+  #page-guide .article-body { min-width: 0; }
+  #page-guide .article-section { margin-bottom: 56px; scroll-margin-top: 100px; }
+  #page-guide .section-label-guide {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 0.6rem; font-weight: 600; letter-spacing: 0.2em;
     text-transform: uppercase; color: var(--teal);
     margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
   }
-  #page-resources .section-label-guide::after { content: ''; flex: 1; height: 1px; background: rgba(74,145,158,0.2); }
-  #page-resources .section-title-guide {
+  #page-guide .section-label-guide::after { content: ''; flex: 1; height: 1px; background: rgba(74,145,158,0.2); }
+  #page-guide .section-title-guide {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.85rem; font-weight: 400; color: var(--navy);
     line-height: 1.2; margin-bottom: 18px; letter-spacing: -0.01em;
   }
-  #page-resources .section-title-guide em { font-style: italic; }
-  #page-resources .article-body p {
+  #page-guide .section-title-guide em { font-style: italic; }
+  #page-guide .article-body p {
     font-size: 0.97rem; line-height: 1.85; color: rgba(44,44,44,0.82);
     font-weight: 300; margin-bottom: 18px;
   }
-  #page-resources .article-body p strong { font-weight: 500; color: var(--navy); }
-  #page-resources .pull-quote {
+  #page-guide .article-body p strong { font-weight: 500; color: var(--navy); }
+  #page-guide .pull-quote {
     background: var(--cream); border-radius: 16px;
     padding: 28px 32px; margin: 36px 0;
     border-left: 3px solid var(--teal); position: relative;
   }
-  #page-resources .pull-quote::before {
+  #page-guide .pull-quote::before {
     content: '\201C'; font-family: 'Cormorant Garamond', serif;
     font-size: 5rem; color: var(--sage); line-height: 0.6;
     position: absolute; top: 24px; left: 20px; opacity: 0.6;
   }
-  #page-resources .pull-quote p {
+  #page-guide .pull-quote p {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.35rem; font-style: italic; font-weight: 300;
     color: var(--navy); line-height: 1.5; margin: 0; padding-left: 16px;
   }
-  #page-resources .think-box {
+  #page-guide .think-box {
     background: white; border-radius: 18px; padding: 32px 36px; margin: 36px 0;
     border: 1px solid rgba(33,46,83,0.08); box-shadow: 0 4px 24px rgba(33,46,83,0.06);
     position: relative; overflow: hidden;
   }
-  #page-resources .think-box::before {
+  #page-guide .think-box::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
     background: linear-gradient(90deg, var(--teal), var(--sage), var(--blush));
   }
-  #page-resources .think-label {
+  #page-guide .think-label {
     font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 600;
     letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal);
     margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
   }
-  #page-resources .think-label span { font-size: 1rem; }
-  #page-resources .think-box h4 {
+  #page-guide .think-label span { font-size: 1rem; }
+  #page-guide .think-box h4 {
     font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400;
     color: var(--navy); margin-bottom: 20px; line-height: 1.3;
   }
-  #page-resources .think-questions { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-  #page-resources .think-questions li {
+  #page-guide .think-questions { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  #page-guide .think-questions li {
     display: flex; align-items: flex-start; gap: 12px;
     font-size: 0.92rem; line-height: 1.6; color: rgba(44,44,44,0.8); font-weight: 300;
   }
-  #page-resources .think-questions li::before { content: '\2192'; color: var(--teal); font-weight: 400; flex-shrink: 0; margin-top: 1px; }
-  #page-resources .takeaway-box {
+  #page-guide .think-questions li::before { content: '\2192'; color: var(--teal); font-weight: 400; flex-shrink: 0; margin-top: 1px; }
+  #page-guide .takeaway-box {
     background: var(--navy); border-radius: 20px; padding: 40px 40px 36px;
     margin: 40px 0; position: relative; overflow: hidden;
   }
-  #page-resources .takeaway-box::before {
+  #page-guide .takeaway-box::before {
     content: ''; position: absolute; top: -40px; right: -40px;
     width: 180px; height: 180px; border-radius: 50%;
     background: radial-gradient(circle, rgba(190,211,195,0.12) 0%, transparent 70%);
   }
-  #page-resources .takeaway-label {
+  #page-guide .takeaway-label {
     font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; font-weight: 600;
     letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage);
     margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
   }
-  #page-resources .takeaway-label::after { content: ''; flex: 1; height: 1px; background: rgba(190,211,195,0.25); }
-  #page-resources .takeaway-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 4px; }
-  #page-resources .takeaway-card {
+  #page-guide .takeaway-label::after { content: ''; flex: 1; height: 1px; background: rgba(190,211,195,0.25); }
+  #page-guide .takeaway-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 4px; }
+  #page-guide .takeaway-card {
     background: rgba(255,255,255,0.06); border-radius: 12px; padding: 22px 20px;
     border: 1px solid rgba(255,255,255,0.08); transition: background 0.2s;
   }
-  #page-resources .takeaway-card:hover { background: rgba(255,255,255,0.1); }
-  #page-resources .takeaway-word {
+  #page-guide .takeaway-card:hover { background: rgba(255,255,255,0.1); }
+  #page-guide .takeaway-word {
     font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300;
     font-style: italic; color: white; margin-bottom: 8px; display: block;
   }
-  #page-resources .takeaway-desc { font-size: 0.78rem; font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.6); }
-  #page-resources .article-hr {
+  #page-guide .takeaway-desc { font-size: 0.78rem; font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.6); }
+  #page-guide .article-hr {
     border: none; height: 1px;
     background: linear-gradient(90deg, transparent, rgba(33,46,83,0.12), transparent);
     margin: 48px 0;
   }
-  #page-resources .back-link {
+  #page-guide .back-link {
     display: inline-flex; align-items: center; gap: 8px;
     font-family: 'Josefin Sans', sans-serif; font-size: 0.68rem; font-weight: 400;
     letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal);
     text-decoration: none; transition: gap 0.2s; cursor: pointer;
   }
-  #page-resources .back-link:hover { gap: 12px; }
-  #page-resources .back-link::before { content: '\2190'; }
-  #page-resources .continue-section {
+  #page-guide .back-link:hover { gap: 12px; }
+  #page-guide .back-link::before { content: '\2190'; }
+  #page-guide .continue-section {
     background: var(--cream); padding: 72px 5%;
     border-top: 1px solid rgba(33,46,83,0.07);
   }
-  #page-resources .continue-inner { max-width: 1100px; margin: 0 auto; }
-  #page-resources .continue-title {
+  #page-guide .continue-inner { max-width: 1100px; margin: 0 auto; }
+  #page-guide .continue-title {
     font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--navy);
   }
-  #page-resources .guide-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  #page-resources .guide-card {
+  #page-guide .guide-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  #page-guide .guide-card {
     background: white; border-radius: 16px; padding: 28px 26px;
     border: 1px solid rgba(33,46,83,0.07); box-shadow: 0 2px 12px rgba(33,46,83,0.05);
     cursor: pointer; transition: all 0.28s; text-decoration: none;
     display: flex; flex-direction: column; gap: 12px;
   }
-  #page-resources .guide-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(33,46,83,0.12); border-color: rgba(74,145,158,0.2); }
-  #page-resources .guide-card-tag { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); }
-  #page-resources .guide-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--navy); line-height: 1.3; }
-  #page-resources .guide-card-desc { font-size: 0.82rem; font-weight: 300; color: #7a7a7a; line-height: 1.6; flex: 1; }
-  #page-resources .guide-card-arrow { font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-top: 4px; transition: letter-spacing 0.2s; }
-  #page-resources .guide-card:hover .guide-card-arrow { letter-spacing: 0.18em; }
-  #page-resources .guide-card-coming { opacity: 0.55; cursor: default; }
-  #page-resources .guide-card-coming:hover { transform: none; box-shadow: 0 2px 12px rgba(33,46,83,0.05); border-color: rgba(33,46,83,0.07); }
-  #page-resources .coming-chip { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(33,46,83,0.07); color: #7a7a7a; padding: 3px 10px; border-radius: 100px; display: inline-block; margin-top: 4px; }
-  #page-resources .comments-section { background: #fafaf8; padding: 72px 5%; border-top: 1px solid rgba(33,46,83,0.07); }
-  #page-resources .comments-inner { max-width: 720px; margin: 0 auto; }
-  #page-resources .comments-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300; color: var(--navy); }
-  #page-resources .comments-header p { font-size: 0.88rem; color: #7a7a7a; font-weight: 300; line-height: 1.6; margin-top: 8px; }
-  #page-resources .comment-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px; }
-  #page-resources .comment-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  #page-resources .comment-input { border: 1px solid rgba(33,46,83,0.15); border-radius: 10px; padding: 12px 16px; font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 300; color: var(--navy); background: white; outline: none; transition: border-color 0.2s; }
-  #page-resources .comment-input:focus { border-color: var(--teal); }
-  #page-resources .comment-textarea { border: 1px solid rgba(33,46,83,0.15); border-radius: 10px; padding: 14px 16px; font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 300; color: var(--navy); background: white; outline: none; transition: border-color 0.2s; resize: vertical; min-height: 120px; line-height: 1.7; width: 100%; }
-  #page-resources .comment-textarea:focus { border-color: var(--teal); }
-  #page-resources .comment-submit { align-self: flex-start; background: linear-gradient(135deg, var(--teal), #3d7a87); color: white; border: none; border-radius: 100px; padding: 12px 28px; font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.25s; box-shadow: 0 4px 14px rgba(74,145,158,0.3); }
-  #page-resources .comment-submit:hover { background: linear-gradient(135deg, #3d7a87, var(--navy)); transform: translateY(-2px); }
-  #page-resources .comments-list { display: flex; flex-direction: column; gap: 20px; }
-  #page-resources .comment-item { background: white; border-radius: 14px; padding: 22px 24px; border: 1px solid rgba(33,46,83,0.07); box-shadow: 0 2px 8px rgba(33,46,83,0.04); }
-  #page-resources .comment-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  #page-resources .comment-avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--sage)); display: flex; align-items: center; justify-content: center; font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; font-weight: 600; color: white; flex-shrink: 0; }
-  #page-resources .comment-name { font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; color: var(--navy); }
-  #page-resources .comment-date { font-size: 0.7rem; color: #7a7a7a; font-weight: 300; }
-  #page-resources .comment-text { font-size: 0.88rem; line-height: 1.7; color: rgba(44,44,44,0.75); font-weight: 300; }
-  #page-resources .guide-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  #page-resources .guide-reveal.visible { opacity: 1; transform: translateY(0); }
+  #page-guide .guide-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(33,46,83,0.12); border-color: rgba(74,145,158,0.2); }
+  #page-guide .guide-card-tag { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); }
+  #page-guide .guide-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--navy); line-height: 1.3; }
+  #page-guide .guide-card-desc { font-size: 0.82rem; font-weight: 300; color: #7a7a7a; line-height: 1.6; flex: 1; }
+  #page-guide .guide-card-arrow { font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-top: 4px; transition: letter-spacing 0.2s; }
+  #page-guide .guide-card:hover .guide-card-arrow { letter-spacing: 0.18em; }
+  #page-guide .guide-card-coming { opacity: 0.55; cursor: default; }
+  #page-guide .guide-card-coming:hover { transform: none; box-shadow: 0 2px 12px rgba(33,46,83,0.05); border-color: rgba(33,46,83,0.07); }
+  #page-guide .coming-chip { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(33,46,83,0.07); color: #7a7a7a; padding: 3px 10px; border-radius: 100px; display: inline-block; margin-top: 4px; }
+  #page-guide .comments-section { background: #fafaf8; padding: 72px 5%; border-top: 1px solid rgba(33,46,83,0.07); }
+  #page-guide .comments-inner { max-width: 720px; margin: 0 auto; }
+  #page-guide .comments-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300; color: var(--navy); }
+  #page-guide .comments-header p { font-size: 0.88rem; color: #7a7a7a; font-weight: 300; line-height: 1.6; margin-top: 8px; }
+  #page-guide .comment-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px; }
+  #page-guide .comment-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  #page-guide .comment-input { border: 1px solid rgba(33,46,83,0.15); border-radius: 10px; padding: 12px 16px; font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 300; color: var(--navy); background: white; outline: none; transition: border-color 0.2s; }
+  #page-guide .comment-input:focus { border-color: var(--teal); }
+  #page-guide .comment-textarea { border: 1px solid rgba(33,46,83,0.15); border-radius: 10px; padding: 14px 16px; font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 300; color: var(--navy); background: white; outline: none; transition: border-color 0.2s; resize: vertical; min-height: 120px; line-height: 1.7; width: 100%; }
+  #page-guide .comment-textarea:focus { border-color: var(--teal); }
+  #page-guide .comment-submit { align-self: flex-start; background: linear-gradient(135deg, var(--teal), #3d7a87); color: white; border: none; border-radius: 100px; padding: 12px 28px; font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.25s; box-shadow: 0 4px 14px rgba(74,145,158,0.3); }
+  #page-guide .comment-submit:hover { background: linear-gradient(135deg, #3d7a87, var(--navy)); transform: translateY(-2px); }
+  #page-guide .comments-list { display: flex; flex-direction: column; gap: 20px; }
+  #page-guide .comment-item { background: white; border-radius: 14px; padding: 22px 24px; border: 1px solid rgba(33,46,83,0.07); box-shadow: 0 2px 8px rgba(33,46,83,0.04); }
+  #page-guide .comment-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  #page-guide .comment-avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--sage)); display: flex; align-items: center; justify-content: center; font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; font-weight: 600; color: white; flex-shrink: 0; }
+  #page-guide .comment-name { font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; color: var(--navy); }
+  #page-guide .comment-date { font-size: 0.7rem; color: #7a7a7a; font-weight: 300; }
+  #page-guide .comment-text { font-size: 0.88rem; line-height: 1.7; color: rgba(44,44,44,0.75); font-weight: 300; }
+  #page-guide .guide-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  #page-guide .guide-reveal.visible { opacity: 1; transform: translateY(0); }
   @media (max-width: 768px) {
-    #page-resources .article-wrap { grid-template-columns: 1fr; }
-    #page-resources .sidebar { display: none; }
-    #page-resources .guide-cards { grid-template-columns: 1fr; }
-    #page-resources .takeaway-grid { grid-template-columns: 1fr; }
-    #page-resources .comment-row { grid-template-columns: 1fr; }
+    #page-guide .article-wrap { grid-template-columns: 1fr; }
+    #page-guide .sidebar { display: none; }
+    #page-guide .guide-cards { grid-template-columns: 1fr; }
+    #page-guide .takeaway-grid { grid-template-columns: 1fr; }
+    #page-guide .comment-row { grid-template-columns: 1fr; }
   }
 
 
@@ -3038,8 +3038,8 @@
   const G_SECTIONS = ['g-section-explore','g-section-impress','g-section-title','g-section-think','g-section-takeaway','g-section-conclusion'];
 
   function updateGuideProgress() {
-    if (!document.getElementById('page-resources').classList.contains('active')) return;
-    const article = document.querySelector('#page-resources .article-body');
+    if (!document.getElementById('page-guide').classList.contains('active')) return;
+    const article = document.querySelector('#page-guide .article-body');
     if (!article) return;
     const rect = article.getBoundingClientRect();
     const total = article.offsetHeight - window.innerHeight;
